@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "575396008127",
+    "firebase_url": "https://safeplace-25221.firebaseio.com",
+    "project_id": "safeplace-25221",
+    "storage_bucket": "safeplace-25221.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:575396008127:android:b9c877eb89cf1b2e",
+        "android_client_info": {
+          "package_name": "company.pawelzielinski.safeplace"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "575396008127-bcspkv2scl2f1pe3q8t08te12tlmk8ba.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "company.pawelzielinski.safeplace",
+            "certificate_hash": "2ba2c9c221b4e2b2264e5de03a2816e4bd5d6827"
+          }
+        },
+        {
+          "client_id": "575396008127-cbknju12t6hjeuvsfo81kn2mbb9lcvbn.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDc1btFwe4ygotrg_DIsDvFrQ0Ir35BuRo"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "575396008127-cbknju12t6hjeuvsfo81kn2mbb9lcvbn.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
