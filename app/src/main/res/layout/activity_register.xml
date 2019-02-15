@@ -87,6 +87,14 @@
                     android:text="@string/register"
                     android:textStyle="bold" />
 
+                <Button
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:text="CONNECT WITH FACEBOOK"
+                    android:background="@color/facebookButton"
+                    android:layout_gravity="center"
+                    android:textStyle="bold" />
+
             </LinearLayout>
         </ScrollView>
     </LinearLayout>

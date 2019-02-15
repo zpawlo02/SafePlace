@@ -81,6 +81,18 @@
                 android:text="@string/register"
                 android:textStyle="bold" />
 
+
+            <com.facebook.login.widget.LoginButton
+                android:id="@+id/Fblogin_button"
+                android:layout_width="match_parent"
+                android:layout_height="46dp"
+                android:layout_gravity="center_horizontal"
+                android:onClick="fbButtonClickLoginFb"
+                android:layout_marginTop="30dp"
+                android:layout_marginBottom="30dp" />
+
+
+
         </LinearLayout>
     </ScrollView>
 </LinearLayout>
