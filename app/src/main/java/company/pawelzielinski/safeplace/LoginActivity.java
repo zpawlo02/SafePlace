@@ -68,16 +68,17 @@ public class LoginActivity extends AppCompatActivity {
     private View mProgressView;
     private View mLoginFormView;
 
-    CallbackManager callbackManager;
-    private FirebaseAuth auth;
-    private FirebaseUser user;
-    LoginButton loginButtonFb;
+    private CallbackManager callbackManager = CallbackManager.Factory.create();
+     FirebaseAuth auth;
+     FirebaseUser user;
+    private LoginButton loginButtonFb;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        //Prepare user
         auth = FirebaseAuth.getInstance();
         user = auth.getCurrentUser();
 
@@ -86,11 +87,11 @@ public class LoginActivity extends AppCompatActivity {
             FacebookSdk.sdkInitialize(getApplicationContext());
             loginButtonFb = (LoginButton)findViewById(R.id.Fblogin_button);
 
-
-            callbackManager = CallbackManager.Factory.create();
+            //callbackManager = CallbackManager.Factory.create();
             loginButtonFb.setReadPermissions(Arrays.asList("email"));
+
         }else {
-            //WLACZ STRONE GLOWNA APPKI JESLI JEST ZALOGOWANY
+            startActivity(new Intent(LoginActivity.this, MainMenu.class));
           //  Intent myIntent = new Intent(LoginActivity.this.Prof)
         }
 
@@ -147,9 +148,10 @@ public class LoginActivity extends AppCompatActivity {
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful()){
                     FirebaseUser myuserobjt = auth.getCurrentUser();
-                    Toast.makeText(getApplicationContext(),myuserobjt.getEmail(), Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(),myuserobjt.getDisplayName() + " connected!", Toast.LENGTH_LONG).show();
+                    startActivity(new Intent(LoginActivity.this, MainMenu.class));
                 }else {
-                    Toast.makeText(getApplicationContext(),"Could not register to firebase", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(),"Could not register to firebase!", Toast.LENGTH_LONG).show();
                 }
             }
         });

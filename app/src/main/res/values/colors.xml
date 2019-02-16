@@ -4,4 +4,6 @@
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
     <color name="facebookButton">#3b5998</color>
+    <color name="mainMenuButtonColor">#ffffff</color>
+    <color name="mainMenuButtonTextColor">#c9c8c8</color>
 </resources>
