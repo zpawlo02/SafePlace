@@ -25,4 +25,8 @@
     <string name="nav_header_subtitle">android.studio@android.com</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
+    <string name="add_safe_not_safe_place">ADD SAFE/NOT SAFE PLACE</string>
+    <string name="search_for_safe_not_safe_places_around">SEARCH FOR SAFE/NOT SAFE PLACES AROUND</string>
+    <string name="top_safe_not_safe_places">TOP SAFE/NOT SAFE PLACES</string>
+    <string name="logout">Logout</string>
 </resources>

@@ -15,6 +15,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -23,7 +24,7 @@ public class MainMenu extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     TextView usernameView;
-    FirebaseUser user;
+    TextView emailView;
 
 
     @Override
@@ -31,18 +32,25 @@ public class MainMenu extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_menu);
 
+
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        usernameView = (TextView) findViewById(R.id.usernameView);
+        //usernameView = (TextView) findViewById(R.id.textView);
+        emailView = (TextView) findViewById(R.id.userEmail);
         FirebaseAuth auth = FirebaseAuth.getInstance();
+        FirebaseUser firebaseUser = auth.getCurrentUser();
+        emailView.setText(firebaseUser.getEmail());
+        Toast.makeText(getApplicationContext(), firebaseUser.getEmail(),Toast.LENGTH_LONG).show();
 
         FirebaseAuth.AuthStateListener authListener = new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
                 if (firebaseUser != null) {
-                    usernameView.setText(firebaseUser.getDisplayName());
+                    //Nie zmienia nazwy!!
+                    usernameView.setText(firebaseUser.getEmail());
                 }
             }
         };

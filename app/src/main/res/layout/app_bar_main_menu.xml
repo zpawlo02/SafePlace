@@ -15,7 +15,7 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
+            android:background="@color/appThemeColor"
             app:popupTheme="@style/AppTheme.PopupOverlay" />
 
     </android.support.design.widget.AppBarLayout>
@@ -29,11 +29,11 @@
             android:layout_height="100dp"
             android:layout_marginTop="50dp"
             android:background="@color/mainMenuButtonColor"
-            android:text="ADD SAFE/NOT SAFE PLACE "
+            android:text="@string/add_safe_not_safe_place"
             android:textColor="@color/mainMenuButtonTextColor" />
 
         <Button
-            android:text="SEARCH FOR SAFE/NOT SAFE PLACES AROUND"
+            android:text="@string/search_for_safe_not_safe_places_around"
             android:layout_width="match_parent"
             android:layout_height="100dp"
             android:layout_marginTop="150dp"
@@ -41,7 +41,7 @@
             android:textColor="@color/mainMenuButtonTextColor"/>
 
         <Button
-            android:text="TOP SAFE/NOT SAFE PLACES"
+            android:text="@string/top_safe_not_safe_places"
             android:layout_width="match_parent"
             android:layout_height="100dp"
             android:layout_marginTop="250dp"
