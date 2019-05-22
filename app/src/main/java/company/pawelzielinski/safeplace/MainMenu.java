@@ -1,6 +1,8 @@
 package company.pawelzielinski.safeplace;
 
 import android.arch.core.executor.TaskExecutor;
+import android.content.ClipData;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
@@ -17,6 +19,7 @@ import android.view.MenuItem;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.facebook.login.LoginManager;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -37,24 +40,25 @@ public class MainMenu extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        //usernameView = (TextView) findViewById(R.id.textView);
         emailView = (TextView) findViewById(R.id.userEmail);
-        FirebaseAuth auth = FirebaseAuth.getInstance();
+
+        final FirebaseAuth auth = FirebaseAuth.getInstance();
         FirebaseUser firebaseUser = auth.getCurrentUser();
         emailView.setText(firebaseUser.getEmail());
         Toast.makeText(getApplicationContext(), firebaseUser.getEmail(),Toast.LENGTH_LONG).show();
 
         navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView.bringToFront();
+        navigationView.requestLayout();
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
                 switch (menuItem.getItemId()){
                     case R.id.nav_logout:
-
-
-                    //DOKONCZ WYLOGOWYWANIE !!!!
-
-                        
+                        auth.getInstance().signOut();
+                        Toast.makeText(getApplicationContext(), "LOGOUT", Toast.LENGTH_LONG).show();
+                        startActivity(new Intent(MainMenu.this, LoginActivity.class));
+                        break;
                 }
                 return true;
             }
@@ -121,6 +125,10 @@ public class MainMenu extends AppCompatActivity
 
         } else if (id == R.id.nav_send) {
 
+        } else if(id == R.id.nav_logout){
+            FirebaseAuth.getInstance().signOut();
+            LoginManager.getInstance().logOut();
+            startActivity(new Intent(MainMenu.this, LoginActivity.class));
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
