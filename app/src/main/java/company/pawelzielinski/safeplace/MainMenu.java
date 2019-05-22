@@ -23,9 +23,9 @@ import com.google.firebase.auth.FirebaseUser;
 public class MainMenu extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    TextView usernameView;
-    TextView emailView;
+   private  TextView emailView;
 
+   private NavigationView navigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,17 +44,21 @@ public class MainMenu extends AppCompatActivity
         emailView.setText(firebaseUser.getEmail());
         Toast.makeText(getApplicationContext(), firebaseUser.getEmail(),Toast.LENGTH_LONG).show();
 
-        FirebaseAuth.AuthStateListener authListener = new FirebaseAuth.AuthStateListener() {
+        navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
-            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-                FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
-                if (firebaseUser != null) {
-                    //Nie zmienia nazwy!!
-                    usernameView.setText(firebaseUser.getEmail());
-                }
-            }
-        };
+            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+                switch (menuItem.getItemId()){
+                    case R.id.nav_logout:
 
+
+                    //DOKONCZ WYLOGOWYWANIE !!!!
+
+                        
+                }
+                return true;
+            }
+        });
 
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
