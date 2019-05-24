@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Fragments.F_ADDPlace">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal"
+        android:text="@string/add_place"
+        android:textSize="40sp" />
+
+
+        <RadioGroup
+            android:id="@+id/groupTypePlace"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="70dp"
+            android:orientation="horizontal"
+            android:gravity="center_horizontal">
+
+            <RadioButton
+                android:id="@+id/radioSafe"
+                android:layout_width="137dp"
+                android:layout_height="wrap_content"
+                android:text="@string/safePlace"
+                android:textSize="20dp" />
+
+            <RadioButton
+                android:id="@+id/radioNotSafe"
+                android:layout_width="128dp"
+                android:layout_height="wrap_content"
+                android:text="@string/notSafe"
+                android:textSize="20dp" />
+
+        </RadioGroup>
+
+
+
+</FrameLayout>

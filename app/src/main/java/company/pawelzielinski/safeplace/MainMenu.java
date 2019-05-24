@@ -1,12 +1,10 @@
 package company.pawelzielinski.safeplace;
 
-import android.arch.core.executor.TaskExecutor;
-import android.content.ClipData;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -16,6 +14,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -23,55 +22,62 @@ import com.facebook.login.LoginManager;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+import company.pawelzielinski.safeplace.Fragments.F_ADDPlace;
+
 public class MainMenu extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
    private  TextView emailView;
 
-   private NavigationView navigationView;
+
+   private Button buttonAddPlace;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_menu);
 
+        //SETTING ALL COMPONENTS
 
+        //NAVIGATION VIEW
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
 
+        //DRAWER LAYOUT
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        //TOOLBAR
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        //TEXTVIEWS
         emailView = (TextView) findViewById(R.id.userEmail);
 
-        final FirebaseAuth auth = FirebaseAuth.getInstance();
-        FirebaseUser firebaseUser = auth.getCurrentUser();
-        emailView.setText(firebaseUser.getEmail());
-        Toast.makeText(getApplicationContext(), firebaseUser.getEmail(),Toast.LENGTH_LONG).show();
+        //BUTTONS
+        buttonAddPlace = (Button) findViewById(R.id.buttonAddPlace);
 
-        navigationView = (NavigationView) findViewById(R.id.nav_view);
-        navigationView.bringToFront();
-        navigationView.requestLayout();
-        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+
+        //BUTTONS ON CLICK METHODS
+
+        buttonAddPlace.setOnClickListener(new View.OnClickListener() {
             @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-                switch (menuItem.getItemId()){
-                    case R.id.nav_logout:
-                        auth.getInstance().signOut();
-                        Toast.makeText(getApplicationContext(), "LOGOUT", Toast.LENGTH_LONG).show();
-                        startActivity(new Intent(MainMenu.this, LoginActivity.class));
-                        break;
-                }
-                return true;
+            public void onClick(View v) {
+                Log.i("sds","dsdsd");
+                FragmentManager fm = getSupportFragmentManager();
+                Fragment add = new F_ADDPlace();
+                fm.beginTransaction().add(R.id.drawer_layout, add);
+
             }
         });
 
+        //FIREBASE AUTH
+        final FirebaseAuth auth = FirebaseAuth.getInstance();
+        FirebaseUser firebaseUser = auth.getCurrentUser();
+        emailView.setText(firebaseUser.getEmail());
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
     }
 
@@ -135,4 +141,10 @@ public class MainMenu extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
+    public void addPlaceF(View v){
+
+    }
+
+
 }

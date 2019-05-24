@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainMenu">
+    tools:context=".MainMenu"
+    android:id="@+id/main_menuBar">
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
@@ -30,7 +31,8 @@
             android:layout_marginTop="50dp"
             android:background="@color/mainMenuButtonColor"
             android:text="@string/add_safe_not_safe_place"
-            android:textColor="@color/mainMenuButtonTextColor" />
+            android:textColor="@color/mainMenuButtonTextColor"
+            android:id="@+id/buttonAddPlace"/>
 
         <Button
             android:text="@string/search_for_safe_not_safe_places_around"
