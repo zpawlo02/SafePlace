@@ -1,6 +1,7 @@
 package company.pawelzielinski.safeplace;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -25,7 +26,7 @@ import com.google.firebase.auth.FirebaseUser;
 import company.pawelzielinski.safeplace.Fragments.F_ADDPlace;
 
 public class MainMenu extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+        implements NavigationView.OnNavigationItemSelectedListener, F_ADDPlace.OnFragmentInteractionListener {
 
    private  TextView emailView;
 
@@ -63,7 +64,7 @@ public class MainMenu extends AppCompatActivity
                 Log.i("sds","dsdsd");
                 FragmentManager fm = getSupportFragmentManager();
                 Fragment add = new F_ADDPlace();
-                fm.beginTransaction().add(R.id.drawer_layout, add);
+                fm.beginTransaction().add(R.id.drawer_layout, add).commit();
 
             }
         });
@@ -147,4 +148,8 @@ public class MainMenu extends AppCompatActivity
     }
 
 
+    @Override
+    public void onFragmentInteraction(Uri uri) {
+
+    }
 }
