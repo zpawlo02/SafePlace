@@ -29,9 +29,11 @@ public class MainMenu extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, F_ADDPlace.OnFragmentInteractionListener {
 
    private  TextView emailView;
+   boolean doubleBackToExitPressedOnce = false;
 
 
-   private Button buttonAddPlace;
+
+    private Button buttonAddPlace;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,7 +66,7 @@ public class MainMenu extends AppCompatActivity
                 Log.i("sds","dsdsd");
                 FragmentManager fm = getSupportFragmentManager();
                 Fragment add = new F_ADDPlace();
-                fm.beginTransaction().add(R.id.drawer_layout, add).commit();
+                fm.beginTransaction().add(R.id.drawer_layout, add).addToBackStack(null).commit();
 
             }
         });
@@ -86,7 +88,7 @@ public class MainMenu extends AppCompatActivity
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
-            drawer.closeDrawer(GravityCompat.START);
+            drawer.closeDrawer(GravityCompat.RELATIVE_LAYOUT_DIRECTION);
         } else {
             super.onBackPressed();
         }
