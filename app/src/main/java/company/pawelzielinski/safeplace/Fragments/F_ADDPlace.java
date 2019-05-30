@@ -9,24 +9,19 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.RadioButton;
 
 import company.pawelzielinski.safeplace.MainMenu;
 import company.pawelzielinski.safeplace.MapsActivity;
 import company.pawelzielinski.safeplace.R;
 
 public class F_ADDPlace extends Fragment {
-    View view;
-    Button buttonOpenMaps;
-    //DOKONCZ PRZYCISK ZEBY WLACZAL ACTIVTY MAP
+    private View view;
+    private Button buttonOpenMaps;
+    private RadioButton radioButtonSafe, radioButtonNotSafe;
+    private Boolean isSafe = true;
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
 
     private OnFragmentInteractionListener mListener;
 
@@ -55,7 +50,26 @@ public class F_ADDPlace extends Fragment {
         buttonOpenMaps.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getActivity(), MapsActivity.class));
+                Intent intent = new Intent(getActivity().getBaseContext(), MapsActivity.class);
+                intent.putExtra("isSafe", isSafe);
+                getActivity().startActivity(intent);
+            }
+        });
+
+        radioButtonSafe = (RadioButton) view.findViewById(R.id.radioSafe);
+        radioButtonNotSafe = (RadioButton) view.findViewById(R.id.radioNotSafe);
+
+        radioButtonSafe.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                isSafe = true;
+            }
+        });
+
+        radioButtonNotSafe.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                isSafe = false;
             }
         });
 
