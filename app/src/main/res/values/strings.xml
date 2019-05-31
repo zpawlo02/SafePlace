@@ -35,4 +35,13 @@
     <string name="safePlace">Safe</string>
     <string name="notSafe">Not safe</string>
     <string name="add_place">ADD PLACE</string>
+    <string name="traffic_accidents">Traffic accidents</string>
+    <string name="mark_area">Mark area</string>
+    <string name="possibility_of_amenities_or_dangers">Possibility of amenities or dangers</string>
+    <string name="pickpockets">Pickpockets</string>
+    <string name="kidnapping">Kidnapping</string>
+    <string name="homeless">Homeless</string>
+    <string name="public_transport">Public transport</string>
+    <string name="parties_events">Parties, Events</string>
+    <string name="shops">Shops</string>
 </resources>
