@@ -18,7 +18,7 @@
         android:layout_width="55dp"
         android:layout_height="55dp"
         android:layout_gravity="bottom"
-        android:layout_marginBottom="55dp"
+        android:layout_marginBottom="140dp"
         android:textSize="20sp"
         android:text="+"
         android:layout_marginStart="340dp"/>
@@ -28,10 +28,17 @@
         android:layout_width="55dp"
         android:layout_height="55dp"
         android:layout_gravity="bottom"
-        android:layout_marginBottom="5dp"
+        android:layout_marginBottom="90dp"
         android:textSize="20sp"
         android:text="-"
         android:layout_marginStart="340dp"/>
+
+    <Button
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="650dp"
+        android:text="@string/save_area"/>
 
 
 </FrameLayout>
