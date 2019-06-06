@@ -6,23 +6,41 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.text.method.CharacterPickerDialog;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.TextView;
+
+import com.google.android.gms.maps.model.LatLng;
+
+import java.io.IOException;
 
 import company.pawelzielinski.safeplace.MainMenu;
 import company.pawelzielinski.safeplace.MapsActivity;
 import company.pawelzielinski.safeplace.R;
 
 public class F_ADDPlace extends Fragment {
+    public boolean wasOpened = false;
     private View view;
     private Button buttonOpenMaps;
     private RadioButton radioButtonSafe, radioButtonNotSafe;
-    private Boolean isSafe = true;
+    private EditText editTextComment;
 
+    private Boolean isSafe = true, mapWasOpened = false;
+    private String comment;
+
+
+    //CIRCLE
+    private LatLng mCircleCenter;
+    private Double lat, longt;
+    private Double circleRadius;
+
+    private int traffic = 1, pickpockets = 1, kidnapping = 1, homeless = 1, publicTransport = 1,
+                parties = 1, shops = 1, carthefts = 1;
     //Increase
     private Button iTraffic, iPickpockets, iKidnapping, iHomeless,
             iPublicTransport, iParties, iShops, iCarthefts;
@@ -54,8 +72,9 @@ public class F_ADDPlace extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+                             final Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_addplace, container, false);
+
         // Inflate the layout for this fragment
 
         buttonOpenMaps = (Button) view.findViewById(R.id.buttonOpenMaps);
@@ -63,9 +82,21 @@ public class F_ADDPlace extends Fragment {
         buttonOpenMaps.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                comment = editTextComment.getText().toString();
                 Intent intent = new Intent(getActivity().getBaseContext(), MapsActivity.class);
+                intent.putExtra("traffic", traffic);
+                intent.putExtra("pickpockets", pickpockets);
+                intent.putExtra("kidnapping", kidnapping);
+                intent.putExtra("homeless", homeless);
+                intent.putExtra("publicTransport", publicTransport);
+                intent.putExtra("parties", parties);
+                intent.putExtra("shops", shops);
+                intent.putExtra("carthefts", carthefts);
+                intent.putExtra("comment", comment);
                 intent.putExtra("isSafe", isSafe);
                 getActivity().startActivity(intent);
+                getFragmentManager().popBackStack();
+
             }
         });
 
@@ -117,6 +148,7 @@ public class F_ADDPlace extends Fragment {
             @Override
             public void onClick(View v) {
                 changePosibility(true,textTraffic);
+                traffic = Integer.parseInt(textTraffic.getText().toString());
             }
         });
 
@@ -124,6 +156,7 @@ public class F_ADDPlace extends Fragment {
             @Override
             public void onClick(View v) {
                 changePosibility(true, textPickPocekets);
+                pickpockets = Integer.parseInt(textPickPocekets.getText().toString());
             }
         });
 
@@ -131,6 +164,7 @@ public class F_ADDPlace extends Fragment {
             @Override
             public void onClick(View v) {
                 changePosibility(true, textHomeless);
+                homeless = Integer.parseInt(textHomeless.getText().toString());
             }
         });
 
@@ -138,6 +172,7 @@ public class F_ADDPlace extends Fragment {
             @Override
             public void onClick(View v) {
                 changePosibility(true, textKidnapping);
+                kidnapping = Integer.parseInt(textKidnapping.getText().toString());
             }
         });
 
@@ -145,6 +180,7 @@ public class F_ADDPlace extends Fragment {
             @Override
             public void onClick(View v) {
                 changePosibility(true, textPublicTransport);
+                publicTransport = Integer.parseInt(textPublicTransport.getText().toString());
             }
         });
 
@@ -152,6 +188,7 @@ public class F_ADDPlace extends Fragment {
             @Override
             public void onClick(View v) {
                 changePosibility(true, textParties);
+                parties = Integer.parseInt(textParties.getText().toString());
             }
         });
 
@@ -159,6 +196,7 @@ public class F_ADDPlace extends Fragment {
             @Override
             public void onClick(View v) {
                 changePosibility(true, textShops);
+                shops = Integer.parseInt(textShops.getText().toString());
             }
         });
 
@@ -166,6 +204,7 @@ public class F_ADDPlace extends Fragment {
             @Override
             public void onClick(View v) {
                 changePosibility(true, textCarthefts);
+                carthefts = Integer.parseInt(textCarthefts.getText().toString());
             }
         });
 
@@ -173,6 +212,7 @@ public class F_ADDPlace extends Fragment {
             @Override
             public void onClick(View v) {
                 changePosibility(false,textTraffic);
+                traffic = Integer.parseInt(textTraffic.getText().toString());
             }
         });
 
@@ -180,6 +220,7 @@ public class F_ADDPlace extends Fragment {
             @Override
             public void onClick(View v) {
                 changePosibility(false, textPickPocekets);
+                pickpockets = Integer.parseInt(textPickPocekets.getText().toString());
             }
         });
 
@@ -187,6 +228,7 @@ public class F_ADDPlace extends Fragment {
             @Override
             public void onClick(View v) {
                 changePosibility(false, textHomeless);
+                homeless = Integer.parseInt(textHomeless.getText().toString());
             }
         });
 
@@ -194,6 +236,7 @@ public class F_ADDPlace extends Fragment {
             @Override
             public void onClick(View v) {
                 changePosibility(false, textKidnapping);
+                kidnapping = Integer.parseInt(textKidnapping.getText().toString());
             }
         });
 
@@ -201,6 +244,7 @@ public class F_ADDPlace extends Fragment {
             @Override
             public void onClick(View v) {
                 changePosibility(false, textPublicTransport);
+                publicTransport = Integer.parseInt(textPublicTransport.getText().toString());
             }
         });
 
@@ -208,6 +252,8 @@ public class F_ADDPlace extends Fragment {
             @Override
             public void onClick(View v) {
                 changePosibility(false, textParties);
+                parties = Integer.parseInt(textParties.getText().toString());
+
             }
         });
 
@@ -215,6 +261,7 @@ public class F_ADDPlace extends Fragment {
             @Override
             public void onClick(View v) {
                 changePosibility(false, textShops);
+               shops = Integer.parseInt(textShops.getText().toString());
             }
         });
 
@@ -222,8 +269,43 @@ public class F_ADDPlace extends Fragment {
             @Override
             public void onClick(View v) {
                 changePosibility(false, textCarthefts);
+                carthefts = Integer.parseInt(textCarthefts.getText().toString());
             }
         });
+
+        editTextComment = (EditText) view.findViewById(R.id.editComment);
+
+            if( wasOpened == true){
+                isSafe = getArguments().getBoolean("isSafe", true);
+                traffic =  getArguments().getInt("traffic", 1);
+                pickpockets =  getArguments().getInt("pickpockets", 1);
+                kidnapping =  getArguments().getInt("kidnapping", 1);
+                homeless =  getArguments().getInt("homeless", 1);
+                publicTransport =  getArguments().getInt("publicTransport", 1);
+                parties =  getArguments().getInt("parties", 1);
+                shops =  getArguments().getInt("shops", 1);
+                carthefts =  getArguments().getInt("carthefts", 1);
+                circleRadius = getArguments().getDouble("circleRadius");
+                comment = getArguments().getString("comment","");
+                lat = getArguments().getDouble("latitude",1);
+                longt = getArguments().getDouble("longitude",1);
+                mCircleCenter = new LatLng(lat,longt);
+
+                textTraffic.setText(String.valueOf(traffic));
+                textPickPocekets.setText(String.valueOf(pickpockets));
+                textHomeless.setText(String.valueOf(homeless));
+                textKidnapping.setText(String.valueOf(kidnapping));
+                textPublicTransport.setText(String.valueOf(publicTransport));
+                textParties.setText(String.valueOf(parties));
+                textShops.setText(String.valueOf(shops));
+                textCarthefts.setText(String.valueOf(carthefts));
+                editTextComment.setText(comment);
+            }
+
+        if(isSafe == false){
+            radioButtonNotSafe.setChecked(true);
+            radioButtonSafe.setChecked(false);
+        }
 
         return view;
     }
@@ -235,7 +317,7 @@ public class F_ADDPlace extends Fragment {
         }
     }
 
-    @Override
+    /*@Override
     public void onAttach(Context context) {
         super.onAttach(context);
         if (context instanceof OnFragmentInteractionListener) {
@@ -244,7 +326,10 @@ public class F_ADDPlace extends Fragment {
             throw new RuntimeException(context.toString()
                     + " must implement OnFragmentInteractionListener");
         }
-    }
+    }*/
+
+    //SPRAWDZ JAK JEST PRZEKAZYWANE Z MAP DO FRAGMETNU W DOWORKU
+
 
     @Override
     public void onDetach() {

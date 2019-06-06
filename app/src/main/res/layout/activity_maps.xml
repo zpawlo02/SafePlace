@@ -37,8 +37,9 @@
         android:layout_width="300dp"
         android:layout_height="50dp"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="650dp"
-        android:text="@string/save_area"/>
+        android:layout_marginTop="580dp"
+        android:text="@string/save_area"
+        android:id="@+id/buttonSaveArea"/>
 
 
 </FrameLayout>
