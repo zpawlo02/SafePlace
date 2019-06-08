@@ -4,7 +4,9 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
 import android.content.Intent;
+import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.content.pm.Signature;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
@@ -21,6 +23,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.text.TextUtils;
+import android.util.Base64;
 import android.util.Log;
 import android.view.ActionMode;
 import android.view.KeyEvent;
@@ -43,10 +46,12 @@ import com.facebook.login.Login;
 import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
+import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.auth.api.signin.GoogleSignInResult;
 import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -61,6 +66,8 @@ import com.google.firebase.auth.GoogleAuthCredential;
 import com.google.firebase.auth.GoogleAuthProvider;
 
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -83,8 +90,8 @@ public class LoginActivity extends AppCompatActivity {
 
 
     private CallbackManager callbackManager = CallbackManager.Factory.create();
-     FirebaseAuth auth;
-     FirebaseUser user;
+    FirebaseAuth auth;
+    FirebaseUser user;
     private LoginButton loginButtonFb;
 
     @Override
@@ -106,7 +113,7 @@ public class LoginActivity extends AppCompatActivity {
 
         }else {
             startActivity(new Intent(LoginActivity.this, MainMenu.class));
-          //  Intent myIntent = new Intent(LoginActivity.this.Prof)
+            //  Intent myIntent = new Intent(LoginActivity.this.Prof)
         }
 
         // Set up the login form.
@@ -118,7 +125,7 @@ public class LoginActivity extends AppCompatActivity {
 
         //GOOGLE AUTH
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestIdToken(getString(R.string.default_web_client_id))
+                .requestIdToken("575396008127-teh9uh73df7cjl5st72b09t3dgkturno.apps.googleusercontent.com")
                 .requestEmail()
                 .build();
 
@@ -128,15 +135,16 @@ public class LoginActivity extends AppCompatActivity {
         signInButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
+                calculateHashKey("ompany.pawelzielinski.safeplace");
                 Intent signInIntent = mGoogleSignInClient.getSignInIntent();
-                startActivityForResult(signInIntent, 101);
+                startActivityForResult(signInIntent, 1);
             }
 
         });
 
 
         Button SignInButton = (Button) findViewById(R.id.email_sign_in_button);
-            SignInButton.setOnClickListener(new OnClickListener() {
+        SignInButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
 
@@ -144,12 +152,12 @@ public class LoginActivity extends AppCompatActivity {
         });
 
         Button RegisterButton = (Button) findViewById(R.id.register_button);
-            RegisterButton.setOnClickListener(new OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    startActivity(new Intent(LoginActivity.this, RegisterActivity.class));
-                }
-            });
+        RegisterButton.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(LoginActivity.this, RegisterActivity.class));
+            }
+        });
 
 
     }
@@ -196,11 +204,14 @@ public class LoginActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
 
         // Result returned from launching the Intent from GoogleSignInApi.getSignInIntent(...);
-        if (requestCode == 101) {
+        if (requestCode == 1) {
+
             Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
             try {
                 // Google Sign In was successful, authenticate with Firebase
+
                 GoogleSignInAccount account = task.getResult(ApiException.class);
+
                 firebaseAuthWithGoogle(account);
             } catch (ApiException e) {
                 // Google Sign In failed, update UI appropriately
@@ -213,28 +224,45 @@ public class LoginActivity extends AppCompatActivity {
     private void firebaseAuthWithGoogle(GoogleSignInAccount account) {
 
 
-            AuthCredential credential = GoogleAuthProvider.getCredential(account.getIdToken(), null);
-            auth.signInWithCredential(credential)
-                    .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                        @Override
-                        public void onComplete(@NonNull Task<AuthResult> task) {
-                            if (task.isSuccessful()) {
-                                // Sign in success, update UI with the signed-in user's information
-                                Toast.makeText(getApplicationContext(), "signInWithCredential:success",Toast.LENGTH_SHORT);
-                                FirebaseUser myuserobjt = auth.getCurrentUser();
-                                startActivity(new Intent(LoginActivity.this, MainMenu.class));
-                            } else {
-                                // If sign in fails, display a message to the user.
+        AuthCredential credential = GoogleAuthProvider.getCredential(account.getIdToken(), null);
+        auth.signInWithCredential(credential)
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            // Sign in success, update UI with the signed-in user's information
+                            Toast.makeText(getApplicationContext(), "signInWithCredential:success",Toast.LENGTH_SHORT);
+                            FirebaseUser myuserobjt = auth.getCurrentUser();
+                            startActivity(new Intent(LoginActivity.this, MainMenu.class));
+                        } else {
+                            // If sign in fails, display a message to the user.
 
-                            }
-
-                            // ...
                         }
-                    });
+
+                        // ...
+                    }
+                });
+    }
+    private void calculateHashKey(String yourPackageName) {
+        PackageInfo info;
+
+        try {
+            info = getPackageManager().getPackageInfo(yourPackageName, PackageManager.GET_SIGNATURES);
+            for (Signature signature : info.signatures) {
+                MessageDigest md;
+                md = MessageDigest.getInstance("SHA");
+                md.update(signature.toByteArray());
+                String something = new String(Base64.encode(md.digest(), 0));
+                //String something = new String(Base64.encodeBytes(md.digest()));
+                Log.e("hash key", something);
+            }
+        } catch (PackageManager.NameNotFoundException e1) {
+            Log.e("name not found", e1.toString());
+        } catch (NoSuchAlgorithmException e) {
+            Log.e("no such an algorithm", e.toString());
+        } catch (Exception e) {
+            Log.e("exception", e.toString());
         }
+    }
 
 }
-
-
-
-
