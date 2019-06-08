@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/fMaps"
     tools:context=".MapsActivity">
 
     <fragment
@@ -12,34 +13,39 @@
         android:name="com.google.android.gms.maps.SupportMapFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".MapsActivity" />
-    <Button
-        android:id="@+id/buttonIncreaseCircle"
-        android:layout_width="55dp"
-        android:layout_height="55dp"
-        android:layout_gravity="bottom"
-        android:layout_marginBottom="140dp"
-        android:textSize="20sp"
-        android:text="+"
-        android:layout_marginStart="340dp"/>
+        tools:context=".MapsActivity" >
 
-    <Button
-        android:id="@+id/buttonDecreaseCircle"
-        android:layout_width="55dp"
-        android:layout_height="55dp"
-        android:layout_gravity="bottom"
-        android:layout_marginBottom="90dp"
-        android:textSize="20sp"
-        android:text="-"
-        android:layout_marginStart="340dp"/>
+        <Button
+            android:id="@+id/buttonIncreaseCircle"
+            android:layout_width="150dp"
+            android:layout_height="55dp"
+            android:layout_gravity="bottom"
+            android:layout_marginBottom="100dp"
+            android:textSize="15sp"
+            android:text="@string/increase_area"
+            android:layout_marginStart="55dp"/>
 
-    <Button
-        android:layout_width="300dp"
-        android:layout_height="50dp"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="580dp"
-        android:text="@string/save_area"
-        android:id="@+id/buttonSaveArea"/>
+        <Button
+            android:id="@+id/buttonDecreaseCircle"
+            android:layout_width="150dp"
+            android:layout_height="55dp"
+            android:layout_gravity="bottom"
+            android:gravity="center"
+            android:layout_marginBottom="100dp"
+            android:textSize="15sp"
+            android:text="@string/decrease_area"
+            android:layout_marginStart="205dp"/>
+
+        <Button
+            android:layout_width="300dp"
+            android:layout_height="70dp"
+            android:layout_gravity="bottom"
+            android:layout_marginBottom="30dp"
+            android:layout_marginStart="55dp"
+            android:text="@string/save_area"
+            android:id="@+id/buttonSaveArea"/>
+    </fragment>
+
 
 
 </FrameLayout>

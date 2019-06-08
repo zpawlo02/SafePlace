@@ -16,6 +16,9 @@ import android.widget.RadioButton;
 import android.widget.TextView;
 
 import com.google.android.gms.maps.model.LatLng;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.io.IOException;
 
@@ -24,7 +27,10 @@ import company.pawelzielinski.safeplace.MapsActivity;
 import company.pawelzielinski.safeplace.R;
 
 public class F_ADDPlace extends Fragment {
+
     public boolean wasOpened = false;
+
+    private DatabaseReference mDatabase;
     private View view;
     private Button buttonOpenMaps;
     private RadioButton radioButtonSafe, radioButtonNotSafe;
@@ -40,18 +46,20 @@ public class F_ADDPlace extends Fragment {
     private Double circleRadius;
 
     private int traffic = 1, pickpockets = 1, kidnapping = 1, homeless = 1, publicTransport = 1,
-                parties = 1, shops = 1, carthefts = 1;
+                parties = 1, shops = 1, carthefts = 1, kids = 1;
     //Increase
     private Button iTraffic, iPickpockets, iKidnapping, iHomeless,
-            iPublicTransport, iParties, iShops, iCarthefts;
+            iPublicTransport, iParties, iShops, iCarthefts, iKids;
 
     //Decrease
     private Button dTraffic, dPickpockets, dKidnapping, dHomeless,
-            dPublicTransport, dParties, dShops, dCarthefts;
+            dPublicTransport, dParties, dShops, dCarthefts, dKids;
+
+    private Button buttonAddToDB;
 
     //PosobilityRating
     private TextView textTraffic, textPickPocekets, textKidnapping, textHomeless,
-    textPublicTransport, textParties, textShops, textCarthefts;
+    textPublicTransport, textParties, textShops, textCarthefts, textKids;
 
 
     private OnFragmentInteractionListener mListener;
@@ -75,6 +83,10 @@ public class F_ADDPlace extends Fragment {
                              final Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_addplace, container, false);
 
+        mDatabase = FirebaseDatabase.getInstance().getReference().child("place");
+
+
+
         // Inflate the layout for this fragment
 
         buttonOpenMaps = (Button) view.findViewById(R.id.buttonOpenMaps);
@@ -92,11 +104,25 @@ public class F_ADDPlace extends Fragment {
                 intent.putExtra("parties", parties);
                 intent.putExtra("shops", shops);
                 intent.putExtra("carthefts", carthefts);
+                intent.putExtra("kids", kids);
                 intent.putExtra("comment", comment);
                 intent.putExtra("isSafe", isSafe);
                 getActivity().startActivity(intent);
                 getFragmentManager().popBackStack();
 
+            }
+        });
+
+        buttonAddToDB = (Button) view.findViewById(R.id.buttonAddPlaceToDB);
+
+        buttonAddToDB.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                comment = editTextComment.getText().toString();
+                writeNewPlace(mDatabase, isSafe, traffic, pickpockets,
+                        homeless, kidnapping, publicTransport, parties, shops, carthefts,
+                        kids, lat, longt, circleRadius,comment);
+                getActivity().onBackPressed();
             }
         });
 
@@ -117,6 +143,8 @@ public class F_ADDPlace extends Fragment {
             }
         });
 
+        editTextComment = (EditText) view.findViewById(R.id.editComment);
+
         iTraffic = (Button) view.findViewById(R.id.buttonIncreaseTraffic);
         iPickpockets = (Button) view.findViewById(R.id.buttonIncreasePickpockets);
         iHomeless = (Button) view.findViewById(R.id.buttonIncreaseHomeless);
@@ -125,6 +153,7 @@ public class F_ADDPlace extends Fragment {
         iParties = (Button) view.findViewById(R.id.buttonIncreaseParties);
         iShops = (Button) view.findViewById(R.id.buttonIncreaseShops);
         iCarthefts = (Button) view.findViewById(R.id.buttonIncreaseCarThefts);
+        iKids = (Button) view.findViewById(R.id.buttonIncreaseKids);
 
         dTraffic = (Button) view.findViewById(R.id.buttonDecreaseTraffic);
         dPickpockets = (Button) view.findViewById(R.id.buttonDecreasePickpockets);
@@ -134,6 +163,7 @@ public class F_ADDPlace extends Fragment {
         dParties = (Button) view.findViewById(R.id.buttonDecreaseParties);
         dShops = (Button) view.findViewById(R.id.buttonDecreaseShops);
         dCarthefts = (Button) view.findViewById(R.id.buttonDecreaseCarThefts);
+        dKids = (Button) view.findViewById(R.id.buttonDecreaseKids);
 
         textTraffic = (TextView) view.findViewById(R.id.textViewTraffic);
         textPickPocekets = (TextView) view.findViewById(R.id.textViewPickpocketsc);
@@ -143,6 +173,9 @@ public class F_ADDPlace extends Fragment {
         textParties = (TextView) view.findViewById(R.id.textViewParties);
         textShops = (TextView) view.findViewById(R.id.textViewShops);
         textCarthefts = (TextView) view.findViewById(R.id.textViewCarThefts);
+        textKids= (TextView) view.findViewById(R.id.textViewKids);
+
+        //*****************************************************************************
 
         iTraffic.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -207,6 +240,17 @@ public class F_ADDPlace extends Fragment {
                 carthefts = Integer.parseInt(textCarthefts.getText().toString());
             }
         });
+
+
+        iKids.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                changePosibility(true, textKids);
+                kids = Integer.parseInt(textKids.getText().toString());
+            }
+        });
+
+        //*****************************************************************************
 
         dTraffic.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -273,7 +317,16 @@ public class F_ADDPlace extends Fragment {
             }
         });
 
-        editTextComment = (EditText) view.findViewById(R.id.editComment);
+        dKids.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                changePosibility(false, textKids);
+                kids = Integer.parseInt(textKids.getText().toString());
+            }
+        });
+
+        //*****************************************************************************
+
 
             if( wasOpened == true){
                 isSafe = getArguments().getBoolean("isSafe", true);
@@ -285,6 +338,7 @@ public class F_ADDPlace extends Fragment {
                 parties =  getArguments().getInt("parties", 1);
                 shops =  getArguments().getInt("shops", 1);
                 carthefts =  getArguments().getInt("carthefts", 1);
+                kids =  getArguments().getInt("kids", 1);
                 circleRadius = getArguments().getDouble("circleRadius");
                 comment = getArguments().getString("comment","");
                 lat = getArguments().getDouble("latitude",1);
@@ -299,6 +353,7 @@ public class F_ADDPlace extends Fragment {
                 textParties.setText(String.valueOf(parties));
                 textShops.setText(String.valueOf(shops));
                 textCarthefts.setText(String.valueOf(carthefts));
+                textKids.setText(String.valueOf(kids));
                 editTextComment.setText(comment);
             }
 
@@ -360,6 +415,8 @@ public class F_ADDPlace extends Fragment {
                 textShops.setText(String.valueOf(Integer.parseInt(textShops.getText().toString())+1));
             }else if (which == textCarthefts){
                 textCarthefts.setText(String.valueOf(Integer.parseInt(textCarthefts.getText().toString())+1));
+            }else if (which == textKids){
+                textKids.setText(String.valueOf(Integer.parseInt(textKids.getText().toString())+1));
             }
         }else if(Integer.parseInt(which.getText().toString()) > 1 && increase == false) {
             if(which == textTraffic){
@@ -378,7 +435,33 @@ public class F_ADDPlace extends Fragment {
                 textShops.setText(String.valueOf(Integer.parseInt(textShops.getText().toString())-1));
             }else if (which == textCarthefts){
                 textCarthefts.setText(String.valueOf(Integer.parseInt(textCarthefts.getText().toString())-1));
+            }else if (which == textKids){
+                textKids.setText(String.valueOf(Integer.parseInt(textKids.getText().toString())-1));
             }
         }
+    }
+
+    private void writeNewPlace(DatabaseReference mDatabase,boolean isSafe, int traffic, int pickpockets,
+                               int kidnapping, int homeless, int publicTransport,
+                               int parties, int shops, int carthefts, int kids,
+                               double lat, double longt, double circleRadius, String comment){
+        double rating = 0.0;
+        mDatabase = mDatabase.push();
+        mDatabase.child("isSafe").setValue(isSafe);
+        mDatabase.child("traffic").setValue(traffic);
+        mDatabase.child("pickpockets").setValue(pickpockets);
+        mDatabase.child("kidnapping").setValue(kidnapping);
+        mDatabase.child("homeless").setValue(homeless);
+        mDatabase.child("publicTransport").setValue(publicTransport);
+        mDatabase.child("parties").setValue(parties);
+        mDatabase.child("shops").setValue(shops);
+        mDatabase.child("carthefts").setValue(carthefts);
+        mDatabase.child("kids").setValue(kids);
+        mDatabase.child("lat").setValue(lat);
+        mDatabase.child("longt").setValue(longt);
+        mDatabase.child("circleRadius").setValue(circleRadius);
+        mDatabase.child("comment").setValue(comment);
+        mDatabase.child("rating").setValue(rating);
+
     }
 }

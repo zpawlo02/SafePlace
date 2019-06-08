@@ -46,4 +46,6 @@
     <string name="shops">Shops</string>
     <string name="save_area">SAVE AREA</string>
     <string name="add">ADD</string>
-    </resources>
+    <string name="increase_area">Increase area</string>
+    <string name="decrease_area">Decrease area</string>
+</resources>

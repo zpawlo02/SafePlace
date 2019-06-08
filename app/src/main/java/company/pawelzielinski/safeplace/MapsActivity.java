@@ -15,6 +15,7 @@ import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -46,13 +47,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private Boolean isSafe;
     private String comment;
     private int traffic = 1, pickpockets = 1, kidnapping = 1, homeless = 1, publicTransport = 1,
-            parties = 1, shops = 1, carthefts = 1;
-
-    private TextView textTraffic, textPickPocekets, textKidnapping, textHomeless,
-            textPublicTransport, textParties, textShops, textCarthefts;
-
-
-
+            parties = 1, shops = 1, carthefts = 1, kids = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,22 +56,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
-
-        try {
-
-            PackageInfo info = getPackageManager().getPackageInfo(
-                    "com.example.packagename",
-                    PackageManager.GET_SIGNATURES);
-            for (Signature signature : info.signatures) {
-                MessageDigest md = MessageDigest.getInstance("SHA");
-                md.update(signature.toByteArray());
-                Log.d("KeyHash:", Base64.encodeToString(md.digest(), Base64.DEFAULT));
-            }
-        } catch (PackageManager.NameNotFoundException e) {
-
-        } catch (NoSuchAlgorithmException e) {
-
-        }
 
         Intent intent = getIntent();
 
@@ -89,27 +68,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         parties =  intent.getIntExtra("parties", 1);
         shops =  intent.getIntExtra("shops", 1);
         carthefts =  intent.getIntExtra("carthefts", 1);
-
+        kids =  intent.getIntExtra("kids", 1);
 
         comment = intent.getStringExtra("comment");
 
-        if(!isSafe){
-            circleOptions = new CircleOptions()
-                    .strokeWidth(4)
-                    .radius(circleRadius)
-                    .center(mCircleCenter)
-                    .strokeColor(Color.parseColor("#490033"))
-                    .fillColor(Color.argb(50,230, 0, 0));
-        }
-        else{
-            circleOptions = new CircleOptions()
-                    .strokeWidth(4)
-                    .radius(circleRadius)
-                    .center(mCircleCenter)
-                    .strokeColor(Color.parseColor("#490033"))
-                    .fillColor(Color.argb(50,0, 230, 0));
-        }
-
+        circleOptions = setOpions(isSafe);
 
         buttonIncreaseCircle = (Button) findViewById(R.id.buttonIncreaseCircle);
         buttonDecreaseCircle = (Button) findViewById(R.id.buttonDecreaseCircle);
@@ -120,11 +83,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 Toast.makeText(getApplicationContext(), circleRadius.toString(), Toast.LENGTH_SHORT);
                 circleRadius += 10;
                 circle.setRadius(circleRadius);
+                circleOptions = setOpions(isSafe);
 
             }
         });
-
-
 
             buttonDecreaseCircle.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -134,6 +96,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     }
                     Toast.makeText(getApplicationContext(), circleRadius.toString(), Toast.LENGTH_SHORT);
                     circle.setRadius(circleRadius);
+                    circleOptions = setOpions(isSafe);
 
                 }
             });
@@ -143,17 +106,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             buttonSaveArea.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-
-                    /*textTraffic = (TextView) findViewById(R.id.textViewTraffic);
-                    textPickPocekets = (TextView) findViewById(R.id.textViewPickpocketsc);
-                    textHomeless = (TextView) findViewById(R.id.textViewHomeless);
-                    textKidnapping = (TextView) findViewById(R.id.textViewKidnapping);
-                    textPublicTransport = (TextView) findViewById(R.id.textViewPublicTransport);
-                    textParties = (TextView) findViewById(R.id.textViewParties);
-                    textShops = (TextView) findViewById(R.id.textViewShops);
-                    textCarthefts = (TextView) findViewById(R.id.textViewCarThefts);
-*/
-
 
                     Bundle bundle = new Bundle();
                     bundle.putString("comment", comment);
@@ -165,32 +117,25 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     bundle.putInt("parties", parties);
                     bundle.putInt("shops", shops);
                     bundle.putInt("carthefts", carthefts);
+                    bundle.putInt("kids", kids);
                     bundle.putDouble("latitude", mCircleCenter.latitude);
                     bundle.putDouble("longitude", mCircleCenter.longitude);
-                    bundle.putDouble("radius", circleRadius);
+                    bundle.putDouble("circleRadius", circleRadius);
                     bundle.putBoolean("isSafe", isSafe);
-                    bundle.putBoolean("opened",true);
                     FragmentManager fm = getSupportFragmentManager();
                     Fragment add = new F_ADDPlace();
                     ((F_ADDPlace) add).wasOpened = true;
                     add.setArguments(bundle);
-                    fm.beginTransaction().replace(R.id.map, add).commit();
-
-
+                    fm.beginTransaction().add(R.id.fMaps, add).commit();
                 }
             });
-
 
         mapFragment.getMapAsync(this);
     }
 
-
-
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
-
-
 
         mMap.setOnMapLongClickListener(new GoogleMap.OnMapLongClickListener() {
             @Override
@@ -234,9 +179,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             }
 
         });
-        Log.i("sssse",Double.toString( mCircleCenter.latitude));
-
-
         /*mMap.setOnCircleClickListener(new GoogleMap.OnCircleClickListener() {
 
             @Override
@@ -259,6 +201,23 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
     }
 
-
-
+    private CircleOptions setOpions(boolean isSafe){
+        if(!isSafe){
+            circleOptions = new CircleOptions()
+                    .strokeWidth(4)
+                    .radius(circleRadius)
+                    .center(mCircleCenter)
+                    .strokeColor(Color.parseColor("#490033"))
+                    .fillColor(Color.argb(50,230, 0, 0));
+        }
+        else{
+            circleOptions = new CircleOptions()
+                    .strokeWidth(4)
+                    .radius(circleRadius)
+                    .center(mCircleCenter)
+                    .strokeColor(Color.parseColor("#490033"))
+                    .fillColor(Color.argb(50,0, 230, 0));
+        }
+        return circleOptions;
+    }
 }
