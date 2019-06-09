@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/whiteText"
+    tools:context=".Fragments.F_ShowPlaces">
+
+    <RadioGroup
+        android:id="@+id/groupTypePlaceS"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:orientation="horizontal"
+        android:gravity="center_horizontal">
+
+        <RadioButton
+            android:id="@+id/radioAllS"
+            android:layout_width="137dp"
+            android:layout_height="wrap_content"
+            android:text="@string/all"
+            android:textSize="20sp"
+            android:checked="true"/>
+
+        <RadioButton
+            android:id="@+id/radioSafeS"
+            android:layout_width="137dp"
+            android:layout_height="wrap_content"
+            android:text="@string/safePlace"
+            android:textSize="20sp" />
+
+        <RadioButton
+            android:id="@+id/radioNotSafeS"
+            android:layout_width="128dp"
+            android:layout_height="wrap_content"
+            android:text="@string/notSafe"
+            android:textSize="20sp" />
+
+    </RadioGroup>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@color/appThemeColor"
+        android:layout_marginTop="60dp"/>
+
+    <ListView
+        android:id="@+id/listViewPlaces"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="70dp">
+
+    </ListView>
+
+
+
+</FrameLayout>

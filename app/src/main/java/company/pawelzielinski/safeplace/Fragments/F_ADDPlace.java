@@ -85,65 +85,9 @@ public class F_ADDPlace extends Fragment {
 
         mDatabase = FirebaseDatabase.getInstance().getReference().child("place");
 
-
-
-        // Inflate the layout for this fragment
-
+        //BUTTONS
         buttonOpenMaps = (Button) view.findViewById(R.id.buttonOpenMaps);
-
-        buttonOpenMaps.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                comment = editTextComment.getText().toString();
-                Intent intent = new Intent(getActivity().getBaseContext(), MapsActivity.class);
-                intent.putExtra("traffic", traffic);
-                intent.putExtra("pickpockets", pickpockets);
-                intent.putExtra("kidnapping", kidnapping);
-                intent.putExtra("homeless", homeless);
-                intent.putExtra("publicTransport", publicTransport);
-                intent.putExtra("parties", parties);
-                intent.putExtra("shops", shops);
-                intent.putExtra("carthefts", carthefts);
-                intent.putExtra("kids", kids);
-                intent.putExtra("comment", comment);
-                intent.putExtra("isSafe", isSafe);
-                getActivity().startActivity(intent);
-                getFragmentManager().popBackStack();
-
-            }
-        });
-
         buttonAddToDB = (Button) view.findViewById(R.id.buttonAddPlaceToDB);
-
-        buttonAddToDB.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                comment = editTextComment.getText().toString();
-                writeNewPlace(mDatabase, isSafe, traffic, pickpockets,
-                        homeless, kidnapping, publicTransport, parties, shops, carthefts,
-                        kids, lat, longt, circleRadius,comment);
-                getActivity().onBackPressed();
-            }
-        });
-
-        radioButtonSafe = (RadioButton) view.findViewById(R.id.radioSafe);
-        radioButtonNotSafe = (RadioButton) view.findViewById(R.id.radioNotSafe);
-
-        radioButtonSafe.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                isSafe = true;
-            }
-        });
-
-        radioButtonNotSafe.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                isSafe = false;
-            }
-        });
-
-        editTextComment = (EditText) view.findViewById(R.id.editComment);
 
         iTraffic = (Button) view.findViewById(R.id.buttonIncreaseTraffic);
         iPickpockets = (Button) view.findViewById(R.id.buttonIncreasePickpockets);
@@ -176,6 +120,65 @@ public class F_ADDPlace extends Fragment {
         textKids= (TextView) view.findViewById(R.id.textViewKids);
 
         //*****************************************************************************
+
+        //RADIOBUTTONS
+        radioButtonSafe = (RadioButton) view.findViewById(R.id.radioSafe);
+        radioButtonNotSafe = (RadioButton) view.findViewById(R.id.radioNotSafe);
+
+        //EDITTEXT
+        editTextComment = (EditText) view.findViewById(R.id.editComment);
+
+        // Inflate the layout for this fragment
+
+
+        //LISTENERS
+        buttonOpenMaps.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                comment = editTextComment.getText().toString();
+                Intent intent = new Intent(getActivity().getBaseContext(), MapsActivity.class);
+                intent.putExtra("traffic", traffic);
+                intent.putExtra("pickpockets", pickpockets);
+                intent.putExtra("kidnapping", kidnapping);
+                intent.putExtra("homeless", homeless);
+                intent.putExtra("publicTransport", publicTransport);
+                intent.putExtra("parties", parties);
+                intent.putExtra("shops", shops);
+                intent.putExtra("carthefts", carthefts);
+                intent.putExtra("kids", kids);
+                intent.putExtra("comment", comment);
+                intent.putExtra("isSafe", isSafe);
+                getActivity().startActivity(intent);
+                getFragmentManager().popBackStack();
+
+            }
+        });
+
+        buttonAddToDB.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                comment = editTextComment.getText().toString();
+                writeNewPlace(mDatabase, isSafe, traffic, pickpockets,
+                        homeless, kidnapping, publicTransport, parties, shops, carthefts,
+                        kids, lat, longt, circleRadius,comment);
+                getActivity().onBackPressed();
+            }
+        });
+
+        radioButtonSafe.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                isSafe = true;
+            }
+        });
+
+        radioButtonNotSafe.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                isSafe = false;
+            }
+        });
+
 
         iTraffic.setOnClickListener(new View.OnClickListener() {
             @Override

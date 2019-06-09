@@ -24,6 +24,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 import company.pawelzielinski.safeplace.Fragments.F_ADDPlace;
+import company.pawelzielinski.safeplace.Fragments.F_ShowPlaces;
 
 public class MainMenu extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, F_ADDPlace.OnFragmentInteractionListener {
@@ -33,7 +34,7 @@ public class MainMenu extends AppCompatActivity
 
 
 
-    private Button buttonAddPlace;
+    private Button buttonAddPlace, buttonSearchSafeNotSafePlace;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,18 +58,25 @@ public class MainMenu extends AppCompatActivity
 
         //BUTTONS
         buttonAddPlace = (Button) findViewById(R.id.buttonAddPlace);
+        buttonSearchSafeNotSafePlace = (Button) findViewById(R.id.searchSafeNotSafePlaces);
 
-
-        //BUTTONS ON CLICK METHODS
+        //LISTENERS
 
         buttonAddPlace.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.i("sds","dsdsd");
                 FragmentManager fm = getSupportFragmentManager();
                 Fragment add = new F_ADDPlace();
                 fm.beginTransaction().add(R.id.drawer_layout, add).addToBackStack(null).commit();
+            }
+        });
 
+        buttonSearchSafeNotSafePlace.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentManager fm = getSupportFragmentManager();
+                Fragment add = new F_ShowPlaces();
+                fm.beginTransaction().add(R.id.drawer_layout, add).addToBackStack(null).commit();
             }
         });
 

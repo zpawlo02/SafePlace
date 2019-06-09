@@ -39,7 +39,8 @@
             android:layout_height="100dp"
             android:layout_marginTop="150dp"
             android:background="@color/mainMenuButtonColor"
-            android:textColor="@color/mainMenuButtonTextColor"/>
+            android:textColor="@color/mainMenuButtonTextColor"
+            android:id="@+id/searchSafeNotSafePlaces"/>
 
         <Button
             android:text="@string/top_safe_not_safe_places"

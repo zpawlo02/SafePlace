@@ -48,4 +48,5 @@
     <string name="add">ADD</string>
     <string name="increase_area">Increase area</string>
     <string name="decrease_area">Decrease area</string>
+    <string name="all">All</string>
 </resources>
