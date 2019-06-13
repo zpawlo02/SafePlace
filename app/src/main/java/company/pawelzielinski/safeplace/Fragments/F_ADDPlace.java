@@ -2,6 +2,8 @@ package company.pawelzielinski.safeplace.Fragments;
 
 import android.content.Context;
 import android.content.Intent;
+import android.location.Address;
+import android.location.Geocoder;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -21,7 +23,10 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.io.IOException;
+import java.util.List;
+import java.util.Locale;
 
+import company.pawelzielinski.safeplace.Classes.Place;
 import company.pawelzielinski.safeplace.MainMenu;
 import company.pawelzielinski.safeplace.MapsActivity;
 import company.pawelzielinski.safeplace.R;
@@ -43,7 +48,7 @@ public class F_ADDPlace extends Fragment {
     //CIRCLE
     private LatLng mCircleCenter;
     private Double lat, longt;
-    private Double circleRadius;
+    private int circleRadius;
 
     private int traffic = 1, pickpockets = 1, kidnapping = 1, homeless = 1, publicTransport = 1,
                 parties = 1, shops = 1, carthefts = 1, kids = 1;
@@ -342,7 +347,7 @@ public class F_ADDPlace extends Fragment {
                 shops =  getArguments().getInt("shops", 1);
                 carthefts =  getArguments().getInt("carthefts", 1);
                 kids =  getArguments().getInt("kids", 1);
-                circleRadius = getArguments().getDouble("circleRadius");
+                circleRadius = getArguments().getInt("circleRadius");
                 comment = getArguments().getString("comment","");
                 lat = getArguments().getDouble("latitude",1);
                 longt = getArguments().getDouble("longitude",1);
@@ -447,24 +452,21 @@ public class F_ADDPlace extends Fragment {
     private void writeNewPlace(DatabaseReference mDatabase,boolean isSafe, int traffic, int pickpockets,
                                int kidnapping, int homeless, int publicTransport,
                                int parties, int shops, int carthefts, int kids,
-                               double lat, double longt, double circleRadius, String comment){
-        double rating = 0.0;
+                               double lat, double longt, int circleRadius, String comment){
+        double rating = 0;
+        LatLng latLng = new LatLng(lat,longt);
+        Geocoder geocoder = new Geocoder(getContext(), Locale.getDefault());
+        List<Address> addresses = null;
+        try {
+            addresses = geocoder.getFromLocation(lat, longt, 1);
+        }catch (IOException e){
+            e.toString();
+        }
         mDatabase = mDatabase.push();
-        mDatabase.child("isSafe").setValue(isSafe);
-        mDatabase.child("traffic").setValue(traffic);
-        mDatabase.child("pickpockets").setValue(pickpockets);
-        mDatabase.child("kidnapping").setValue(kidnapping);
-        mDatabase.child("homeless").setValue(homeless);
-        mDatabase.child("publicTransport").setValue(publicTransport);
-        mDatabase.child("parties").setValue(parties);
-        mDatabase.child("shops").setValue(shops);
-        mDatabase.child("carthefts").setValue(carthefts);
-        mDatabase.child("kids").setValue(kids);
-        mDatabase.child("lat").setValue(lat);
-        mDatabase.child("longt").setValue(longt);
-        mDatabase.child("circleRadius").setValue(circleRadius);
-        mDatabase.child("comment").setValue(comment);
-        mDatabase.child("rating").setValue(rating);
+
+        mDatabase.setValue(new Place(getContext(), isSafe, carthefts, homeless,kidnapping,
+                kids, parties, pickpockets, publicTransport, shops, traffic, circleRadius,
+                lat, longt, rating, comment));
 
     }
 }

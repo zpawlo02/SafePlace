@@ -13,36 +13,36 @@ import java.util.Locale;
 
 public class Place {
 
-    private boolean isSafe;
+    public boolean isSafe;
 
-    private int carthefts;
-    private int homeless;
-    private int kidnapping;
-    private int kids;
-    private int parties;
-    private int pickpockets;
-    private int publicTransport;
-    private int shops;
-    private int traffic;
-    private int circleRadius;
+    public int carthefts;
+    public int homeless;
+    public int kidnapping;
+    public int kids;
+    public int parties;
+    public int pickpockets;
+    public int publicTransport;
+    public int shops;
+    public int traffic;
+    public int circleRadius;
 
-    private double lat;
-    private double longT;
-    private double rating;
+    public double lat;
+    public double longT;
+    public double rating;
 
-    private LatLng latLng;
-    private String comment;
+    public LatLng latLng;
+    public String comment;
 
-    private String placeId;
-    private String country;
-    private String city;
-    private String street;
+    public String placeId;
+    public String country, city;
+    public String adress;
 
-    public Place(Context context,boolean isSafe, int carthefts, int homeless, int kidnapping,
+
+    public Place(Context context, boolean isSafe, int carthefts, int homeless, int kidnapping,
                  int kids, int parties, int pickpockets,
                  int publicTransport, int shops, int traffic, int circleRadius,
                  double lat, double longT, double rating, LatLng latLng,
-                 String comment, String placeId, String country, String city, String street) {
+                 String comment, String placeId) {
 
         Geocoder geocoder;
         List<Address> adresses = null;
@@ -54,9 +54,6 @@ public class Place {
         catch (IOException e){
             Log.i("ADRESSERROR", e.toString());
         }
-
-
-
 
         this.isSafe = isSafe;
         this.carthefts = carthefts;
@@ -76,14 +73,44 @@ public class Place {
         this.comment = comment;
         this.placeId = placeId;
 
-        //MAKE FUNCTION WHICH WILL BE RETURNING STRING COUNTRY/CITY/STREET
-
-        this.country = adresses.get(0).getCountryName();
-        this.city = adresses.get(0).getLocality();
-        //this.street = adresses.get(0).get
+        this.adress = adresses.get(0).getAddressLine(0);
     }
 
-    public boolean isSafe() {
+    public Place(Context context, boolean isSafe, int carthefts, int homeless, int kidnapping, int kids, int parties, int pickpockets, int publicTransport, int shops, int traffic, int circleRadius, double lat, double longt, double rating,  String comment) {
+        Geocoder geocoder;
+        List<Address> adresses = null;
+        geocoder = new Geocoder(context, Locale.getDefault());
+
+        try {
+            adresses = geocoder.getFromLocation(lat,longt,1);
+        }
+        catch (IOException e){
+            Log.i("ADRESSERROR", e.toString());
+        }
+
+        this.isSafe = isSafe;
+        this.carthefts = carthefts;
+        this.homeless = homeless;
+        this.kidnapping = kidnapping;
+        this.kids = kids;
+        this.parties = parties;
+        this.pickpockets = pickpockets;
+        this.publicTransport = publicTransport;
+        this.shops = shops;
+        this.traffic = traffic;
+        this.circleRadius = circleRadius;
+        this.lat = lat;
+        this.longT = longt;
+        this.rating = rating;
+        this.country = adresses.get(0).getCountryName();
+        this.city = adresses.get(0).getLocality();
+        this.comment = comment;
+        this.placeId = placeId;
+
+        this.adress = adresses.get(0).getAddressLine(0);
+    }
+
+    public boolean getisSafe() {
         return isSafe;
     }
 
@@ -151,12 +178,8 @@ public class Place {
         return placeId;
     }
 
-    public String getCity() {
-        return city;
-    }
-
-    public String getStreet() {
-        return street;
+    public String getAdress() {
+        return adress;
     }
 
     public void setSafe(boolean safe) {
@@ -227,11 +250,7 @@ public class Place {
         this.placeId = placeId;
     }
 
-    public void setCity(String city) {
-        this.city = city;
-    }
-
-    public void setStreet(String street) {
-        this.street = street;
+    public void setAdress(String adress) {
+        this.adress = adress;
     }
 }

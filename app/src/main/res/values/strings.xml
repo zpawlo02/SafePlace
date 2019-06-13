@@ -49,4 +49,7 @@
     <string name="increase_area">Increase area</string>
     <string name="decrease_area">Decrease area</string>
     <string name="all">All</string>
+    <string name="country">Country</string>
+    <string name="city">City</string>
+    <string name="submit">Submit</string>
 </resources>
