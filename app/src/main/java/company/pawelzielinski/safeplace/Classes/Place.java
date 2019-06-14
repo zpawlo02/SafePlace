@@ -110,6 +110,10 @@ public class Place {
         this.adress = adresses.get(0).getAddressLine(0);
     }
 
+    public Place(){
+
+    }
+
     public boolean getisSafe() {
         return isSafe;
     }

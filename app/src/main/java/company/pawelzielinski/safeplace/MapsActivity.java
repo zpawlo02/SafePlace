@@ -201,7 +201,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
     }
 
-    private CircleOptions setOpions(boolean isSafe){
+    public CircleOptions setOpions(boolean isSafe){
         if(!isSafe){
             circleOptions = new CircleOptions()
                     .strokeWidth(4)

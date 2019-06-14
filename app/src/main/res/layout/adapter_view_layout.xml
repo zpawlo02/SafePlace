@@ -34,9 +34,14 @@
 
     </LinearLayout>
 
-    <ImageView
+    <com.google.android.gms.maps.MapView
+
         android:id="@+id/imageViewMapShow"
         android:layout_width="match_parent"
-        android:layout_height="350dp" />
+        android:layout_height="350dp"
+        map:cameraZoom="15"
+        map:mapType="normal"
+        map:liteMode="true"
+        xmlns:map="http://schemas.android.com/apk/res-auto"/>
 
 </LinearLayout>
