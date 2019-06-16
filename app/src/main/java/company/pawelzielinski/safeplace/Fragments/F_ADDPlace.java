@@ -465,8 +465,6 @@ public class F_ADDPlace extends Fragment {
         }
         mDatabase = mDatabase.push();
 
-        Log.i("CDUPKAAA", String.valueOf(circleRadius));
-
         mDatabase.setValue(new Place(getContext(), isSafe, carthefts, homeless,kidnapping,
                 kids, parties, pickpockets, publicTransport, shops, traffic, circleRadius,
                 lat, longt, rating, comment));

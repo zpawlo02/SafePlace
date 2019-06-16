@@ -344,7 +344,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="720dp"
                     android:layout_marginStart="20dp"
-                    android:text="Car thefts"
+                    android:text="@string/car_thefts"
                     android:textSize="20sp"/>
 
                 <Button
@@ -382,7 +382,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="780dp"
                     android:layout_marginStart="20dp"
-                    android:text="Kids activities"
+                    android:text="@string/kids_activities"
                     android:textSize="20sp"/>
 
                 <Button

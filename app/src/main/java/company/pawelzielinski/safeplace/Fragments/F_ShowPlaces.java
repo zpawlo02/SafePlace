@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -59,6 +60,8 @@ public class F_ShowPlaces extends Fragment {
     private String city = "";
     private int startAtNumber = 1, stopAtNumber = 5, whichPlaces = 1;
     private ArrayList<Place> places = new ArrayList<>();
+    private ArrayList<String> placesKeys = new ArrayList<>();
+
     private PlacesListAdapter adapter;
 
 
@@ -140,8 +143,19 @@ public class F_ShowPlaces extends Fragment {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
-            }
+                Bundle b = new Bundle();
+                b.putString("key", placesKeys.get(position));
+                F_ShowItem f_showItem = new F_ShowItem();
+                f_showItem.setArguments(b);
+                getActivity().getSupportFragmentManager()
+                        .beginTransaction()
+                        .add(R.id.drawer_layout, f_showItem)
+                        .addToBackStack(null).commit();
+                /*
+                FragmentManager fm = getSupportFragmentManager();
+                Fragment add = new F_ADDPlace();
+                fm.beginTransaction().add(R.id.drawer_layout, add).addToBackStack(null).commit();
+            */}
         });
 
         // Inflate the layout for this fragment
@@ -158,6 +172,7 @@ private void updatePlaces(final Bundle bundle){
     }
 
     places.clear();
+    placesKeys.clear();
 
     database = FirebaseDatabase.getInstance();
     DatabaseReference ref = database.getReference("place");
@@ -170,8 +185,8 @@ private void updatePlaces(final Bundle bundle){
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                    Log.i("DUGBA", snapshot.getValue(Place.class).getAdress());
                     places.add(snapshot.getValue(Place.class));
+                    placesKeys.add(snapshot.getKey());
 
                 }
                 adapter  = new PlacesListAdapter(getContext(), R.layout.adapter_view_layout, places, bundle);
@@ -196,6 +211,7 @@ private void updatePlaces(final Bundle bundle){
 
                     if(snapshot.getValue(Place.class).getisSafe()){
                         places.add(snapshot.getValue(Place.class));
+                        placesKeys.add(snapshot.getKey());
                     }
 
                 }
@@ -221,6 +237,7 @@ private void updatePlaces(final Bundle bundle){
 
                     if(!snapshot.getValue(Place.class).getisSafe()){
                         places.add(snapshot.getValue(Place.class));
+                        placesKeys.add(snapshot.getKey());
                     }
 
                 }
@@ -247,6 +264,7 @@ private void updatePlaces(final Bundle bundle){
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
 
                     places.add(snapshot.getValue(Place.class));
+                    placesKeys.add(snapshot.getKey());
 
                 }
                 adapter  = new PlacesListAdapter(getContext(), R.layout.adapter_view_layout, places, bundle);
@@ -269,6 +287,7 @@ private void updatePlaces(final Bundle bundle){
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
 
                     places.add(snapshot.getValue(Place.class));
+                    placesKeys.add(snapshot.getKey());
 
                 }
                 adapter  = new PlacesListAdapter(getContext(), R.layout.adapter_view_layout, places, bundle);
@@ -293,6 +312,7 @@ private void updatePlaces(final Bundle bundle){
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
 
                     places.add(snapshot.getValue(Place.class));
+                    placesKeys.add(snapshot.getKey());
 
                 }
                 adapter  = new PlacesListAdapter(getContext(), R.layout.adapter_view_layout, places, bundle);
@@ -309,10 +329,6 @@ private void updatePlaces(final Bundle bundle){
 
 
     }
-    // places = downloadPlaces(whichPlace,city,query);
-
-
-
 
 }
 

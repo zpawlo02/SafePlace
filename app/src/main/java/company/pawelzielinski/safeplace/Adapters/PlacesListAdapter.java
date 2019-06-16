@@ -153,6 +153,12 @@ public class PlacesListAdapter extends ArrayAdapter<Place> {
                         .strokeColor(circleOptions.getStrokeColor())
                         .fillColor(circleOptions.getFillColor()));
                 map.moveCamera(CameraUpdateFactory.newLatLng(new LatLng(lat,longT)));
+                map.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
+                    @Override
+                    public void onMapClick(LatLng latLng) {
+
+                    }
+                });
             }
         });
         mapView.onResume();
