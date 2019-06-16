@@ -43,7 +43,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private Button buttonIncreaseCircle, buttonDecreaseCircle, buttonSaveArea;
 
     private LatLng mCircleCenter = new LatLng(-34, 151);
-    private Double circleRadius = 250.0;
+    private int circleRadius;
     private Boolean isSafe;
     private String comment;
     private int traffic = 1, pickpockets = 1, kidnapping = 1, homeless = 1, publicTransport = 1,
@@ -69,6 +69,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         shops =  intent.getIntExtra("shops", 1);
         carthefts =  intent.getIntExtra("carthefts", 1);
         kids =  intent.getIntExtra("kids", 1);
+        circleRadius = intent.getIntExtra("circleRadius",1);
 
         comment = intent.getStringExtra("comment");
 
@@ -80,8 +81,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         buttonIncreaseCircle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getApplicationContext(), circleRadius.toString(), Toast.LENGTH_SHORT);
-                circleRadius += 10;
+                if(circleRadius < 900){
+                    circleRadius += 10;
+                }
+
                 circle.setRadius(circleRadius);
                 circleOptions = setOpions(isSafe);
 
@@ -94,7 +97,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     if(circleRadius > 20) {
                         circleRadius -= 10;
                     }
-                    Toast.makeText(getApplicationContext(), circleRadius.toString(), Toast.LENGTH_SHORT);
                     circle.setRadius(circleRadius);
                     circleOptions = setOpions(isSafe);
 
@@ -120,7 +122,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     bundle.putInt("kids", kids);
                     bundle.putDouble("latitude", mCircleCenter.latitude);
                     bundle.putDouble("longitude", mCircleCenter.longitude);
-                    bundle.putDouble("circleRadius", circleRadius);
+                    bundle.putInt("circleRadius", circleRadius);
                     bundle.putBoolean("isSafe", isSafe);
                     FragmentManager fm = getSupportFragmentManager();
                     Fragment add = new F_ADDPlace();
@@ -142,22 +144,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             public void onMapLongClick(LatLng latLng) {
                 mCircleCenter = latLng;
                 MarkerOptions markerOptions = new MarkerOptions();
-                /*if(!isSafe){
-                    circle = mMap.addCircle(new CircleOptions()
-                            .strokeWidth(4)
-                            .radius(circleRadius)
-                            .center(mCircleCenter)
-                            .strokeColor(Color.parseColor("#490033"))
-                            .fillColor(Color.argb(50,230, 0, 0)));
-                }
-                else{
-                    circle = mMap.addCircle(new CircleOptions()
-                            .strokeWidth(4)
-                            .radius(circleRadius)
-                            .center(mCircleCenter)
-                            .strokeColor(Color.parseColor("#490033"))
-                            .fillColor(Color.argb(50,0, 230, 0)));
-                }*/
 
                 // Setting the position for the marker
                 markerOptions.position(latLng);
@@ -191,12 +177,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         });*/
         // Add a marker in Sydney and move the camera
         LatLng sydney = new LatLng(-34, 151);
-      /*  mMap.addCircle(new CircleOptions()
-                .strokeWidth(4)
-                .radius(250)
-                .center(mCircleCenter)
-                .strokeColor(Color.parseColor("#D1C4E9"))
-                .fillColor(Color.parseColor("#657C4DFF")));*/
+
         mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
     }

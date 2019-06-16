@@ -4,7 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/whiteText"
-    tools:context=".Fragments.F_ShowPlaces">
+    tools:context=".Fragments.F_ShowPlaces"
+    android:clickable="true">
 
     <RadioGroup
         android:id="@+id/groupTypePlaceS"
@@ -48,26 +49,18 @@
         android:hint="@string/city"
         android:textSize="20sp"
         android:inputType="text" />
-    <Button
-        android:id="@+id/buttonSubmit"
-        android:layout_width="180dp"
-        android:layout_height="60dp"
-        android:layout_marginTop="135dp"
-        android:layout_gravity="center_horizontal"
-        android:text="@string/submit"
-        android:textSize="20sp"/>
 
     <View
         android:layout_width="match_parent"
         android:layout_height="2dp"
         android:background="@color/appThemeColor"
-        android:layout_marginTop="200dp"/>
+        android:layout_marginTop="140dp"/>
 
     <ListView
         android:id="@+id/listViewPlaces"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="210dp">
+        android:layout_marginTop="150dp">
 
     </ListView>
 

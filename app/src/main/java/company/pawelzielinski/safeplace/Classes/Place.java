@@ -186,6 +186,14 @@ public class Place {
         return adress;
     }
 
+    public String getCountry() {
+        return country;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
     public void setSafe(boolean safe) {
         isSafe = safe;
     }

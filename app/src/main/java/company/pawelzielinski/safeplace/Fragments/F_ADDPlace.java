@@ -48,7 +48,7 @@ public class F_ADDPlace extends Fragment {
     //CIRCLE
     private LatLng mCircleCenter;
     private Double lat, longt;
-    private int circleRadius;
+    private int circleRadius = 250;
 
     private int traffic = 1, pickpockets = 1, kidnapping = 1, homeless = 1, publicTransport = 1,
                 parties = 1, shops = 1, carthefts = 1, kids = 1;
@@ -84,7 +84,7 @@ public class F_ADDPlace extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(final LayoutInflater inflater, ViewGroup container,
                              final Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_addplace, container, false);
 
@@ -153,6 +153,7 @@ public class F_ADDPlace extends Fragment {
                 intent.putExtra("kids", kids);
                 intent.putExtra("comment", comment);
                 intent.putExtra("isSafe", isSafe);
+                intent.putExtra("circleRadius",circleRadius);
                 getActivity().startActivity(intent);
                 getFragmentManager().popBackStack();
 
@@ -347,7 +348,7 @@ public class F_ADDPlace extends Fragment {
                 shops =  getArguments().getInt("shops", 1);
                 carthefts =  getArguments().getInt("carthefts", 1);
                 kids =  getArguments().getInt("kids", 1);
-                circleRadius = getArguments().getInt("circleRadius");
+                circleRadius = getArguments().getInt("circleRadius",1);
                 comment = getArguments().getString("comment","");
                 lat = getArguments().getDouble("latitude",1);
                 longt = getArguments().getDouble("longitude",1);
@@ -463,6 +464,8 @@ public class F_ADDPlace extends Fragment {
             e.toString();
         }
         mDatabase = mDatabase.push();
+
+        Log.i("CDUPKAAA", String.valueOf(circleRadius));
 
         mDatabase.setValue(new Place(getContext(), isSafe, carthefts, homeless,kidnapping,
                 kids, parties, pickpockets, publicTransport, shops, traffic, circleRadius,
