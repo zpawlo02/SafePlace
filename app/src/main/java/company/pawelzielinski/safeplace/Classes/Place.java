@@ -33,7 +33,7 @@ public class Place {
     public LatLng latLng;
     public String comment;
 
-    public String placeId;
+    //public String placeId;
     public String country, city;
     public String adress;
 
@@ -42,7 +42,7 @@ public class Place {
                  int kids, int parties, int pickpockets,
                  int publicTransport, int shops, int traffic, int circleRadius,
                  double lat, double longT, double rating, LatLng latLng,
-                 String comment, String placeId) {
+                 String comment ) {
 
         Geocoder geocoder;
         List<Address> adresses = null;
@@ -71,7 +71,7 @@ public class Place {
         this.rating = rating;
         this.latLng = latLng;
         this.comment = comment;
-        this.placeId = placeId;
+       // this.placeId = placeId;
 
         this.adress = adresses.get(0).getAddressLine(0);
     }
@@ -105,7 +105,7 @@ public class Place {
         this.country = adresses.get(0).getCountryName();
         this.city = adresses.get(0).getLocality();
         this.comment = comment;
-        this.placeId = placeId;
+      //  this.placeId = placeId;
 
         this.adress = adresses.get(0).getAddressLine(0);
     }
@@ -178,10 +178,10 @@ public class Place {
         return comment;
     }
 
-    public String getPlaceId() {
+   /* public String getPlaceId() {
         return placeId;
     }
-
+*/
     public String getAdress() {
         return adress;
     }
@@ -258,9 +258,10 @@ public class Place {
         this.comment = comment;
     }
 
-    public void setPlaceId(String placeId) {
+   /* public void setPlaceId(String placeId) {
         this.placeId = placeId;
     }
+    */
 
     public void setAdress(String adress) {
         this.adress = adress;

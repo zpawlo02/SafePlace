@@ -87,8 +87,6 @@ public class PlacesListAdapter extends ArrayAdapter<Place> {
 
 
         String comment = getItem(position).getComment();
-
-        String placeId = getItem(position).getPlaceId();
         String country = getItem(position).getCountry();
         String city = getItem(position).getCity();
 
@@ -136,8 +134,6 @@ public class PlacesListAdapter extends ArrayAdapter<Place> {
         mapView.getMapAsync(new OnMapReadyCallback() {
             @Override
             public void onMapReady(GoogleMap googleMap) {
-
-                Log.i("CHUJNIAA", String.valueOf(circleOptions.getRadius()));
 
                 GoogleMap map = googleMap;
                 if(circleOptions.getRadius() <= 500){

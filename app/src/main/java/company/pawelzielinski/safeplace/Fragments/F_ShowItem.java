@@ -1,6 +1,7 @@
 package company.pawelzielinski.safeplace.Fragments;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -12,6 +13,14 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.MapView;
+import com.google.android.gms.maps.MapsInitializer;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.model.Circle;
+import com.google.android.gms.maps.model.CircleOptions;
+import com.google.android.gms.maps.model.LatLng;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -25,9 +34,12 @@ import company.pawelzielinski.safeplace.R;
 public class F_ShowItem extends Fragment {
 
     private TextView textViewTraffic, textViewPick, textViewKidnapping, textViewHomeless,
-    textViewPublic, textViewParties, textViewShops, textViewCar, textViewKids, textViewCom;
-    String key;
-    Place p;
+    textViewPublic, textViewParties, textViewShops, textViewCar, textViewKids, textViewCom,
+    textViewSafeNot, textViewCountryCity, textViewRating;
+    private String key;
+    private Place p;
+    private CircleOptions circleOptions;
+    private MapView mapView;
 
     public F_ShowItem() {
         // Required empty public constructor
@@ -42,7 +54,7 @@ public class F_ShowItem extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+                             final Bundle savedInstanceState) {
 
         View v = inflater.inflate(R.layout.fragment_f__show_item, container, false);
 
@@ -56,7 +68,10 @@ public class F_ShowItem extends Fragment {
         textViewHomeless = (TextView) v.findViewById(R.id.textViewHomelessi);
         textViewCar = (TextView) v.findViewById(R.id.textViewCarTheftsi);
         textViewCom = (TextView) v.findViewById(R.id.textViewCommenti);
-
+        textViewSafeNot = (TextView) v.findViewById(R.id.textViewSafeNotSafeItemi);
+        textViewCountryCity = (TextView) v.findViewById(R.id.textViewCountryCityi);
+        textViewRating = (TextView) v.findViewById(R.id.textViewRatingNumberi);
+        mapView = (MapView) v.findViewById(R.id.imageViewMapShowi);
 
         key = getArguments().getString("key");
 
@@ -79,6 +94,59 @@ public class F_ShowItem extends Fragment {
                 textViewHomeless.setText(String.valueOf(p.getHomeless()));
                 textViewCar.setText(String.valueOf(p.getCarthefts()));
                 textViewCom.setText(p.getComment());
+
+                if(p.getisSafe() == true){
+                    textViewSafeNot.setText("Safe");
+                }else {
+                    textViewSafeNot.setText("Not safe");
+                }
+                textViewRating.setText(String.valueOf(p.getRating()));
+                textViewCountryCity.setText(p.getCountry() + " " + p.getCity());
+
+                LatLng latLng = new LatLng(p.getLat(), p.getLongT());
+                if (!p.getisSafe()) {
+                    circleOptions = new CircleOptions()
+                            .strokeWidth(4)
+                            .radius(p.getCircleRadius())
+                            .center(latLng)
+                            .strokeColor(Color.parseColor("#490033"))
+                            .fillColor(Color.argb(50, 230, 0, 0));
+                } else {
+
+                    circleOptions = new CircleOptions()
+                            .strokeWidth(4)
+                            .radius(p.getCircleRadius())
+                            .center(latLng)
+                            .strokeColor(Color.parseColor("#490033"))
+                            .fillColor(Color.argb(50, 0, 230, 0));
+
+                }
+
+                MapsInitializer.initialize(getContext());
+
+                mapView.onCreate(savedInstanceState);
+                mapView.getMapAsync(new OnMapReadyCallback() {
+                    @Override
+                    public void onMapReady(GoogleMap googleMap) {
+                        GoogleMap map = googleMap;
+                        if (circleOptions.getRadius() <= 500) {
+                            map.animateCamera(CameraUpdateFactory.zoomTo(16.4f));
+                        } else if (circleOptions.getRadius() <= 700) {
+                            map.animateCamera(CameraUpdateFactory.zoomTo(15.4f));
+                        } else if (circleOptions.getRadius() <= 900) {
+                            map.animateCamera(CameraUpdateFactory.zoomTo(14.4f));
+                        }
+                        Circle circle1 = map.addCircle(circleOptions);
+                        map.moveCamera(CameraUpdateFactory.newLatLng(new LatLng(p.getLat(), p.getLongT())));
+                        map.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
+                            @Override
+                            public void onMapClick(LatLng latLng) {
+
+                            }
+                        });
+                    }
+
+                });
 
             }
 

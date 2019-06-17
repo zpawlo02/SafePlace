@@ -15,12 +15,16 @@
         android:weightSum="100">
 
         <TextView
-            android:id="@+id/textViewSafeNotSafeItem"
+            android:id="@+id/textViewSafeNotSafeItemi"
             android:layout_width="match_parent"
             android:layout_height="30dp"
             android:layout_weight="3"
             android:gravity="center"
             android:textSize="25sp"/>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="@color/mainMenuButtonTextColor" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -31,7 +35,7 @@
             <TextView
                 android:layout_width="280dp"
                 android:layout_height="match_parent"
-                android:id="@+id/textViewCountryCity"
+                android:id="@+id/textViewCountryCityi"
                 android:textSize="18sp"
                 android:gravity="center"/>
 
@@ -41,12 +45,17 @@
                 android:layout_gravity="center"
                 android:gravity="center"
                 android:textSize="18sp"
-                android:id="@+id/textViewRatingNumber" />
+                android:id="@+id/textViewRatingNumberi" />
 
         </LinearLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="@color/mainMenuButtonTextColor" />
+
         <com.google.android.gms.maps.MapView
 
-            android:id="@+id/imageViewMapShow"
+            android:id="@+id/imageViewMapShowi"
             android:layout_width="match_parent"
             android:layout_height="350dp"
             map:cameraZoom="14"
@@ -54,6 +63,11 @@
             map:liteMode="true"
             xmlns:map="http://schemas.android.com/apk/res-auto"
             android:focusable="false"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="@color/mainMenuButtonTextColor" />
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
@@ -61,7 +75,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
+                android:layout_marginTop="20dp"
                 android:layout_marginStart="30dp"
                 android:text="@string/traffic_accidents"
                 android:textSize="20sp"/>
@@ -69,11 +83,16 @@
                 android:id="@+id/textViewTraffici"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="10dp"
                 android:layout_marginStart="250dp"
                 android:text="1"
                 android:gravity="center"
                 android:textSize="30sp"/>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="@color/mainMenuButtonTextColor"
+                android:layout_marginTop="60dp"/>
 
         </RelativeLayout>
 
@@ -84,7 +103,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
+                android:layout_marginTop="20dp"
                 android:layout_marginStart="30dp"
                 android:text="@string/pickpockets"
                 android:textSize="20sp"/>
@@ -92,11 +111,16 @@
                 android:id="@+id/textViewPickpocketsci"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="10dp"
                 android:layout_marginStart="250dp"
                 android:text="1"
                 android:gravity="center"
                 android:textSize="30sp"/>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="@color/mainMenuButtonTextColor"
+                android:layout_marginTop="60dp"/>
 
         </RelativeLayout>
 
@@ -107,7 +131,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
+                android:layout_marginTop="20dp"
                 android:layout_marginStart="30dp"
                 android:text="@string/kidnapping"
                 android:textSize="20sp"/>
@@ -115,11 +139,16 @@
                 android:id="@+id/textViewKidnappingi"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="10dp"
                 android:layout_marginStart="250dp"
                 android:text="1"
                 android:gravity="center"
                 android:textSize="30sp"/>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="@color/mainMenuButtonTextColor"
+                android:layout_marginTop="60dp"/>
 
         </RelativeLayout>
 
@@ -130,7 +159,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
+                android:layout_marginTop="20dp"
                 android:layout_marginStart="30dp"
                 android:text="@string/homeless"
                 android:textSize="20sp"/>
@@ -138,11 +167,16 @@
                 android:id="@+id/textViewHomelessi"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="10dp"
                 android:layout_marginStart="250dp"
                 android:text="1"
                 android:gravity="center"
                 android:textSize="30sp"/>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="@color/mainMenuButtonTextColor"
+                android:layout_marginTop="60dp"/>
 
         </RelativeLayout>
 
@@ -153,7 +187,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
+                android:layout_marginTop="20dp"
                 android:layout_marginStart="30dp"
                 android:text="@string/public_transport"
                 android:textSize="20sp"/>
@@ -161,11 +195,16 @@
                 android:id="@+id/textViewPublicTransporti"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="10dp"
                 android:layout_marginStart="250dp"
                 android:text="1"
                 android:gravity="center"
                 android:textSize="30sp"/>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="@color/mainMenuButtonTextColor"
+                android:layout_marginTop="60dp"/>
 
         </RelativeLayout>
 
@@ -176,7 +215,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
+                android:layout_marginTop="20dp"
                 android:layout_marginStart="30dp"
                 android:text="@string/parties_events"
                 android:textSize="20sp"/>
@@ -184,11 +223,16 @@
                 android:id="@+id/textViewPartiesi"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="10dp"
                 android:layout_marginStart="250dp"
                 android:text="1"
                 android:gravity="center"
                 android:textSize="30sp"/>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="@color/mainMenuButtonTextColor"
+                android:layout_marginTop="60dp"/>
 
         </RelativeLayout>
 
@@ -199,7 +243,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
+                android:layout_marginTop="20dp"
                 android:layout_marginStart="30dp"
                 android:text="@string/shops"
                 android:textSize="20sp"/>
@@ -207,11 +251,16 @@
                 android:id="@+id/textViewShopsi"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="10dp"
                 android:layout_marginStart="250dp"
                 android:text="1"
                 android:gravity="center"
                 android:textSize="30sp"/>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="@color/mainMenuButtonTextColor"
+                android:layout_marginTop="60dp"/>
 
         </RelativeLayout>
 
@@ -222,7 +271,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
+                android:layout_marginTop="20dp"
                 android:layout_marginStart="30dp"
                 android:text="@string/car_thefts"
                 android:textSize="20sp"/>
@@ -230,11 +279,16 @@
                 android:id="@+id/textViewCarTheftsi"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="10dp"
                 android:layout_marginStart="250dp"
                 android:text="1"
                 android:gravity="center"
                 android:textSize="30sp"/>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="@color/mainMenuButtonTextColor"
+                android:layout_marginTop="60dp"/>
 
         </RelativeLayout>
 
@@ -245,7 +299,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
+                android:layout_marginTop="20dp"
                 android:layout_marginStart="30dp"
                 android:text="@string/kids_activities"
                 android:textSize="20sp"/>
@@ -253,11 +307,16 @@
                 android:id="@+id/textViewKidsi"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="10dp"
                 android:layout_marginStart="250dp"
                 android:text="1"
                 android:gravity="center"
                 android:textSize="30sp"/>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="@color/mainMenuButtonTextColor"
+                android:layout_marginTop="60dp"/>
 
         </RelativeLayout>
 
@@ -265,7 +324,14 @@
             android:layout_marginTop="5dp"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/textViewCommenti"/>
+            android:id="@+id/textViewCommenti"
+            android:layout_gravity="center"
+            android:gravity="center_horizontal"/>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="@color/mainMenuButtonTextColor"
+            android:layout_marginTop="40dp"/>
 
         <ListView
             android:layout_width="match_parent"
