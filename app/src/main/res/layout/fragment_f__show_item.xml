@@ -326,17 +326,34 @@
             android:layout_height="match_parent"
             android:id="@+id/textViewCommenti"
             android:layout_gravity="center"
-            android:gravity="center_horizontal"/>
+            android:gravity="center"
+            android:textSize="15sp"/>
         <View
             android:layout_width="match_parent"
             android:layout_height="2dp"
             android:background="@color/mainMenuButtonTextColor"
-            android:layout_marginTop="40dp"/>
+            android:layout_marginTop="30dp"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/editTextAddComment"
+            android:hint="@string/add_your_comment"/>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:text="@string/add_comment"
+            android:id="@+id/buttonAddComment"/>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="@color/mainMenuButtonTextColor"
+            android:layout_marginTop="30dp"/>
 
         <ListView
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-
 
         </ListView>
 

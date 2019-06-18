@@ -10,6 +10,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -21,12 +23,15 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.Circle;
 import com.google.android.gms.maps.model.CircleOptions;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import company.pawelzielinski.safeplace.Classes.Comment;
 import company.pawelzielinski.safeplace.Classes.Place;
 import company.pawelzielinski.safeplace.R;
 
@@ -36,6 +41,8 @@ public class F_ShowItem extends Fragment {
     private TextView textViewTraffic, textViewPick, textViewKidnapping, textViewHomeless,
     textViewPublic, textViewParties, textViewShops, textViewCar, textViewKids, textViewCom,
     textViewSafeNot, textViewCountryCity, textViewRating;
+    private Button buttonAddComment;
+    private EditText editTextComment;
     private String key;
     private Place p;
     private CircleOptions circleOptions;
@@ -72,6 +79,8 @@ public class F_ShowItem extends Fragment {
         textViewCountryCity = (TextView) v.findViewById(R.id.textViewCountryCityi);
         textViewRating = (TextView) v.findViewById(R.id.textViewRatingNumberi);
         mapView = (MapView) v.findViewById(R.id.imageViewMapShowi);
+        buttonAddComment = (Button) v.findViewById(R.id.buttonAddComment);
+        editTextComment = (EditText) v.findViewById(R.id.editTextAddComment);
 
         key = getArguments().getString("key");
 
@@ -156,6 +165,21 @@ public class F_ShowItem extends Fragment {
             }
         });
 
+
+
+        buttonAddComment.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(!editTextComment.getText().toString().equals("")){
+
+                    FirebaseAuth auth = FirebaseAuth.getInstance();
+                    FirebaseUser user = auth.getCurrentUser();
+                    DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference().child("comments").child(key).push();
+                    mDatabase.setValue(new Comment(editTextComment.getText().toString(),user.getUid()));
+
+                }
+            }
+        });
 
 
         return v;

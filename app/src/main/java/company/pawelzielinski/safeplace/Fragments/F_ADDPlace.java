@@ -390,9 +390,7 @@ public class F_ADDPlace extends Fragment {
             throw new RuntimeException(context.toString()
                     + " must implement OnFragmentInteractionListener");
         }
-    }*/
-
-    //SPRAWDZ JAK JEST PRZEKAZYWANE Z MAP DO FRAGMETNU W DOWORKU
+    }
 
 
     @Override
@@ -400,6 +398,7 @@ public class F_ADDPlace extends Fragment {
         super.onDetach();
         mListener = null;
     }
+    */
 
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name

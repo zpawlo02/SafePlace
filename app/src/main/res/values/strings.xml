@@ -54,4 +54,6 @@
     <string name="submit">Submit</string>
     <string name="car_thefts">Car thefts</string>
     <string name="kids_activities">Kids activities</string>
+    <string name="add_comment">ADD COMMENT</string>
+    <string name="add_your_comment">Add your comment</string>
 </resources>
