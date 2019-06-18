@@ -8,10 +8,12 @@ import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -31,6 +33,10 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
+
+import company.pawelzielinski.safeplace.Adapters.CommentsListAdapter;
+import company.pawelzielinski.safeplace.Adapters.PlacesListAdapter;
 import company.pawelzielinski.safeplace.Classes.Comment;
 import company.pawelzielinski.safeplace.Classes.Place;
 import company.pawelzielinski.safeplace.R;
@@ -47,6 +53,10 @@ public class F_ShowItem extends Fragment {
     private Place p;
     private CircleOptions circleOptions;
     private MapView mapView;
+    private ArrayList<Comment> arrayListComments = new ArrayList<>();
+    private CommentsListAdapter adapter;
+    private ListView listViewComments;
+
 
     public F_ShowItem() {
         // Required empty public constructor
@@ -81,10 +91,11 @@ public class F_ShowItem extends Fragment {
         mapView = (MapView) v.findViewById(R.id.imageViewMapShowi);
         buttonAddComment = (Button) v.findViewById(R.id.buttonAddComment);
         editTextComment = (EditText) v.findViewById(R.id.editTextAddComment);
+        listViewComments = (ListView) v.findViewById(R.id.listViewComments);
 
         key = getArguments().getString("key");
 
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        final FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference ref = database.getReference("place").child(key);
 
         ref.addValueEventListener(new ValueEventListener() {
@@ -102,7 +113,7 @@ public class F_ShowItem extends Fragment {
                 textViewKidnapping.setText(String.valueOf(p.getKidnapping()));
                 textViewHomeless.setText(String.valueOf(p.getHomeless()));
                 textViewCar.setText(String.valueOf(p.getCarthefts()));
-                textViewCom.setText(p.getComment());
+                textViewCom.setText("  " + p.getComment());
 
                 if(p.getisSafe() == true){
                     textViewSafeNot.setText("Safe");
@@ -165,7 +176,14 @@ public class F_ShowItem extends Fragment {
             }
         });
 
-
+        loadComments(database,savedInstanceState);
+        listViewComments.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                v.getParent().requestDisallowInterceptTouchEvent(true);
+                return false;
+            }
+        });
 
         buttonAddComment.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -175,8 +193,8 @@ public class F_ShowItem extends Fragment {
                     FirebaseAuth auth = FirebaseAuth.getInstance();
                     FirebaseUser user = auth.getCurrentUser();
                     DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference().child("comments").child(key).push();
-                    mDatabase.setValue(new Comment(editTextComment.getText().toString(),user.getUid()));
-
+                    mDatabase.setValue(new Comment(editTextComment.getText().toString(),user.getUid(), user.getDisplayName()));
+                    loadComments(database,savedInstanceState);
                 }
             }
         });
@@ -185,6 +203,33 @@ public class F_ShowItem extends Fragment {
         return v;
     }
 
+    private void loadComments(FirebaseDatabase db, final Bundle bundle){
+
+        arrayListComments.clear();
+
+        db = FirebaseDatabase.getInstance();
+
+        DatabaseReference ref = db.getReference("comments").child(key);
+
+        ref.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for(DataSnapshot snapshot : dataSnapshot.getChildren()){
+                    arrayListComments.add(snapshot.getValue(Comment.class));
+                }
+
+                adapter = new CommentsListAdapter(getContext(), R.layout.adapter_comment_view_layout, arrayListComments, bundle);
+                listViewComments.setAdapter(adapter);
+                adapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+    }
 
 
 }
