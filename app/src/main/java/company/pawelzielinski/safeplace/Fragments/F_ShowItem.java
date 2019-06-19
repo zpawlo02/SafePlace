@@ -185,6 +185,13 @@ public class F_ShowItem extends Fragment {
             }
         });
 
+        textViewRating.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
         buttonAddComment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
