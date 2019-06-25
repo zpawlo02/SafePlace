@@ -6,6 +6,8 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.NotificationCompatExtras;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -39,6 +41,7 @@ import company.pawelzielinski.safeplace.Adapters.CommentsListAdapter;
 import company.pawelzielinski.safeplace.Adapters.PlacesListAdapter;
 import company.pawelzielinski.safeplace.Classes.Comment;
 import company.pawelzielinski.safeplace.Classes.Place;
+import company.pawelzielinski.safeplace.Classes.Rating;
 import company.pawelzielinski.safeplace.R;
 
 
@@ -56,7 +59,7 @@ public class F_ShowItem extends Fragment {
     private ArrayList<Comment> arrayListComments = new ArrayList<>();
     private CommentsListAdapter adapter;
     private ListView listViewComments;
-
+    private ArrayList<Integer> arrayListRatings;
 
     public F_ShowItem() {
         // Required empty public constructor
@@ -177,6 +180,8 @@ public class F_ShowItem extends Fragment {
         });
 
         loadComments(database,savedInstanceState);
+        loadRating();
+
         listViewComments.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
@@ -188,7 +193,12 @@ public class F_ShowItem extends Fragment {
         textViewRating.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Bundle b = new Bundle();
+                b.putString("key", key);
+                F_RatePlace f_ratePlace = new F_RatePlace();
+                f_ratePlace.setArguments(b);
+                getActivity().getSupportFragmentManager().beginTransaction()
+                        .add(R.id.drawer_layout,f_ratePlace).addToBackStack(null).commit();
             }
         });
 
@@ -238,5 +248,37 @@ public class F_ShowItem extends Fragment {
 
     }
 
+    private void loadRating(){
+
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference ref = database.getReference("ratings").child(key);
+
+
+        ref.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for(DataSnapshot snapshot : dataSnapshot.getChildren()){
+//                    arrayListRatings.add(snapshot.getValue(Rating.class).getRating());
+                }
+
+
+                Double rate = null;
+
+                for(int i = 0; i < arrayListRatings.size(); i++){
+                    rate += arrayListRatings.get(i);
+                }
+                rate = rate/arrayListRatings.size();
+
+                textViewRating.setText(String.valueOf(rate));
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+    }
 
 }
