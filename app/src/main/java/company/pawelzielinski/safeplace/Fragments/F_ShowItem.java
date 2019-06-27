@@ -1,5 +1,6 @@
 package company.pawelzielinski.safeplace.Fragments;
 
+import android.app.Activity;
 import android.content.Context;
 import android.graphics.Color;
 import android.net.Uri;
@@ -65,6 +66,10 @@ public class F_ShowItem extends Fragment {
         // Required empty public constructor
     }
 
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -180,7 +185,7 @@ public class F_ShowItem extends Fragment {
         });
 
         loadComments(database,savedInstanceState);
-        loadRating();
+        loadRating(database);
 
         listViewComments.setOnTouchListener(new View.OnTouchListener() {
             @Override
@@ -248,28 +253,26 @@ public class F_ShowItem extends Fragment {
 
     }
 
-    private void loadRating(){
+    public void loadRating(FirebaseDatabase database){
 
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        database = FirebaseDatabase.getInstance();
         DatabaseReference ref = database.getReference("ratings").child(key);
+
 
 
         ref.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                Double rate = 0.0;
+                Integer divider = 0;
                 for(DataSnapshot snapshot : dataSnapshot.getChildren()){
-//                    arrayListRatings.add(snapshot.getValue(Rating.class).getRating());
+                    divider++;
+                    rate += snapshot.getValue(Rating.class).getRating();
                 }
 
-
-                Double rate = null;
-
-                for(int i = 0; i < arrayListRatings.size(); i++){
-                    rate += arrayListRatings.get(i);
-                }
-                rate = rate/arrayListRatings.size();
-
-                textViewRating.setText(String.valueOf(rate));
+                DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("place").child(key).child("rating");
+                ref.setValue(Math.round(((rate/divider) * 10.0))/10.0);
+                textViewRating.setText(String.valueOf(Math.round(((rate/divider) * 10.0))/10.0));
 
             }
 
@@ -280,5 +283,7 @@ public class F_ShowItem extends Fragment {
         });
 
     }
+
+
 
 }

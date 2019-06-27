@@ -6,12 +6,15 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.SeekBar;
+import android.widget.TableRow;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -34,7 +37,7 @@ public class F_RatePlace extends Fragment {
     private SeekBar seekBar;
     private TextView textViewRating;
     private Button buttonSubmit;
-    private int ratingValue = 1;
+    private Integer ratingValue = 1;
     private String key;
 
     public F_RatePlace() {
@@ -82,18 +85,67 @@ public class F_RatePlace extends Fragment {
         buttonSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                FirebaseAuth auth = FirebaseAuth.getInstance();
-                FirebaseUser user = auth.getCurrentUser();
-                DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference().child("ratings").child(key).push();
-                mDatabase.setValue(new Rating(user.getUid(),ratingValue));
 
+
+                DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("ratings").child(key);
+
+                ref.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        FirebaseAuth auth = FirebaseAuth.getInstance();
+                        FirebaseUser user = auth.getCurrentUser();
+                        boolean added = false;
+                        for(DataSnapshot snapshot : dataSnapshot.getChildren()){
+                            if(snapshot.getValue(Rating.class).getUserId() ==  user.getUid()){
+                                added = true;
+
+                            }
+                        }
+
+                        if(added == true){
+
+                            Log.i("UUUUSER", String.valueOf(added) );
+                            if(isAdded()){
+                                Toast.makeText(getActivity(), getResources().getString(R.string.you_added_rating), Toast.LENGTH_LONG).show();
+                            }
+                        }else {
+
+                            Log.i("UUUUSER", String.valueOf(added) );
+                            DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference().child("ratings").child(key).push();
+
+                            mDatabase.setValue(new Rating(user.getUid(),ratingValue));
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
+
+
+
+                getActivity().getSupportFragmentManager().popBackStackImmediate();
+
+
+            }
+        });
+
+        v.setFocusableInTouchMode(true);
+        v.requestFocus();
+        v.setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                if(keyCode == KeyEvent.KEYCODE_BACK){
+                    getActivity().getSupportFragmentManager().popBackStackImmediate();
+                    return true;
+                }
+                return false;
             }
         });
 
         // Inflate the layout for this fragment
         return v;
     }
-
-
 
 }

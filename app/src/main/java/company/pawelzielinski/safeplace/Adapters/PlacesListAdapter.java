@@ -136,12 +136,16 @@ public class PlacesListAdapter extends ArrayAdapter<Place> {
             public void onMapReady(GoogleMap googleMap) {
 
                 GoogleMap map = googleMap;
-                if(circleOptions.getRadius() <= 500){
-                    map.animateCamera(CameraUpdateFactory.zoomTo(16.4f));
+                if(circleOptions.getRadius() <= 220){
+                    map.animateCamera(CameraUpdateFactory.zoomTo(16.8f));
                 }else if(circleOptions.getRadius() <= 700){
                     map.animateCamera(CameraUpdateFactory.zoomTo(15.4f));
                 }else if(circleOptions.getRadius() <= 900){
                     map.animateCamera(CameraUpdateFactory.zoomTo(14.4f));
+                }else if(circleOptions.getRadius() <= 440){
+                    map.animateCamera(CameraUpdateFactory.zoomTo(15.8f));
+                }else if(circleOptions.getRadius() <= 290){
+                    map.animateCamera(CameraUpdateFactory.zoomTo(16.0f));
                 }
                 Circle circle1 = map.addCircle(new CircleOptions().strokeWidth(4)
                         .radius(circleOptions.getRadius())

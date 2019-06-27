@@ -2,7 +2,7 @@ package company.pawelzielinski.safeplace.Classes;
 
 public class Rating {
     public String userId;
-    public int rating;
+    public Integer rating;
 
 
     public Rating(String userId, int rating) {
@@ -21,11 +21,11 @@ public class Rating {
         this.userId = userId;
     }
 
-    public int getRating() {
+    public Integer getRating() {
         return rating;
     }
 
-    public void setRating(int rating) {
+    public void setRating(Integer rating) {
         this.rating = rating;
     }
 }

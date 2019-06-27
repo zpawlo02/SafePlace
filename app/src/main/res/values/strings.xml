@@ -59,4 +59,5 @@
     <string name="description">Description:</string>
     <string name="comments">Comments:</string>
     <string name="rate_this_place">RATE THIS PLACE</string>
+    <string name="you_added_rating">"You have already added rating!"</string>
 </resources>
