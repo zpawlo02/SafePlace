@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Fragments.F_topPlaces"
+    android:background="@color/whiteText">
+    <RadioGroup
+        android:id="@+id/groupTypePlaceS"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_gravity="center_horizontal">
+
+        <RadioButton
+            android:id="@+id/radioSafeS"
+            android:layout_width="137dp"
+            android:layout_height="wrap_content"
+            android:text="Top Safe"
+            android:textSize="20sp" />
+
+        <RadioButton
+            android:id="@+id/radioNotSafeS"
+            android:layout_width="140dp"
+            android:layout_height="wrap_content"
+            android:text="Top Not Safe"
+            android:textSize="20sp" />
+
+    </RadioGroup>
+
+    <EditText
+        android:id="@+id/editTextCity"
+        android:layout_width="160dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="80dp"
+        android:layout_gravity="center_horizontal"
+        android:hint="@string/city"
+        android:textSize="20sp"
+        android:inputType="text" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@color/appThemeColor"
+        android:layout_marginTop="140dp"/>
+
+    <ListView
+        android:id="@+id/listViewPlaces"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="150dp">
+
+    </ListView>
+
+
+
+
+
+</FrameLayout>

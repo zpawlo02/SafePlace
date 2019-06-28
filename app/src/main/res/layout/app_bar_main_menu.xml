@@ -40,7 +40,7 @@
             android:layout_marginTop="150dp"
             android:background="@color/mainMenuButtonColor"
             android:textColor="@color/mainMenuButtonTextColor"
-            android:id="@+id/searchSafeNotSafePlaces"/>
+            android:id="@+id/buttonSearchSafeNotSafePlaces"/>
 
         <Button
             android:text="@string/top_safe_not_safe_places"
@@ -48,7 +48,8 @@
             android:layout_height="100dp"
             android:layout_marginTop="250dp"
             android:background="@color/mainMenuButtonColor"
-            android:textColor="@color/mainMenuButtonTextColor"/>
+            android:textColor="@color/mainMenuButtonTextColor"
+            android:id="@+id/buttonTopPlaces"/>
 
         <Button
             android:layout_width="match_parent"

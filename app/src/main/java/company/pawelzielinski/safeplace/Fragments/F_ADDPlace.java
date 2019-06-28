@@ -6,6 +6,7 @@ import android.location.Address;
 import android.location.Geocoder;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.text.method.CharacterPickerDialog;
 import android.util.Log;
@@ -16,11 +17,15 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.io.IOException;
 import java.util.List;
@@ -47,7 +52,7 @@ public class F_ADDPlace extends Fragment {
 
     //CIRCLE
     private LatLng mCircleCenter;
-    private Double lat, longt;
+    private Double lat = 1.0, longt = 1.0;
     private int circleRadius = 250;
 
     private int traffic = 1, pickpockets = 1, kidnapping = 1, homeless = 1, publicTransport = 1,
@@ -163,6 +168,7 @@ public class F_ADDPlace extends Fragment {
         buttonAddToDB.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Log.i("LAT LONG", String.valueOf(lat + " --" + longt + " ----" + circleRadius));
                 comment = editTextComment.getText().toString();
                 writeNewPlace(mDatabase, isSafe, traffic, pickpockets,
                         homeless, kidnapping, publicTransport, parties, shops, carthefts,
@@ -364,6 +370,7 @@ public class F_ADDPlace extends Fragment {
                 textCarthefts.setText(String.valueOf(carthefts));
                 textKids.setText(String.valueOf(kids));
                 editTextComment.setText(comment);
+
             }
 
         if(isSafe == false){
@@ -453,8 +460,11 @@ public class F_ADDPlace extends Fragment {
                                int kidnapping, int homeless, int publicTransport,
                                int parties, int shops, int carthefts, int kids,
                                double lat, double longt, int circleRadius, String comment){
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        DocumentReference ref = db.collection("places").document();
+
         double rating = 0;
-        LatLng latLng = new LatLng(lat,longt);
+       /* LatLng latLng = new LatLng(lat,longt);*/
         Geocoder geocoder = new Geocoder(getContext(), Locale.getDefault());
         List<Address> addresses = null;
         try {
@@ -462,11 +472,32 @@ public class F_ADDPlace extends Fragment {
         }catch (IOException e){
             e.toString();
         }
-        mDatabase = mDatabase.push();
+       /* mDatabase = mDatabase.push();
 
         mDatabase.setValue(new Place(getContext(), isSafe, carthefts, homeless,kidnapping,
                 kids, parties, pickpockets, publicTransport, shops, traffic, circleRadius,
-                lat, longt, rating, comment));
+                lat, longt, rating, comment));*/
+
+       ref.set(new Place(getContext(), isSafe, carthefts, homeless,kidnapping,
+               kids, parties, pickpockets, publicTransport, shops, traffic, circleRadius,
+               lat, longt, rating, comment))
+               .addOnFailureListener(new OnFailureListener() {
+                   @Override
+                   public void onFailure(@NonNull Exception e) {
+                       Toast.makeText(getContext(), "Can not add place!", Toast.LENGTH_LONG);
+                   }
+               });
+
+     /*   db.collection("places").document()
+                .add(new Place(getContext(), isSafe, carthefts, homeless,kidnapping,
+                        kids, parties, pickpockets, publicTransport, shops, traffic, circleRadius,
+                        lat, longt, rating, comment))
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(getContext(), "Can not add place!", Toast.LENGTH_LONG);
+                    }
+                });*/
 
     }
 }

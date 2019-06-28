@@ -4,7 +4,6 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.text.Editable;
@@ -39,11 +38,19 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.firestore.DocumentChange;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.EventListener;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.QuerySnapshot;
 import com.squareup.picasso.Picasso;
 
 import java.io.IOException;
 import java.lang.ref.Reference;
 import java.util.ArrayList;
+
+import javax.annotation.Nullable;
 
 import company.pawelzielinski.safeplace.Adapters.PlacesListAdapter;
 import company.pawelzielinski.safeplace.Classes.Place;
@@ -174,13 +181,36 @@ private void updatePlaces(final Bundle bundle){
     places.clear();
     placesKeys.clear();
 
-    database = FirebaseDatabase.getInstance();
-    DatabaseReference ref = database.getReference("place");
+    FirebaseFirestore db = FirebaseFirestore.getInstance();
+  //  DocumentReference ref = db.collection("places").document();
+
+
+
+   /* database = FirebaseDatabase.getInstance();
+    DatabaseReference ref = database.getReference("place");*/
 
     //startAt(startAtNumber).endAt(stopAtNumber).
     if (city != "" && whichPlaces == 1) {
 
-        ref.orderByChild("city").equalTo(city).addValueEventListener(new ValueEventListener() {
+        db.collection("places").whereEqualTo("city",city).addSnapshotListener(new EventListener<QuerySnapshot>() {
+            @Override
+            public void onEvent(@Nullable QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException e) {
+                if( e != null){
+
+                }
+
+                for(DocumentChange documentChange :queryDocumentSnapshots.getDocumentChanges()){
+                    places.add(documentChange.getDocument().toObject(Place.class));
+                    placesKeys.add(documentChange.getDocument().getId());
+                }
+
+                adapter  = new PlacesListAdapter(getContext(), R.layout.adapter_view_layout, places, bundle);
+                listView.setAdapter(adapter);
+                adapter.notifyDataSetChanged();
+            }
+        });
+
+        /*ref.orderByChild("city").equalTo(city).addValueEventListener(new ValueEventListener() {
 
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -198,11 +228,30 @@ private void updatePlaces(final Bundle bundle){
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
             }
-        });
+        });*/
 
 
     } else if (city != "" && whichPlaces == 2) {
-        ref.orderByChild("city").equalTo(city).addValueEventListener(new ValueEventListener() {
+
+        db.collection("places").whereEqualTo("city",city).whereEqualTo("isSafe",true).addSnapshotListener(new EventListener<QuerySnapshot>() {
+            @Override
+            public void onEvent(@Nullable QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException e) {
+                if( e != null){
+
+                }
+
+                for(DocumentChange documentChange :queryDocumentSnapshots.getDocumentChanges()){
+                    places.add(documentChange.getDocument().toObject(Place.class));
+                    placesKeys.add(documentChange.getDocument().getId());
+                }
+
+                adapter  = new PlacesListAdapter(getContext(), R.layout.adapter_view_layout, places, bundle);
+                listView.setAdapter(adapter);
+                adapter.notifyDataSetChanged();
+            }
+        });
+
+        /*ref.orderByChild("city").equalTo(city).addValueEventListener(new ValueEventListener() {
 
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -225,10 +274,29 @@ private void updatePlaces(final Bundle bundle){
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
             }
-        });
+        });*/
 
     } else if (city != "" && whichPlaces == 3) {
-        ref.orderByChild("city").equalTo(city).addValueEventListener(new ValueEventListener() {
+
+        db.collection("places").whereEqualTo("city",city).whereEqualTo("isSafe",false).addSnapshotListener(new EventListener<QuerySnapshot>() {
+            @Override
+            public void onEvent(@Nullable QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException e) {
+                if( e != null){
+
+                }
+
+                for(DocumentChange documentChange :queryDocumentSnapshots.getDocumentChanges()){
+                    places.add(documentChange.getDocument().toObject(Place.class));
+                    placesKeys.add(documentChange.getDocument().getId());
+                }
+
+                adapter  = new PlacesListAdapter(getContext(), R.layout.adapter_view_layout, places, bundle);
+                listView.setAdapter(adapter);
+                adapter.notifyDataSetChanged();
+            }
+        });
+
+        /*ref.orderByChild("city").equalTo(city).addValueEventListener(new ValueEventListener() {
 
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -251,12 +319,30 @@ private void updatePlaces(final Bundle bundle){
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
             }
-        });
+        });*/
 
 
     } else if (city.equals("") && whichPlaces == 1) {
 
-        ref.addValueEventListener(new ValueEventListener() {
+        db.collection("places").addSnapshotListener(new EventListener<QuerySnapshot>() {
+            @Override
+            public void onEvent(@Nullable QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException e) {
+                if( e != null){
+
+                }
+
+                for(DocumentChange documentChange :queryDocumentSnapshots.getDocumentChanges()){
+                    places.add(documentChange.getDocument().toObject(Place.class));
+                    placesKeys.add(documentChange.getDocument().getId());
+                }
+
+                adapter  = new PlacesListAdapter(getContext(), R.layout.adapter_view_layout, places, bundle);
+                listView.setAdapter(adapter);
+                adapter.notifyDataSetChanged();
+            }
+        });
+
+        /*ref.addValueEventListener(new ValueEventListener() {
 
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -275,11 +361,30 @@ private void updatePlaces(final Bundle bundle){
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
             }
-        });
+        });*/
 
 
     } else if (city.equals("") && whichPlaces == 2) {
-        ref.orderByChild("isSafe").equalTo(true).addValueEventListener(new ValueEventListener() {
+
+        db.collection("places").whereEqualTo("isSafe", true).addSnapshotListener(new EventListener<QuerySnapshot>() {
+            @Override
+            public void onEvent(@Nullable QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException e) {
+                if( e != null){
+
+                }
+
+                for(DocumentChange documentChange :queryDocumentSnapshots.getDocumentChanges()){
+                    places.add(documentChange.getDocument().toObject(Place.class));
+                    placesKeys.add(documentChange.getDocument().getId());
+                }
+
+                adapter  = new PlacesListAdapter(getContext(), R.layout.adapter_view_layout, places, bundle);
+                listView.setAdapter(adapter);
+                adapter.notifyDataSetChanged();
+            }
+        });
+
+        /*ref.orderByChild("isSafe").equalTo(true).addValueEventListener(new ValueEventListener() {
 
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -300,11 +405,31 @@ private void updatePlaces(final Bundle bundle){
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
             }
-        });
+        });*/
 
 
     } else if (city.equals("") && whichPlaces == 3) {
-        ref.orderByChild("isSafe").equalTo(false).addValueEventListener(new ValueEventListener() {
+
+
+        db.collection("places").whereEqualTo("isSafe", false).addSnapshotListener(new EventListener<QuerySnapshot>() {
+            @Override
+            public void onEvent(@Nullable QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException e) {
+                if( e != null){
+
+                }
+
+                for(DocumentChange documentChange :queryDocumentSnapshots.getDocumentChanges()){
+                    places.add(documentChange.getDocument().toObject(Place.class));
+                    placesKeys.add(documentChange.getDocument().getId());
+                }
+
+                adapter  = new PlacesListAdapter(getContext(), R.layout.adapter_view_layout, places, bundle);
+                listView.setAdapter(adapter);
+                adapter.notifyDataSetChanged();
+            }
+        });
+
+        /*ref.orderByChild("isSafe").equalTo(false).addValueEventListener(new ValueEventListener() {
 
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -325,8 +450,7 @@ private void updatePlaces(final Bundle bundle){
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
             }
-        });
-
+        });*/
 
     }
 

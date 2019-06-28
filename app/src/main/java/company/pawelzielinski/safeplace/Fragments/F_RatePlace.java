@@ -23,8 +23,19 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.firestore.DocumentChange;
+import com.google.firebase.firestore.EventListener;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Iterator;
+import java.util.List;
+import java.util.ListIterator;
+
+import javax.annotation.Nullable;
 
 import company.pawelzielinski.safeplace.Adapters.CommentsListAdapter;
 import company.pawelzielinski.safeplace.Classes.Comment;
@@ -86,44 +97,10 @@ public class F_RatePlace extends Fragment {
             @Override
             public void onClick(View v) {
 
-
-                DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("ratings").child(key);
-
-                ref.addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        FirebaseAuth auth = FirebaseAuth.getInstance();
-                        FirebaseUser user = auth.getCurrentUser();
-                        boolean added = false;
-                        for(DataSnapshot snapshot : dataSnapshot.getChildren()){
-                            if(snapshot.getValue(Rating.class).getUserId() ==  user.getUid()){
-                                added = true;
-
-                            }
-                        }
-
-                        if(added == true){
-
-                            Log.i("UUUUSER", String.valueOf(added) );
-                            if(isAdded()){
-                                Toast.makeText(getActivity(), getResources().getString(R.string.you_added_rating), Toast.LENGTH_LONG).show();
-                            }
-                        }else {
-
-                            Log.i("UUUUSER", String.valueOf(added) );
-                            DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference().child("ratings").child(key).push();
-
-                            mDatabase.setValue(new Rating(user.getUid(),ratingValue));
-                        }
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                    }
-                });
-
-
+                    FirebaseFirestore database = FirebaseFirestore.getInstance();
+                    FirebaseAuth auth = FirebaseAuth.getInstance();
+                    FirebaseUser user = auth.getCurrentUser();
+                    database.collection("ratings").document(key).collection("rate").document().set(new Rating(user.getUid(), ratingValue));
 
                 getActivity().getSupportFragmentManager().popBackStackImmediate();
 
@@ -147,5 +124,6 @@ public class F_RatePlace extends Fragment {
         // Inflate the layout for this fragment
         return v;
     }
+
 
 }

@@ -38,7 +38,7 @@ public class Place {
     public String adress;
 
 
-    public Place(Context context, boolean isSafe, int carthefts, int homeless, int kidnapping,
+   /* public Place(Context context, boolean isSafe, int carthefts, int homeless, int kidnapping,
                  int kids, int parties, int pickpockets,
                  int publicTransport, int shops, int traffic, int circleRadius,
                  double lat, double longT, double rating, LatLng latLng,
@@ -69,20 +69,20 @@ public class Place {
         this.lat = lat;
         this.longT = longT;
         this.rating = rating;
-        this.latLng = latLng;
         this.comment = comment;
        // this.placeId = placeId;
 
         this.adress = adresses.get(0).getAddressLine(0);
-    }
+    }*/
 
     public Place(Context context, boolean isSafe, int carthefts, int homeless, int kidnapping, int kids, int parties, int pickpockets, int publicTransport, int shops, int traffic, int circleRadius, double lat, double longt, double rating,  String comment) {
-        Geocoder geocoder;
+        Geocoder geocoder = new Geocoder(context, Locale.getDefault());
         List<Address> adresses = null;
-        geocoder = new Geocoder(context, Locale.getDefault());
+
 
         try {
             adresses = geocoder.getFromLocation(lat,longt,1);
+            Log.i("ADRESSERROR", String.valueOf(adresses.get(0)));
         }
         catch (IOException e){
             Log.i("ADRESSERROR", e.toString());
@@ -105,7 +105,6 @@ public class Place {
         this.country = adresses.get(0).getCountryName();
         this.city = adresses.get(0).getLocality();
         this.comment = comment;
-      //  this.placeId = placeId;
 
         this.adress = adresses.get(0).getAddressLine(0);
     }
@@ -170,9 +169,6 @@ public class Place {
         return rating;
     }
 
-    public LatLng getLatLng() {
-        return latLng;
-    }
 
     public String getComment() {
         return comment;
@@ -248,10 +244,6 @@ public class Place {
 
     public void setRating(double rating) {
         this.rating = rating;
-    }
-
-    public void setLatLng(LatLng latLng) {
-        this.latLng = latLng;
     }
 
     public void setComment(String comment) {
