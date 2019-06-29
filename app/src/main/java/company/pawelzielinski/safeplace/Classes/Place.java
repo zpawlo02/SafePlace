@@ -33,7 +33,6 @@ public class Place {
     public LatLng latLng;
     public String comment;
 
-    //public String placeId;
     public String country, city;
     public String adress;
 
@@ -169,15 +168,10 @@ public class Place {
         return rating;
     }
 
-
     public String getComment() {
         return comment;
     }
 
-   /* public String getPlaceId() {
-        return placeId;
-    }
-*/
     public String getAdress() {
         return adress;
     }
@@ -249,11 +243,6 @@ public class Place {
     public void setComment(String comment) {
         this.comment = comment;
     }
-
-   /* public void setPlaceId(String placeId) {
-        this.placeId = placeId;
-    }
-    */
 
     public void setAdress(String adress) {
         this.adress = adress;

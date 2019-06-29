@@ -63,7 +63,6 @@ public class F_ShowPlaces extends Fragment {
     private ListView listView;
     private EditText editTextCity;
     private RadioButton radioButtonAll, radioButtonSafe, radioButtonNotSafe;
-    private FirebaseDatabase database;
     private String city = "";
     private int startAtNumber = 1, stopAtNumber = 5, whichPlaces = 1;
     private ArrayList<Place> places = new ArrayList<>();
@@ -80,8 +79,6 @@ public class F_ShowPlaces extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-
 
     }
 
@@ -168,6 +165,7 @@ public class F_ShowPlaces extends Fragment {
         // Inflate the layout for this fragment
         return view;
     }
+
 //1 - ALL 2 - SAFE 3 - NOT SAFE
 
 private void updatePlaces(final Bundle bundle){
@@ -210,26 +208,6 @@ private void updatePlaces(final Bundle bundle){
             }
         });
 
-        /*ref.orderByChild("city").equalTo(city).addValueEventListener(new ValueEventListener() {
-
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                    places.add(snapshot.getValue(Place.class));
-                    placesKeys.add(snapshot.getKey());
-
-                }
-                adapter  = new PlacesListAdapter(getContext(), R.layout.adapter_view_layout, places, bundle);
-                listView.setAdapter(adapter);
-                adapter.notifyDataSetChanged();
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });*/
-
 
     } else if (city != "" && whichPlaces == 2) {
 
@@ -251,31 +229,6 @@ private void updatePlaces(final Bundle bundle){
             }
         });
 
-        /*ref.orderByChild("city").equalTo(city).addValueEventListener(new ValueEventListener() {
-
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-
-                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-
-                    if(snapshot.getValue(Place.class).getisSafe()){
-                        places.add(snapshot.getValue(Place.class));
-                        placesKeys.add(snapshot.getKey());
-                    }
-
-                }
-                adapter  = new PlacesListAdapter(getContext(), R.layout.adapter_view_layout, places, bundle);
-                listView.setAdapter(adapter);
-                adapter.notifyDataSetChanged();
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });*/
-
     } else if (city != "" && whichPlaces == 3) {
 
         db.collection("places").whereEqualTo("city",city).whereEqualTo("isSafe",false).addSnapshotListener(new EventListener<QuerySnapshot>() {
@@ -295,31 +248,6 @@ private void updatePlaces(final Bundle bundle){
                 adapter.notifyDataSetChanged();
             }
         });
-
-        /*ref.orderByChild("city").equalTo(city).addValueEventListener(new ValueEventListener() {
-
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-
-                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-
-                    if(!snapshot.getValue(Place.class).getisSafe()){
-                        places.add(snapshot.getValue(Place.class));
-                        placesKeys.add(snapshot.getKey());
-                    }
-
-                }
-                adapter  = new PlacesListAdapter(getContext(), R.layout.adapter_view_layout, places, bundle);
-                listView.setAdapter(adapter);
-                adapter.notifyDataSetChanged();
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });*/
 
 
     } else if (city.equals("") && whichPlaces == 1) {
@@ -342,27 +270,6 @@ private void updatePlaces(final Bundle bundle){
             }
         });
 
-        /*ref.addValueEventListener(new ValueEventListener() {
-
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-
-                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-
-                    places.add(snapshot.getValue(Place.class));
-                    placesKeys.add(snapshot.getKey());
-
-                }
-                adapter  = new PlacesListAdapter(getContext(), R.layout.adapter_view_layout, places, bundle);
-                listView.setAdapter(adapter);
-                adapter.notifyDataSetChanged();
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-            }
-        });*/
-
 
     } else if (city.equals("") && whichPlaces == 2) {
 
@@ -383,29 +290,6 @@ private void updatePlaces(final Bundle bundle){
                 adapter.notifyDataSetChanged();
             }
         });
-
-        /*ref.orderByChild("isSafe").equalTo(true).addValueEventListener(new ValueEventListener() {
-
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-
-                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-
-                    places.add(snapshot.getValue(Place.class));
-                    placesKeys.add(snapshot.getKey());
-
-                }
-                adapter  = new PlacesListAdapter(getContext(), R.layout.adapter_view_layout, places, bundle);
-                listView.setAdapter(adapter);
-                adapter.notifyDataSetChanged();
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });*/
 
 
     } else if (city.equals("") && whichPlaces == 3) {
@@ -429,28 +313,6 @@ private void updatePlaces(final Bundle bundle){
             }
         });
 
-        /*ref.orderByChild("isSafe").equalTo(false).addValueEventListener(new ValueEventListener() {
-
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-
-                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-
-                    places.add(snapshot.getValue(Place.class));
-                    placesKeys.add(snapshot.getKey());
-
-                }
-                adapter  = new PlacesListAdapter(getContext(), R.layout.adapter_view_layout, places, bundle);
-                listView.setAdapter(adapter);
-                adapter.notifyDataSetChanged();
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });*/
 
     }
 

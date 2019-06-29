@@ -91,13 +91,14 @@ public class PlacesListAdapter extends ArrayAdapter<Place> {
         String city = getItem(position).getCity();
 
         LayoutInflater inflater = LayoutInflater.from(context);
-        convertView = inflater.inflate(mResource,parent,false);
+      //  convertView = inflater.inflate(mResource,parent,false);
         View v = inflater.inflate(R.layout.adapter_view_layout,null,true);
 
         TextView textViewSafeNotSafeItem = (TextView) v.findViewById(R.id.textViewSafeNotSafeItem);
         TextView textViewCountryCity = (TextView) v.findViewById(R.id.textViewCountryCity);
         TextView textViewRatingNumber = (TextView) v.findViewById(R.id.textViewRatingNumber);
-          final MapView mapView = (MapView) v.findViewById(R.id.imageViewMapShow);
+        final MapView mapView = (MapView) v.findViewById(R.id.imageViewMapShow);
+
         if(isSafe == true){
             textViewSafeNotSafeItem.setText("Safe");
         }else {
