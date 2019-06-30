@@ -60,4 +60,7 @@
     <string name="comments">Comments:</string>
     <string name="rate_this_place">RATE THIS PLACE</string>
     <string name="you_added_rating">"You have already added rating!"</string>
+    <string name="edit_place">EDIT PLACE</string>
+    <string name="edit_comment">EDIT COMMENT:</string>
+    <string name="save">SAVE</string>
 </resources>

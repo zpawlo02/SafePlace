@@ -35,6 +35,7 @@ public class Place {
 
     public String country, city;
     public String adress;
+    public String userId;
 
 
    /* public Place(Context context, boolean isSafe, int carthefts, int homeless, int kidnapping,
@@ -74,10 +75,9 @@ public class Place {
         this.adress = adresses.get(0).getAddressLine(0);
     }*/
 
-    public Place(Context context, boolean isSafe, int carthefts, int homeless, int kidnapping, int kids, int parties, int pickpockets, int publicTransport, int shops, int traffic, int circleRadius, double lat, double longt, double rating,  String comment) {
+    public Place(Context context, boolean isSafe, int carthefts, int homeless, int kidnapping, int kids, int parties, int pickpockets, int publicTransport, int shops, int traffic, int circleRadius, double lat, double longt, double rating,  String comment, String userId) {
         Geocoder geocoder = new Geocoder(context, Locale.getDefault());
         List<Address> adresses = null;
-
 
         try {
             adresses = geocoder.getFromLocation(lat,longt,1);
@@ -104,7 +104,7 @@ public class Place {
         this.country = adresses.get(0).getCountryName();
         this.city = adresses.get(0).getLocality();
         this.comment = comment;
-
+        this.userId = userId;
         this.adress = adresses.get(0).getAddressLine(0);
     }
 

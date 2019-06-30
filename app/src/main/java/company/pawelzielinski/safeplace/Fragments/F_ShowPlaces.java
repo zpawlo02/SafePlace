@@ -155,11 +155,7 @@ public class F_ShowPlaces extends Fragment {
                         .beginTransaction()
                         .add(R.id.drawer_layout, f_showItem)
                         .addToBackStack(null).commit();
-                /*
-                FragmentManager fm = getSupportFragmentManager();
-                Fragment add = new F_ADDPlace();
-                fm.beginTransaction().add(R.id.drawer_layout, add).addToBackStack(null).commit();
-            */}
+             }
         });
 
         // Inflate the layout for this fragment

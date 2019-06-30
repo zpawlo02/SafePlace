@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
+import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -23,18 +24,19 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 import company.pawelzielinski.safeplace.Fragments.F_ADDPlace;
+import company.pawelzielinski.safeplace.Fragments.F_MyPlaces;
 import company.pawelzielinski.safeplace.Fragments.F_ShowPlaces;
 import company.pawelzielinski.safeplace.Fragments.F_topPlaces;
 
 public class MainMenu extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener, F_ADDPlace.OnFragmentInteractionListener {
+        implements NavigationView.OnNavigationItemSelectedListener {
 
    private  TextView emailView;
    boolean doubleBackToExitPressedOnce = false;
 
 
 
-    private Button buttonAddPlace, buttonSearchSafeNotSafePlace, buttonTopPlaces;
+    private Button buttonAddPlace, buttonSearchSafeNotSafePlace, buttonTopPlaces, buttonMyPlaces;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,6 +62,7 @@ public class MainMenu extends AppCompatActivity
         buttonAddPlace = (Button) findViewById(R.id.buttonAddPlace);
         buttonSearchSafeNotSafePlace = (Button) findViewById(R.id.buttonSearchSafeNotSafePlaces);
         buttonTopPlaces = (Button) findViewById(R.id.buttonTopPlaces);
+        buttonMyPlaces = (Button) findViewById(R.id.buttonMyPlaces);
 
         //LISTENERS
 
@@ -86,6 +89,15 @@ public class MainMenu extends AppCompatActivity
             public void onClick(View v) {
                 FragmentManager fm = getSupportFragmentManager();
                 Fragment add = new F_topPlaces();
+                fm.beginTransaction().add(R.id.drawer_layout, add).addToBackStack(null).commit();
+            }
+        });
+
+        buttonMyPlaces.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentManager fm = getSupportFragmentManager();
+                Fragment add = new F_MyPlaces();
                 fm.beginTransaction().add(R.id.drawer_layout, add).addToBackStack(null).commit();
             }
         });
@@ -164,13 +176,9 @@ public class MainMenu extends AppCompatActivity
         return true;
     }
 
-    public void addPlaceF(View v){
 
-    }
-
-
-    @Override
+    /*@Override
     public void onFragmentInteraction(Uri uri) {
 
-    }
+    }*/
 }

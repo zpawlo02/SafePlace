@@ -55,7 +55,10 @@
             android:layout_width="match_parent"
             android:layout_height="100dp"
             android:layout_marginTop="350dp"
-            android:background="@color/mainMenuButtonColor"/>
+            android:background="@color/mainMenuButtonColor"
+            android:text="MyPlaces"
+            android:textColor="@color/mainMenuButtonTextColor"
+            android:id="@+id/buttonMyPlaces"/>
 
     </RelativeLayout>
 

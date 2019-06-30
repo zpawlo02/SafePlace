@@ -123,26 +123,6 @@ public class LoginActivity extends AppCompatActivity {
         mPasswordView = (EditText) findViewById(R.id.password);
 
 
-        //GOOGLE AUTH
-        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestIdToken("575396008127-teh9uh73df7cjl5st72b09t3dgkturno.apps.googleusercontent.com")
-                .requestEmail()
-                .build();
-
-        mGoogleSignInClient = GoogleSignIn.getClient(this,gso);
-        signInButton = (SignInButton) findViewById(R.id.googlSignInButton);
-
-        signInButton.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v){
-                calculateHashKey("ompany.pawelzielinski.safeplace");
-                Intent signInIntent = mGoogleSignInClient.getSignInIntent();
-                startActivityForResult(signInIntent, 1);
-            }
-
-        });
-
-
         Button SignInButton = (Button) findViewById(R.id.email_sign_in_button);
         SignInButton.setOnClickListener(new OnClickListener() {
             @Override
