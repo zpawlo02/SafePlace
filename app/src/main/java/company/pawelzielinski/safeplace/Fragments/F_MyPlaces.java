@@ -1,5 +1,6 @@
 package company.pawelzielinski.safeplace.Fragments;
 
+import android.app.Activity;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
@@ -66,12 +67,23 @@ public class F_MyPlaces extends Fragment {
                         .beginTransaction()
                         .add(R.id.drawer_layout, f_editPlace)
                         .addToBackStack(null).commit();
+                getFragmentManager().beginTransaction().remove(F_MyPlaces.this).commit();
             }
         });
 
 
         // Inflate the layout for this fragment
         return view;
+    }
+
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
     }
 
     private void updatePlaces(final Bundle bundle) {

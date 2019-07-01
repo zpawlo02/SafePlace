@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -121,6 +122,10 @@ public class F_EditPlace extends Fragment {
 
         //*****************************************************************************
 
+
+
+        //*****************************************************************************
+
         //RADIOBUTTONS
         radioButtonSafe = (RadioButton) view.findViewById(R.id.radioSafeE);
         radioButtonNotSafe = (RadioButton) view.findViewById(R.id.radioNotSafeE);
@@ -141,20 +146,31 @@ public class F_EditPlace extends Fragment {
                 place = d.toObject(Place.class);
 
                 textTraffic.setText(String.valueOf(place.getTraffic()));
+                traffic = place.getTraffic();
                 textPublicTransport.setText(String.valueOf(place.getPublicTransport()));
+                publicTransport = place.getPublicTransport();
                 textShops.setText(String.valueOf(place.getShops()));
+                shops = place.getShops();
                 textPickPocekets.setText(String.valueOf(place.getPickpockets()));
+                pickpockets = place.getPickpockets();
                 textKids.setText(String.valueOf(place.getKids()));
+                kids = place.getKids();
                 textParties.setText(String.valueOf(place.getParties()));
+                parties = place.getParties();
                 textKidnapping.setText(String.valueOf(place.getKidnapping()));
+                kidnapping = place.getKidnapping();
                 textHomeless.setText(String.valueOf(place.getHomeless()));
+                homeless = place.getHomeless();
                 textCarthefts.setText(String.valueOf(place.getCarthefts()));
+                carthefts = place.getCarthefts();
                 editTextComment.setText("  " + place.getComment());
 
                 if(place.getisSafe() == true){
+                    isSafe = true;
                     radioButtonSafe.setChecked(true);
                     radioButtonNotSafe.setChecked(false);
                 }else {
+                    isSafe = false;
                     radioButtonNotSafe.setChecked(true);
                     radioButtonSafe.setChecked(false);
                 }
@@ -163,17 +179,41 @@ public class F_EditPlace extends Fragment {
         });
 
 
-
         //LISTENERS
+
+        view.setFocusableInTouchMode(true);
+        view.requestFocus();
+        view.setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                if(keyCode == android.view.KeyEvent.KEYCODE_BACK){
+                    Bundle b = new Bundle();
+                    b.putString("key", key);
+                    F_MyPlaces f_myPlacees = new F_MyPlaces();
+                    f_myPlacees.setArguments(b);
+                    getActivity().getSupportFragmentManager()
+                            .beginTransaction()
+                            .add(R.id.drawer_layout, f_myPlacees)
+                            .addToBackStack(null).commit();
+                    getFragmentManager().beginTransaction().remove(F_EditPlace.this).commit();
+                    return true;
+                }
+                return false;
+            }
+        });
 
 
         buttonAddToDB.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.i("LAT LONG", String.valueOf(lat + " --" + longt + " ----" + circleRadius));
                 comment = editTextComment.getText().toString();
                 editPlace(place,key);
-                getActivity().onBackPressed();
+                F_MyPlaces f_myPlacees = new F_MyPlaces();
+                getActivity().getSupportFragmentManager()
+                        .beginTransaction()
+                        .add(R.id.drawer_layout, f_myPlacees)
+                        .addToBackStack(null).commit();
+                getFragmentManager().beginTransaction().remove(F_EditPlace.this).commit();
             }
         });
 
@@ -398,26 +438,17 @@ public class F_EditPlace extends Fragment {
 
     private void editPlace(Place place, String key){
         FirebaseFirestore db = FirebaseFirestore.getInstance();
-      //  db.collection("places").document(key).
+        db.collection("places").document(key).update("kidnapping", kidnapping);
+        db.collection("places").document(key).update("kids", kids);
+        db.collection("places").document(key).update("isSafe", isSafe);
+        db.collection("places").document(key).update("parties", parties);
+        db.collection("places").document(key).update("publicTransport", publicTransport);
+        db.collection("places").document(key).update("traffic", traffic);
+        db.collection("places").document(key).update("shops", shops);
+        db.collection("places").document(key).update("carthefts", carthefts);
+        db.collection("places").document(key).update("pickpockets", pickpockets);
+        db.collection("places").document(key).update("comment", editTextComment.getText().toString());
     }
-/*textTraffic.setText(String.valueOf(place.getTraffic()));
-                textPublicTransport.setText(String.valueOf(place.getPublicTransport()));
-                textShops.setText(String.valueOf(place.getShops()));
-                textPickPocekets.setText(String.valueOf(place.getPickpockets()));
-                textKids.setText(String.valueOf(place.getKids()));
-                textParties.setText(String.valueOf(place.getParties()));
-                textKidnapping.setText(String.valueOf(place.getKidnapping()));
-                textHomeless.setText(String.valueOf(place.getHomeless()));
-                textCarthefts.setText(String.valueOf(place.getCarthefts()));
-                editTextComment.setText("  " + place.getComment());
-
-                if(place.getisSafe() == true){
-        radioButtonSafe.setChecked(true);
-        radioButtonNotSafe.setChecked(false);
-    }else {
-        radioButtonNotSafe.setChecked(true);
-        radioButtonSafe.setChecked(false);
-    }*/
 
 }
 

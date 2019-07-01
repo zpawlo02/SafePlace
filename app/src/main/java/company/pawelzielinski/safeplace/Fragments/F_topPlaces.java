@@ -1,5 +1,7 @@
 package company.pawelzielinski.safeplace.Fragments;
 
+import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.text.Editable;
@@ -121,6 +123,17 @@ public class F_topPlaces extends Fragment {
 
         // Inflate the layout for this fragment
         return view;
+    }
+
+
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
     }
 
     //1 SAFE 2 - NOT SAFE

@@ -1,5 +1,6 @@
 package company.pawelzielinski.safeplace.Fragments;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.location.Address;
@@ -157,7 +158,7 @@ public class F_ADDPlace extends Fragment {
                 intent.putExtra("isSafe", isSafe);
                 intent.putExtra("circleRadius",circleRadius);
                 getActivity().startActivity(intent);
-                getFragmentManager().popBackStack();
+                getActivity().onBackPressed();
 
             }
         });
@@ -171,6 +172,7 @@ public class F_ADDPlace extends Fragment {
                         homeless, kidnapping, publicTransport, parties, shops, carthefts,
                         kids, lat, longt, circleRadius,comment);
                 getActivity().onBackPressed();
+
             }
         });
 
@@ -376,6 +378,11 @@ public class F_ADDPlace extends Fragment {
         }
 
         return view;
+    }
+
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
     }
 
     private void changePosibility(boolean increase, TextView which){

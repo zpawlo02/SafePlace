@@ -1,5 +1,6 @@
 package company.pawelzielinski.safeplace.Fragments;
 
+import android.app.Activity;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
@@ -123,6 +124,16 @@ public class F_RatePlace extends Fragment {
 
         // Inflate the layout for this fragment
         return v;
+    }
+
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
     }
 
 

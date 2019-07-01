@@ -1,5 +1,6 @@
 package company.pawelzielinski.safeplace.Fragments;
 
+import android.app.Activity;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
@@ -9,6 +10,7 @@ import android.support.v4.app.FragmentManager;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -144,6 +146,20 @@ public class F_ShowPlaces extends Fragment {
 
         //LISTENERS
 
+
+        view.setFocusableInTouchMode(true);
+        view.requestFocus();
+        view.setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                if(keyCode == android.view.KeyEvent.KEYCODE_BACK){
+                    getFragmentManager().beginTransaction().remove(F_ShowPlaces.this).commit();
+                    return true;
+                }
+                return false;
+            }
+        });
+
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -162,7 +178,17 @@ public class F_ShowPlaces extends Fragment {
         return view;
     }
 
-//1 - ALL 2 - SAFE 3 - NOT SAFE
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+    }
+
+    //1 - ALL 2 - SAFE 3 - NOT SAFE
 
 private void updatePlaces(final Bundle bundle){
 
@@ -311,6 +337,7 @@ private void updatePlaces(final Bundle bundle){
 
 
     }
+
 
 }
 

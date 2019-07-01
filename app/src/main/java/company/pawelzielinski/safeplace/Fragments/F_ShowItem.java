@@ -10,6 +10,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.NotificationCompatExtras;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -111,6 +112,22 @@ public class F_ShowItem extends Fragment {
         listViewComments = (ListView) v.findViewById(R.id.listViewComments);
 
         key = getArguments().getString("key");
+
+        v.setFocusableInTouchMode(true);
+        v.requestFocus();
+        v.setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                if(keyCode == android.view.KeyEvent.KEYCODE_BACK){
+                    F_ShowPlaces f_showPlaces = new F_ShowPlaces();
+                    getActivity().getSupportFragmentManager().beginTransaction()
+                            .add(R.id.drawer_layout,f_showPlaces).addToBackStack(null).commit();
+                    getFragmentManager().beginTransaction().remove(F_ShowItem.this).commit();
+                    return true;
+                }
+                return false;
+            }
+        });
 
         final FirebaseFirestore db = FirebaseFirestore.getInstance();
 
@@ -252,6 +269,11 @@ public class F_ShowItem extends Fragment {
 
 
         return v;
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
     }
 
     private void loadComments(FirebaseFirestore db, final Bundle bundle){
