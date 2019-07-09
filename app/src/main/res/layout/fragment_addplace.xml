@@ -4,7 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/whiteText"
-    tools:context=".Fragments.F_ADDPlace">
+    tools:context=".Fragments.F_ADDPlace"
+    android:clickable="true">
 
         <FrameLayout
             android:layout_width="match_parent"
@@ -28,7 +29,7 @@
 
                         <RadioButton
                             android:id="@+id/radioSafe"
-                            android:layout_width="137dp"
+                            android:layout_width="147dp"
                             android:layout_height="wrap_content"
                             android:text="@string/safePlace"
                             android:textSize="20sp"
@@ -81,7 +82,7 @@
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:layout_marginTop="285dp"
-                    android:layout_marginStart="190dp"
+                    android:layout_marginStart="195dp"
                     android:background="@color/whiteText"
                     android:text="-"
                     android:textSize="30sp"/>
@@ -102,7 +103,7 @@
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:layout_marginTop="285dp"
-                    android:layout_marginStart="310dp"
+                    android:layout_marginStart="305dp"
                     android:background="@color/whiteText"
                     android:text="+"
                     android:textSize="30sp"/>
@@ -120,7 +121,7 @@
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:layout_marginTop="345dp"
-                    android:layout_marginStart="190dp"
+                    android:layout_marginStart="195dp"
                     android:background="@color/whiteText"
                     android:text="-"
                     android:textSize="30sp"/>
@@ -141,7 +142,7 @@
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:layout_marginTop="345dp"
-                    android:layout_marginStart="310dp"
+                    android:layout_marginStart="305dp"
                     android:background="@color/whiteText"
                     android:text="+"
                     android:textSize="30sp"/>
@@ -158,7 +159,7 @@
                     android:id="@+id/buttonDecreaseKidnapping"
                     android:layout_width="49dp"
                     android:layout_height="50dp"
-                    android:layout_marginStart="190dp"
+                    android:layout_marginStart="195dp"
                     android:layout_marginTop="405dp"
                     android:background="@color/whiteText"
                     android:text="-"
@@ -180,7 +181,7 @@
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:layout_marginTop="405dp"
-                    android:layout_marginStart="310dp"
+                    android:layout_marginStart="305dp"
                     android:background="@color/whiteText"
                     android:text="+"
                     android:textSize="30sp"/>
@@ -199,7 +200,7 @@
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:layout_marginTop="465dp"
-                    android:layout_marginStart="190dp"
+                    android:layout_marginStart="195dp"
                     android:background="@color/whiteText"
                     android:text="-"
                     android:textSize="30sp"/>
@@ -220,7 +221,7 @@
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:layout_marginTop="465dp"
-                    android:layout_marginStart="310dp"
+                    android:layout_marginStart="305dp"
                     android:background="@color/whiteText"
                     android:text="+"
                     android:textSize="30sp"/>
@@ -238,7 +239,7 @@
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:layout_marginTop="525dp"
-                    android:layout_marginStart="190dp"
+                    android:layout_marginStart="195dp"
                     android:background="@color/whiteText"
                     android:text="-"
                     android:textSize="30sp"/>
@@ -258,7 +259,7 @@
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:layout_marginTop="525dp"
-                    android:layout_marginStart="310dp"
+                    android:layout_marginStart="305dp"
                     android:background="@color/whiteText"
                     android:text="+"
                     android:textSize="30sp"/>
@@ -276,7 +277,7 @@
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:layout_marginTop="585dp"
-                    android:layout_marginStart="190dp"
+                    android:layout_marginStart="195dp"
                     android:background="@color/whiteText"
                     android:text="-"
                     android:textSize="30sp"/>
@@ -296,7 +297,7 @@
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:layout_marginTop="585dp"
-                    android:layout_marginStart="310dp"
+                    android:layout_marginStart="305dp"
                     android:background="@color/whiteText"
                     android:text="+"
                     android:textSize="30sp"/>
@@ -314,7 +315,7 @@
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:layout_marginTop="645dp"
-                    android:layout_marginStart="190dp"
+                    android:layout_marginStart="195dp"
                     android:background="@color/whiteText"
                     android:text="-"
                     android:textSize="30sp"/>
@@ -334,7 +335,7 @@
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:layout_marginTop="645dp"
-                    android:layout_marginStart="310dp"
+                    android:layout_marginStart="305dp"
                     android:background="@color/whiteText"
                     android:text="+"
                     android:textSize="30sp"/>
@@ -352,7 +353,7 @@
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:layout_marginTop="705dp"
-                    android:layout_marginStart="190dp"
+                    android:layout_marginStart="195dp"
                     android:background="@color/whiteText"
                     android:text="-"
                     android:textSize="30sp"/>
@@ -372,7 +373,7 @@
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:layout_marginTop="705dp"
-                    android:layout_marginStart="310dp"
+                    android:layout_marginStart="305dp"
                     android:background="@color/whiteText"
                     android:text="+"
                     android:textSize="30sp"/>
@@ -390,7 +391,7 @@
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:layout_marginTop="765dp"
-                    android:layout_marginStart="190dp"
+                    android:layout_marginStart="195dp"
                     android:background="@color/whiteText"
                     android:text="-"
                     android:textSize="30sp"/>
@@ -410,7 +411,7 @@
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:layout_marginTop="765dp"
-                    android:layout_marginStart="310dp"
+                    android:layout_marginStart="305dp"
                     android:background="@color/whiteText"
                     android:text="+"
                     android:textSize="30sp"/>
@@ -433,6 +434,7 @@
                     android:id="@+id/editComment"/>
 
                 <Button
+                    style="?android:textAppearanceSmall"
                     android:layout_width="340dp"
                     android:layout_height="80dp"
                     android:layout_marginTop="965dp"

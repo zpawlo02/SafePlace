@@ -51,6 +51,7 @@ public class F_RatePlace extends Fragment {
     private Button buttonSubmit;
     private Integer ratingValue = 1;
     private String key;
+    private Context context;
 
     public F_RatePlace() {
         // Required empty public constructor
@@ -62,6 +63,12 @@ public class F_RatePlace extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        this.context = context;
     }
 
     @Override
@@ -124,16 +131,6 @@ public class F_RatePlace extends Fragment {
 
         // Inflate the layout for this fragment
         return v;
-    }
-
-    @Override
-    public void onAttach(Activity activity) {
-        super.onAttach(activity);
-    }
-
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
     }
 
 

@@ -44,10 +44,10 @@
     <string name="public_transport">Public transport</string>
     <string name="parties_events">Parties, Events</string>
     <string name="shops">Shops</string>
-    <string name="save_area">SAVE AREA</string>
+    <string name="save_area">S</string>
     <string name="add">ADD</string>
-    <string name="increase_area">Increase area</string>
-    <string name="decrease_area">Decrease area</string>
+    <string name="increase_area">I</string>
+    <string name="decrease_area">D</string>
     <string name="all">All</string>
     <string name="country">Country</string>
     <string name="city">City</string>
@@ -63,4 +63,6 @@
     <string name="edit_place">EDIT PLACE</string>
     <string name="edit_comment">EDIT COMMENT:</string>
     <string name="save">SAVE</string>
+    <string name="username">Username</string>
+    <string name="email">Email</string>
 </resources>

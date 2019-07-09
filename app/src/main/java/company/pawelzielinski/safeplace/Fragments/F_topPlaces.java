@@ -41,6 +41,7 @@ public class F_topPlaces extends Fragment {
     private ArrayList<Place> places = new ArrayList<>();
     private ArrayList<String> placesKeys = new ArrayList<>();
     private PlacesListAdapter adapter;
+    private Context context;
 
     public F_topPlaces() {
         // Required empty public constructor
@@ -127,13 +128,9 @@ public class F_topPlaces extends Fragment {
 
 
     @Override
-    public void onAttach(Activity activity) {
-        super.onAttach(activity);
-    }
-
-    @Override
     public void onAttach(Context context) {
         super.onAttach(context);
+        this.context = context;
     }
 
     //1 SAFE 2 - NOT SAFE
@@ -169,7 +166,7 @@ public class F_topPlaces extends Fragment {
                         placesKeys.add(documentChange.getDocument().getId());
                     }
 
-                    adapter = new PlacesListAdapter(getContext(), R.layout.adapter_view_layout, places, bundle);
+                    adapter = new PlacesListAdapter(context, R.layout.adapter_view_layout, places, bundle);
                     listView.setAdapter(adapter);
                     adapter.notifyDataSetChanged();
                 }
@@ -189,7 +186,7 @@ public class F_topPlaces extends Fragment {
                         placesKeys.add(documentChange.getDocument().getId());
                     }
 
-                    adapter = new PlacesListAdapter(getContext(), R.layout.adapter_view_layout, places, bundle);
+                    adapter = new PlacesListAdapter(context, R.layout.adapter_view_layout, places, bundle);
                     listView.setAdapter(adapter);
                     adapter.notifyDataSetChanged();
                 }
@@ -210,7 +207,7 @@ public class F_topPlaces extends Fragment {
                         placesKeys.add(documentChange.getDocument().getId());
                     }
 
-                    adapter = new PlacesListAdapter(getContext(), R.layout.adapter_view_layout, places, bundle);
+                    adapter = new PlacesListAdapter(context, R.layout.adapter_view_layout, places, bundle);
                     listView.setAdapter(adapter);
                     adapter.notifyDataSetChanged();
                 }
@@ -232,7 +229,7 @@ public class F_topPlaces extends Fragment {
                         placesKeys.add(documentChange.getDocument().getId());
                     }
 
-                    adapter = new PlacesListAdapter(getContext(), R.layout.adapter_view_layout, places, bundle);
+                    adapter = new PlacesListAdapter(context, R.layout.adapter_view_layout, places, bundle);
                     listView.setAdapter(adapter);
                     adapter.notifyDataSetChanged();
                 }

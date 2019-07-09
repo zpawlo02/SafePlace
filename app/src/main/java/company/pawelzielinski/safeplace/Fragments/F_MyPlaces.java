@@ -35,6 +35,7 @@ public class F_MyPlaces extends Fragment {
     private ArrayList<Place> places = new ArrayList<>();
     private ArrayList<String> placesKeys = new ArrayList<>();
     private PlacesListAdapter adapter;
+    private Context context;
 
     public F_MyPlaces() {
         // Required empty public constructor
@@ -45,6 +46,12 @@ public class F_MyPlaces extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        this.context = context;
     }
 
     @Override
@@ -76,16 +83,6 @@ public class F_MyPlaces extends Fragment {
         return view;
     }
 
-    @Override
-    public void onAttach(Activity activity) {
-        super.onAttach(activity);
-    }
-
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-    }
-
     private void updatePlaces(final Bundle bundle) {
 
         places.clear();
@@ -109,7 +106,7 @@ public class F_MyPlaces extends Fragment {
                         placesKeys.add(documentChange.getDocument().getId());
                     }
 
-                    adapter = new PlacesListAdapter(getContext(), R.layout.adapter_view_layout, places, bundle);
+                    adapter = new PlacesListAdapter(context, R.layout.adapter_view_layout, places, bundle);
                     listView.setAdapter(adapter);
                     adapter.notifyDataSetChanged();
                 }

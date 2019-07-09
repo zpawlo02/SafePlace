@@ -20,24 +20,26 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
         <Button
             android:layout_width="match_parent"
-            android:layout_height="100dp"
+            android:layout_height="160dp"
             android:layout_marginTop="50dp"
             android:background="@color/mainMenuButtonColor"
             android:text="@string/add_safe_not_safe_place"
             android:textColor="@color/mainMenuButtonTextColor"
-            android:id="@+id/buttonAddPlace"/>
+            android:id="@+id/buttonAddPlace"
+            android:textSize="21sp"/>
 
         <Button
             android:text="@string/search_for_safe_not_safe_places_around"
             android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:layout_marginTop="150dp"
+            android:layout_height="160dp"
+            android:textSize="21sp"
             android:background="@color/mainMenuButtonColor"
             android:textColor="@color/mainMenuButtonTextColor"
             android:id="@+id/buttonSearchSafeNotSafePlaces"/>
@@ -45,22 +47,27 @@
         <Button
             android:text="@string/top_safe_not_safe_places"
             android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:layout_marginTop="250dp"
+            android:layout_height="160dp"
+            android:textSize="21sp"
             android:background="@color/mainMenuButtonColor"
             android:textColor="@color/mainMenuButtonTextColor"
             android:id="@+id/buttonTopPlaces"/>
 
         <Button
             android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:layout_marginTop="350dp"
+            android:layout_height="160dp"
             android:background="@color/mainMenuButtonColor"
             android:text="MyPlaces"
+            android:textSize="21sp"
             android:textColor="@color/mainMenuButtonTextColor"
             android:id="@+id/buttonMyPlaces"/>
 
-    </RelativeLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:background="@color/appThemeColor" />
+
+    </LinearLayout>
 
 
 

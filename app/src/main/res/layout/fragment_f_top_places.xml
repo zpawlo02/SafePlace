@@ -4,7 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Fragments.F_topPlaces"
-    android:background="@color/whiteText">
+    android:background="@color/whiteText"
+    android:clickable="true">
     <RadioGroup
         android:id="@+id/groupTypeTopPlaceS"
         android:layout_width="match_parent"

@@ -23,12 +23,23 @@
         app:menu="@menu/activity_main_menu_drawer" >
 
         <TextView
+            android:id="@+id/userUsername"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="100dp"
+            android:textSize="18sp"
+            android:text="@string/username"
+            android:textColor="@color/whiteText" />
+
+        <TextView
             android:id="@+id/userEmail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="5dp"
+            android:layout_marginStart="10dp"
             android:layout_marginTop="140dp"
-            android:text="Email"
+            android:textSize="18sp"
+            android:text="@string/email"
             android:textColor="@color/whiteText" />
 
     </android.support.design.widget.NavigationView>

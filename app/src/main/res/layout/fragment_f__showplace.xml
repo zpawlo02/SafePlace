@@ -18,7 +18,7 @@
 
         <RadioButton
             android:id="@+id/radioAllS"
-            android:layout_width="137dp"
+            android:layout_width="70dp"
             android:layout_height="wrap_content"
             android:text="@string/all"
             android:textSize="20sp"
@@ -26,14 +26,14 @@
 
         <RadioButton
             android:id="@+id/radioSafeS"
-            android:layout_width="137dp"
+            android:layout_width="90dp"
             android:layout_height="wrap_content"
             android:text="@string/safePlace"
             android:textSize="20sp" />
 
         <RadioButton
             android:id="@+id/radioNotSafeS"
-            android:layout_width="128dp"
+            android:layout_width="118dp"
             android:layout_height="wrap_content"
             android:text="@string/notSafe"
             android:textSize="20sp" />
@@ -60,11 +60,9 @@
         android:id="@+id/listViewPlaces"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="150dp">
+        android:layout_marginTop="140dp">
 
     </ListView>
-
-
 
 
 </FrameLayout>

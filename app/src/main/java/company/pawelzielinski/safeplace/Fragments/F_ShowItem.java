@@ -71,20 +71,23 @@ public class F_ShowItem extends Fragment {
     private ArrayList<Comment> arrayListComments = new ArrayList<>();
     private CommentsListAdapter adapter;
     private ListView listViewComments;
+    private Context context;
 
     public F_ShowItem() {
         // Required empty public constructor
     }
 
-    @Override
-    public void onAttach(Activity activity) {
-        super.onAttach(activity);
-    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        this.context = context;
     }
 
     @Override
@@ -271,11 +274,6 @@ public class F_ShowItem extends Fragment {
         return v;
     }
 
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-    }
-
     private void loadComments(FirebaseFirestore db, final Bundle bundle){
 
         arrayListComments.clear();
@@ -286,7 +284,7 @@ public class F_ShowItem extends Fragment {
                 for(DocumentChange documentChange : queryDocumentSnapshots.getDocumentChanges()){
                     arrayListComments.add(documentChange.getDocument().toObject(Comment.class));
                 }
-                adapter = new CommentsListAdapter(getContext(), R.layout.adapter_comment_view_layout, arrayListComments, bundle);
+                adapter = new CommentsListAdapter(context, R.layout.adapter_comment_view_layout, arrayListComments, bundle);
                 listViewComments.setAdapter(adapter);
                 adapter.notifyDataSetChanged();
             }

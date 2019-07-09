@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center_horizontal"
-        android:orientation="vertical"
-        android:paddingLeft="@dimen/activity_horizontal_margin"
-        android:paddingTop="@dimen/activity_vertical_margin"
-        android:paddingRight="@dimen/activity_horizontal_margin"
-        android:paddingBottom="@dimen/activity_vertical_margin"
-        tools:context=".RegisterActivity">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context=".RegisterActivity">
 
 
         <ProgressBar
@@ -83,14 +84,21 @@
 
                 </android.support.design.widget.TextInputLayout>
 
+                <android.support.v7.widget.CardView
+                    android:layout_width="360dp"
+                    android:layout_height="45dp"
+                    app:cardCornerRadius="18dp"
+                    android:layout_gravity="center">
                 <Button
-                    style="?android:textAppearanceSmall"
                     android:id="@+id/register_button"
-                    android:layout_width="match_parent"
+                    style="?android:textAppearanceSmall"
+                    android:layout_width="360dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="32dp"
+
                     android:text="@string/register"
                     android:textStyle="bold" />
+
+                </android.support.v7.widget.CardView>
 
             </LinearLayout>
         </ScrollView>

@@ -48,6 +48,7 @@ public class F_EditPlace extends Fragment {
     private Boolean isSafe = true, mapWasOpened = false;
     private String comment;
     private String key;
+    private Context context;
 
 
     //CIRCLE
@@ -389,6 +390,12 @@ public class F_EditPlace extends Fragment {
         }
         // Inflate the layout for this fragment
         return view;
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        this.context = context;
     }
 
 

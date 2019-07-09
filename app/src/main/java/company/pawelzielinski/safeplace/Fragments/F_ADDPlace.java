@@ -49,6 +49,7 @@ public class F_ADDPlace extends Fragment {
 
     private Boolean isSafe = true, mapWasOpened = false;
     private String comment;
+    private Context context;
 
 
     //CIRCLE
@@ -84,6 +85,12 @@ public class F_ADDPlace extends Fragment {
 
 
 
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        this.context = context;
     }
 
     @Override
@@ -144,7 +151,7 @@ public class F_ADDPlace extends Fragment {
             @Override
             public void onClick(View v) {
                 comment = editTextComment.getText().toString();
-                Intent intent = new Intent(getActivity().getBaseContext(), MapsActivity.class);
+                Intent intent = new Intent(context, MapsActivity.class);
                 intent.putExtra("traffic", traffic);
                 intent.putExtra("pickpockets", pickpockets);
                 intent.putExtra("kidnapping", kidnapping);
@@ -380,10 +387,6 @@ public class F_ADDPlace extends Fragment {
         return view;
     }
 
-    @Override
-    public void onAttach(Activity activity) {
-        super.onAttach(activity);
-    }
 
     private void changePosibility(boolean increase, TextView which){
         if(increase == true && Integer.parseInt(which.getText().toString()) < 5){
@@ -441,7 +444,7 @@ public class F_ADDPlace extends Fragment {
 
         double rating = 0;
 
-        Geocoder geocoder = new Geocoder(getContext(), Locale.getDefault());
+        Geocoder geocoder = new Geocoder(context, Locale.getDefault());
         List<Address> addresses = null;
         try {
             addresses = geocoder.getFromLocation(lat, longt, 1);
@@ -455,7 +458,7 @@ public class F_ADDPlace extends Fragment {
                .addOnFailureListener(new OnFailureListener() {
                    @Override
                    public void onFailure(@NonNull Exception e) {
-                       Toast.makeText(getContext(), "Can not add place!", Toast.LENGTH_LONG);
+                       Toast.makeText(context, "Can not add place!", Toast.LENGTH_LONG);
                    }
                });
 

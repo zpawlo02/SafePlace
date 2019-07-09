@@ -17,31 +17,32 @@
 
         <Button
             android:id="@+id/buttonIncreaseCircle"
-            android:layout_width="150dp"
-            android:layout_height="55dp"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
             android:layout_gravity="bottom"
-            android:layout_marginBottom="100dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginBottom="170dp"
             android:textSize="15sp"
             android:text="@string/increase_area"
-            android:layout_marginStart="55dp"/>
+            />
 
         <Button
             android:id="@+id/buttonDecreaseCircle"
-            android:layout_width="150dp"
-            android:layout_height="55dp"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
             android:layout_gravity="bottom"
+            android:layout_marginStart="5dp"
             android:gravity="center"
             android:layout_marginBottom="100dp"
             android:textSize="15sp"
-            android:text="@string/decrease_area"
-            android:layout_marginStart="205dp"/>
+            android:text="@string/decrease_area" />
 
         <Button
-            android:layout_width="300dp"
+            android:layout_width="70dp"
             android:layout_height="70dp"
             android:layout_gravity="bottom"
+            android:layout_marginStart="5dp"
             android:layout_marginBottom="30dp"
-            android:layout_marginStart="55dp"
             android:text="@string/save_area"
             android:id="@+id/buttonSaveArea"/>
     </fragment>
