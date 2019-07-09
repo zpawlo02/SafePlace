@@ -165,6 +165,7 @@ public class F_ShowPlaces extends Fragment {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Bundle b = new Bundle();
                 b.putString("key", placesKeys.get(position));
+                b.putString("whichFragment", "places");
                 F_ShowItem f_showItem = new F_ShowItem();
                 f_showItem.setArguments(b);
                 getActivity().getSupportFragmentManager()

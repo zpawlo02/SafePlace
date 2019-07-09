@@ -64,7 +64,7 @@ public class F_ShowItem extends Fragment {
     textViewSafeNot, textViewCountryCity, textViewRating;
     private Button buttonAddComment;
     private EditText editTextComment;
-    private String key;
+    private String key, whichFragment;
     private Place p;
     private CircleOptions circleOptions;
     private MapView mapView;
@@ -115,6 +115,7 @@ public class F_ShowItem extends Fragment {
         listViewComments = (ListView) v.findViewById(R.id.listViewComments);
 
         key = getArguments().getString("key");
+        whichFragment = getArguments().getString("whichFragment");
 
         v.setFocusableInTouchMode(true);
         v.requestFocus();
@@ -122,11 +123,20 @@ public class F_ShowItem extends Fragment {
             @Override
             public boolean onKey(View v, int keyCode, KeyEvent event) {
                 if(keyCode == android.view.KeyEvent.KEYCODE_BACK){
-                    F_ShowPlaces f_showPlaces = new F_ShowPlaces();
-                    getActivity().getSupportFragmentManager().beginTransaction()
-                            .add(R.id.drawer_layout,f_showPlaces).addToBackStack(null).commit();
-                    getFragmentManager().beginTransaction().remove(F_ShowItem.this).commit();
-                    return true;
+                    if(whichFragment.equals("places")){
+                        F_ShowPlaces f_showPlaces = new F_ShowPlaces();
+                        getActivity().getSupportFragmentManager().beginTransaction()
+                                .add(R.id.drawer_layout,f_showPlaces).addToBackStack(null).commit();
+                        getFragmentManager().beginTransaction().remove(F_ShowItem.this).commit();
+                        return true;
+                    }else if(whichFragment.equals("top")){
+                        F_topPlaces f_topPlaces = new  F_topPlaces();
+                        getActivity().getSupportFragmentManager().beginTransaction()
+                                .add(R.id.drawer_layout,f_topPlaces).addToBackStack(null).commit();
+                        getFragmentManager().beginTransaction().remove(F_ShowItem.this).commit();
+                        return true;
+                    }
+
                 }
                 return false;
             }

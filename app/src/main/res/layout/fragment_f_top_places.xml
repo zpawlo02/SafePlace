@@ -6,6 +6,7 @@
     tools:context=".Fragments.F_topPlaces"
     android:background="@color/whiteText"
     android:clickable="true">
+
     <RadioGroup
         android:id="@+id/groupTypeTopPlaceS"
         android:layout_width="match_parent"
@@ -52,7 +53,7 @@
         android:id="@+id/listViewTopPlaces"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="150dp">
+        android:layout_marginTop="140dp">
 
     </ListView>
 

@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -113,12 +114,26 @@ public class F_topPlaces extends Fragment {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Bundle b = new Bundle();
                 b.putString("key", placesKeys.get(position));
+                b.putString("whichFragment", "top");
                 F_ShowItem f_showItem = new F_ShowItem();
                 f_showItem.setArguments(b);
                 getActivity().getSupportFragmentManager()
                         .beginTransaction()
                         .add(R.id.drawer_layout, f_showItem)
                         .addToBackStack(null).commit();
+            }
+        });
+
+        view.setFocusableInTouchMode(true);
+        view.requestFocus();
+        view.setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                if(keyCode == android.view.KeyEvent.KEYCODE_BACK){
+                    getFragmentManager().beginTransaction().remove(F_topPlaces.this).commit();
+                    return true;
+                }
+                return false;
             }
         });
 

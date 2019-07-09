@@ -71,7 +71,7 @@ public class MainMenu extends AppCompatActivity
             public void onClick(View v) {
                 FragmentManager fm = getSupportFragmentManager();
                 Fragment add = new F_ADDPlace();
-                fm.beginTransaction().add(R.id.drawer_layout, add).addToBackStack(null).commit();
+                fm.beginTransaction().replace(R.id.drawer_layout, add).addToBackStack(null).commit();
             }
         });
 
@@ -80,7 +80,7 @@ public class MainMenu extends AppCompatActivity
             public void onClick(View v) {
                 FragmentManager fm = getSupportFragmentManager();
                 Fragment add = new F_ShowPlaces();
-                fm.beginTransaction().add(R.id.drawer_layout, add).addToBackStack(null).commit();
+                fm.beginTransaction().replace(R.id.drawer_layout, add).addToBackStack(null).commit();
             }
         });
 
@@ -89,7 +89,7 @@ public class MainMenu extends AppCompatActivity
             public void onClick(View v) {
                 FragmentManager fm = getSupportFragmentManager();
                 Fragment add = new F_topPlaces();
-                fm.beginTransaction().add(R.id.drawer_layout, add).addToBackStack(null).commit();
+                fm.beginTransaction().replace(R.id.drawer_layout, add).addToBackStack(null).commit();
             }
         });
 
@@ -98,7 +98,7 @@ public class MainMenu extends AppCompatActivity
             public void onClick(View v) {
                 FragmentManager fm = getSupportFragmentManager();
                 Fragment add = new F_MyPlaces();
-                fm.beginTransaction().add(R.id.drawer_layout, add).addToBackStack(null).commit();
+                fm.beginTransaction().replace(R.id.drawer_layout, add).addToBackStack(null).commit();
             }
         });
 

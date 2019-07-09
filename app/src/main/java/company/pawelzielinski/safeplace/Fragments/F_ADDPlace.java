@@ -11,6 +11,7 @@ import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.text.method.CharacterPickerDialog;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -167,6 +168,27 @@ public class F_ADDPlace extends Fragment {
                 getActivity().startActivity(intent);
                 getActivity().onBackPressed();
 
+            }
+        });
+
+        view.setFocusableInTouchMode(true);
+        view.requestFocus();
+        view.setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                if(keyCode == android.view.KeyEvent.KEYCODE_BACK){
+                    if(wasOpened == true){
+                        Intent intent = new Intent(context, MainMenu.class);
+                        getActivity().startActivity(intent);
+                        getActivity().onBackPressed();
+                    }else {
+                        getFragmentManager().popBackStackImmediate();
+                    }
+
+
+                    return true;
+                }
+                return false;
             }
         });
 

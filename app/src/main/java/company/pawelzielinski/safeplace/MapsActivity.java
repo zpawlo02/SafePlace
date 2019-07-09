@@ -109,26 +109,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 @Override
                 public void onClick(View v) {
 
-                    Bundle bundle = new Bundle();
-                    bundle.putString("comment", comment);
-                    bundle.putInt("traffic", traffic);
-                    bundle.putInt("pickpockets", pickpockets);
-                    bundle.putInt("kidnapping", kidnapping);
-                    bundle.putInt("homeless", homeless);
-                    bundle.putInt("publicTransport", publicTransport);
-                    bundle.putInt("parties", parties);
-                    bundle.putInt("shops", shops);
-                    bundle.putInt("carthefts", carthefts);
-                    bundle.putInt("kids", kids);
-                    bundle.putDouble("latitude", mCircleCenter.latitude);
-                    bundle.putDouble("longitude", mCircleCenter.longitude);
-                    bundle.putInt("circleRadius", circleRadius);
-                    bundle.putBoolean("isSafe", isSafe);
-                    FragmentManager fm = getSupportFragmentManager();
-                    Fragment add = new F_ADDPlace();
-                    ((F_ADDPlace) add).wasOpened = true;
-                    add.setArguments(bundle);
-                    fm.beginTransaction().add(R.id.fMaps, add).commit();
+                    startAdding();
                 }
             });
 
@@ -182,6 +163,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
     }
 
+    @Override
+    public void onBackPressed() {
+        startAdding();
+    }
+
     public CircleOptions setOpions(boolean isSafe){
         if(!isSafe){
             circleOptions = new CircleOptions()
@@ -200,5 +186,28 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     .fillColor(Color.argb(50,0, 230, 0));
         }
         return circleOptions;
+    }
+
+    private void startAdding(){
+        Bundle bundle = new Bundle();
+        bundle.putString("comment", comment);
+        bundle.putInt("traffic", traffic);
+        bundle.putInt("pickpockets", pickpockets);
+        bundle.putInt("kidnapping", kidnapping);
+        bundle.putInt("homeless", homeless);
+        bundle.putInt("publicTransport", publicTransport);
+        bundle.putInt("parties", parties);
+        bundle.putInt("shops", shops);
+        bundle.putInt("carthefts", carthefts);
+        bundle.putInt("kids", kids);
+        bundle.putDouble("latitude", mCircleCenter.latitude);
+        bundle.putDouble("longitude", mCircleCenter.longitude);
+        bundle.putInt("circleRadius", circleRadius);
+        bundle.putBoolean("isSafe", isSafe);
+        FragmentManager fm = getSupportFragmentManager();
+        Fragment add = new F_ADDPlace();
+        ((F_ADDPlace) add).wasOpened = true;
+        add.setArguments(bundle);
+        fm.beginTransaction().add(R.id.fMaps, add).commit();
     }
 }
