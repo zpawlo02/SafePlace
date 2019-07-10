@@ -48,7 +48,7 @@ public class F_ADDPlace extends Fragment {
     private RadioButton radioButtonSafe, radioButtonNotSafe;
     private EditText editTextComment;
 
-    private Boolean isSafe = true, mapWasOpened = false;
+    private Boolean isSafe = true;
     private String comment;
     private Context context;
 

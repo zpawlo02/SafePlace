@@ -71,6 +71,7 @@ public class F_ShowPlaces extends Fragment {
     private ArrayList<String> placesKeys = new ArrayList<>();
     private Context context;
     private PlacesListAdapter adapter;
+    public boolean wasOpened = false;
 
 
     public F_ShowPlaces() {
@@ -90,6 +91,10 @@ public class F_ShowPlaces extends Fragment {
 
         view = inflater.inflate(R.layout.fragment_f__showplace, container, false);
 
+        if(wasOpened){
+            whichPlaces = Integer.valueOf(getArguments().getString("radio"));
+        }
+
         listView = (ListView) view.findViewById(R.id.listViewPlaces);
 
         editTextCity = (EditText) view.findViewById(R.id.editTextCity);
@@ -100,6 +105,14 @@ public class F_ShowPlaces extends Fragment {
         radioButtonNotSafe = (RadioButton) view.findViewById(R.id.radioNotSafeS);
 
         // Needs to call MapsInitializer before doing any CameraUpdateFactory calls
+
+        if(whichPlaces == 1){
+            radioButtonAll.setChecked(true);
+        }else if(whichPlaces == 2){
+            radioButtonSafe.setChecked(true);
+        }else if(whichPlaces == 3){
+            radioButtonNotSafe.setChecked(true);
+        }
 
         updatePlaces(savedInstanceState);
 
@@ -166,12 +179,13 @@ public class F_ShowPlaces extends Fragment {
                 Bundle b = new Bundle();
                 b.putString("key", placesKeys.get(position));
                 b.putString("whichFragment", "places");
+                b.putString("radio", String.valueOf(whichPlaces));
                 F_ShowItem f_showItem = new F_ShowItem();
                 f_showItem.setArguments(b);
                 getActivity().getSupportFragmentManager()
                         .beginTransaction()
                         .add(R.id.drawer_layout, f_showItem)
-                        .addToBackStack(null).commit();
+                        .commit();
              }
         });
 

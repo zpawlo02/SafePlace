@@ -44,6 +44,8 @@ public class F_topPlaces extends Fragment {
     private PlacesListAdapter adapter;
     private Context context;
 
+    public boolean wasOpened = false;
+
     public F_topPlaces() {
         // Required empty public constructor
     }
@@ -64,6 +66,11 @@ public class F_topPlaces extends Fragment {
 
         listView = (ListView) view.findViewById(R.id.listViewTopPlaces);
 
+        if(wasOpened){
+            whichPlaces = Integer.valueOf(getArguments().getString("radio"));
+        }
+
+
         editTextTopCity = (EditText) view.findViewById(R.id.editTextTopCity);
         editTextTopCity.setText("");
 
@@ -71,6 +78,12 @@ public class F_topPlaces extends Fragment {
         radioButtonNotSafe = (RadioButton) view.findViewById(R.id.radioTopNotSafeS);
 
         // Needs to call MapsInitializer before doing any CameraUpdateFactory calls
+
+        if (whichPlaces == 1){
+            radioButtonSafe.setChecked(true);
+        }else {
+            radioButtonNotSafe.setChecked(true);
+        }
 
         updatePlaces(savedInstanceState);
 
@@ -115,6 +128,7 @@ public class F_topPlaces extends Fragment {
                 Bundle b = new Bundle();
                 b.putString("key", placesKeys.get(position));
                 b.putString("whichFragment", "top");
+                b.putString("radio", String.valueOf(whichPlaces));
                 F_ShowItem f_showItem = new F_ShowItem();
                 f_showItem.setArguments(b);
                 getActivity().getSupportFragmentManager()

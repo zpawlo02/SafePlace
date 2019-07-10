@@ -31,7 +31,7 @@ import company.pawelzielinski.safeplace.Fragments.F_topPlaces;
 public class MainMenu extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-   private  TextView emailView;
+   private  TextView emailView, userUsername;
    boolean doubleBackToExitPressedOnce = false;
 
 
@@ -57,6 +57,8 @@ public class MainMenu extends AppCompatActivity
 
         //TEXTVIEWS
         emailView = (TextView) findViewById(R.id.userEmail);
+        userUsername = (TextView) findViewById(R.id.userUsername);
+
 
         //BUTTONS
         buttonAddPlace = (Button) findViewById(R.id.buttonAddPlace);
@@ -106,6 +108,7 @@ public class MainMenu extends AppCompatActivity
         final FirebaseAuth auth = FirebaseAuth.getInstance();
         FirebaseUser firebaseUser = auth.getCurrentUser();
         emailView.setText(firebaseUser.getEmail());
+        userUsername.setText(firebaseUser.getDisplayName());
 
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);

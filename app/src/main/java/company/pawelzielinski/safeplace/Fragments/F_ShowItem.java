@@ -64,7 +64,7 @@ public class F_ShowItem extends Fragment {
     textViewSafeNot, textViewCountryCity, textViewRating;
     private Button buttonAddComment;
     private EditText editTextComment;
-    private String key, whichFragment;
+    private String key, whichFragment, radio;
     private Place p;
     private CircleOptions circleOptions;
     private MapView mapView;
@@ -116,6 +116,7 @@ public class F_ShowItem extends Fragment {
 
         key = getArguments().getString("key");
         whichFragment = getArguments().getString("whichFragment");
+        radio = getArguments().getString("radio");
 
         v.setFocusableInTouchMode(true);
         v.requestFocus();
@@ -123,19 +124,26 @@ public class F_ShowItem extends Fragment {
             @Override
             public boolean onKey(View v, int keyCode, KeyEvent event) {
                 if(keyCode == android.view.KeyEvent.KEYCODE_BACK){
-                    if(whichFragment.equals("places")){
-                        F_ShowPlaces f_showPlaces = new F_ShowPlaces();
-                        getActivity().getSupportFragmentManager().beginTransaction()
-                                .add(R.id.drawer_layout,f_showPlaces).addToBackStack(null).commit();
-                        getFragmentManager().beginTransaction().remove(F_ShowItem.this).commit();
+                     Bundle b = new Bundle();
+                     b.putString("radio", radio);
+                     if(whichFragment.equals("top")){
+                         F_topPlaces f_topPlaces = new  F_topPlaces();
+                         f_topPlaces.setArguments(b);
+                         f_topPlaces.wasOpened = true;
+                         getActivity().getSupportFragmentManager().beginTransaction()
+                                 .add(R.id.drawer_layout,f_topPlaces).addToBackStack(null).commit();
+                         getFragmentManager().beginTransaction().remove(F_ShowItem.this).commit();
                         return true;
-                    }else if(whichFragment.equals("top")){
-                        F_topPlaces f_topPlaces = new  F_topPlaces();
-                        getActivity().getSupportFragmentManager().beginTransaction()
-                                .add(R.id.drawer_layout,f_topPlaces).addToBackStack(null).commit();
-                        getFragmentManager().beginTransaction().remove(F_ShowItem.this).commit();
-                        return true;
-                    }
+                    }else {
+                             F_ShowPlaces f_showPlaces = new F_ShowPlaces();
+                             f_showPlaces.setArguments(b);
+                             f_showPlaces.wasOpened = true;
+                             getActivity().getSupportFragmentManager().beginTransaction()
+                                     .add(R.id.drawer_layout,f_showPlaces).addToBackStack(null).commit();
+                             getFragmentManager().beginTransaction().remove(F_ShowItem.this).commit();
+                             return true;
+
+                     }
 
                 }
                 return false;
@@ -246,7 +254,6 @@ public class F_ShowItem extends Fragment {
 
                         for(DocumentChange documentChange : queryDocumentSnapshots.getDocumentChanges()){
                             if(documentChange.getDocument().toObject(Rating.class).getUserId().equals(user.getUid())){
-
                                 counter++;
                             }
                             Log.i("ADDEEED",documentChange.getDocument().toObject(Rating.class).getUserId());
