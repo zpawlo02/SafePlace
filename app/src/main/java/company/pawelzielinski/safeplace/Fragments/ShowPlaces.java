@@ -1,55 +1,25 @@
 package company.pawelzielinski.safeplace.Fragments;
 
-import android.app.Activity;
 import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RadioButton;
-import android.widget.TextView;
-import android.widget.Toast;
 
-import com.bumptech.glide.Glide;
-import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
-import com.google.android.gms.maps.CameraUpdate;
-import com.google.android.gms.maps.CameraUpdateFactory;
-import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.MapView;
-import com.google.android.gms.maps.MapsInitializer;
-import com.google.android.gms.maps.OnMapReadyCallback;
-import com.google.android.gms.maps.model.LatLng;
-import com.google.firebase.database.ChildEventListener;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
-import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.firestore.DocumentChange;
-import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.QuerySnapshot;
-import com.squareup.picasso.Picasso;
 
-import java.io.IOException;
-import java.lang.ref.Reference;
 import java.util.ArrayList;
 
 import javax.annotation.Nullable;
@@ -59,7 +29,7 @@ import company.pawelzielinski.safeplace.Classes.Place;
 import company.pawelzielinski.safeplace.R;
 
 
-public class F_ShowPlaces extends Fragment {
+public class ShowPlaces extends Fragment {
 
     private View view;
     private ListView listView;
@@ -74,7 +44,7 @@ public class F_ShowPlaces extends Fragment {
     public boolean wasOpened = false;
 
 
-    public F_ShowPlaces() {
+    public ShowPlaces() {
         // Required empty public constructor
     }
 
@@ -89,7 +59,7 @@ public class F_ShowPlaces extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              final Bundle savedInstanceState) {
 
-        view = inflater.inflate(R.layout.fragment_f__showplace, container, false);
+        view = inflater.inflate(R.layout.fragment_showplace, container, false);
 
         if(wasOpened){
             whichPlaces = Integer.valueOf(getArguments().getString("radio"));
@@ -166,7 +136,7 @@ public class F_ShowPlaces extends Fragment {
             @Override
             public boolean onKey(View v, int keyCode, KeyEvent event) {
                 if(keyCode == android.view.KeyEvent.KEYCODE_BACK){
-                    getFragmentManager().beginTransaction().remove(F_ShowPlaces.this).commit();
+                    getFragmentManager().beginTransaction().remove(ShowPlaces.this).commit();
                     return true;
                 }
                 return false;
@@ -180,11 +150,11 @@ public class F_ShowPlaces extends Fragment {
                 b.putString("key", placesKeys.get(position));
                 b.putString("whichFragment", "places");
                 b.putString("radio", String.valueOf(whichPlaces));
-                F_ShowItem f_showItem = new F_ShowItem();
-                f_showItem.setArguments(b);
+                ShowItem showItem = new ShowItem();
+                showItem.setArguments(b);
                 getActivity().getSupportFragmentManager()
                         .beginTransaction()
-                        .add(R.id.drawer_layout, f_showItem)
+                        .add(R.id.drawer_layout, showItem)
                         .commit();
              }
         });

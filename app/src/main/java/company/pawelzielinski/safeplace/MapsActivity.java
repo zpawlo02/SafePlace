@@ -1,23 +1,13 @@
 package company.pawelzielinski.safeplace;
 
-import android.app.Activity;
 import android.content.Intent;
-import android.content.pm.PackageInfo;
-import android.content.pm.PackageManager;
-import android.content.pm.Signature;
 import android.graphics.Color;
-import android.location.Location;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
-import android.util.Base64;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.FrameLayout;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -26,13 +16,9 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.Circle;
 import com.google.android.gms.maps.model.CircleOptions;
 import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
-
-import company.pawelzielinski.safeplace.Fragments.F_ADDPlace;
+import company.pawelzielinski.safeplace.Fragments.ADDPlace;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
@@ -205,8 +191,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         bundle.putInt("circleRadius", circleRadius);
         bundle.putBoolean("isSafe", isSafe);
         FragmentManager fm = getSupportFragmentManager();
-        Fragment add = new F_ADDPlace();
-        ((F_ADDPlace) add).wasOpened = true;
+        Fragment add = new ADDPlace();
+        ((ADDPlace) add).wasOpened = true;
         add.setArguments(bundle);
         fm.beginTransaction().add(R.id.fMaps, add).commit();
     }

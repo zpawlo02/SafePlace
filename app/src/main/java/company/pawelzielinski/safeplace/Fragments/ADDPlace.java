@@ -39,7 +39,7 @@ import company.pawelzielinski.safeplace.MainMenu;
 import company.pawelzielinski.safeplace.MapsActivity;
 import company.pawelzielinski.safeplace.R;
 
-public class F_ADDPlace extends Fragment {
+public class ADDPlace extends Fragment {
 
     public boolean wasOpened = false;
 
@@ -74,7 +74,7 @@ public class F_ADDPlace extends Fragment {
     private TextView textTraffic, textPickPocekets, textKidnapping, textHomeless,
     textPublicTransport, textParties, textShops, textCarthefts, textKids;
 
-    public F_ADDPlace() {
+    public ADDPlace() {
         // Required empty public constructor
     }
 

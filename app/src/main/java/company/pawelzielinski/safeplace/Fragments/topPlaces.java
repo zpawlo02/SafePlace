@@ -1,6 +1,5 @@
 package company.pawelzielinski.safeplace.Fragments;
 
-import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -31,7 +30,7 @@ import company.pawelzielinski.safeplace.Classes.Place;
 import company.pawelzielinski.safeplace.R;
 
 
-public class F_topPlaces extends Fragment {
+public class topPlaces extends Fragment {
 
     private View view;
     private ListView listView;
@@ -46,7 +45,7 @@ public class F_topPlaces extends Fragment {
 
     public boolean wasOpened = false;
 
-    public F_topPlaces() {
+    public topPlaces() {
         // Required empty public constructor
     }
 
@@ -62,7 +61,7 @@ public class F_topPlaces extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              final Bundle savedInstanceState) {
 
-        view = inflater.inflate(R.layout.fragment_f_top_places, container, false);
+        view = inflater.inflate(R.layout.fragment_top_places, container, false);
 
         listView = (ListView) view.findViewById(R.id.listViewTopPlaces);
 
@@ -129,11 +128,11 @@ public class F_topPlaces extends Fragment {
                 b.putString("key", placesKeys.get(position));
                 b.putString("whichFragment", "top");
                 b.putString("radio", String.valueOf(whichPlaces));
-                F_ShowItem f_showItem = new F_ShowItem();
-                f_showItem.setArguments(b);
+                ShowItem showItem = new ShowItem();
+                showItem.setArguments(b);
                 getActivity().getSupportFragmentManager()
                         .beginTransaction()
-                        .add(R.id.drawer_layout, f_showItem)
+                        .add(R.id.drawer_layout, showItem)
                         .addToBackStack(null).commit();
             }
         });
@@ -144,7 +143,7 @@ public class F_topPlaces extends Fragment {
             @Override
             public boolean onKey(View v, int keyCode, KeyEvent event) {
                 if(keyCode == android.view.KeyEvent.KEYCODE_BACK){
-                    getFragmentManager().beginTransaction().remove(F_topPlaces.this).commit();
+                    getFragmentManager().beginTransaction().remove(topPlaces.this).commit();
                     return true;
                 }
                 return false;

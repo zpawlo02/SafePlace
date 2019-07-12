@@ -1,14 +1,10 @@
 package company.pawelzielinski.safeplace.Fragments;
 
-import android.app.Activity;
 import android.content.Context;
 import android.graphics.Color;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.NotificationCompatExtras;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -19,7 +15,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -33,11 +28,6 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.firestore.DocumentChange;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
@@ -50,14 +40,13 @@ import java.util.ArrayList;
 import javax.annotation.Nullable;
 
 import company.pawelzielinski.safeplace.Adapters.CommentsListAdapter;
-import company.pawelzielinski.safeplace.Adapters.PlacesListAdapter;
 import company.pawelzielinski.safeplace.Classes.Comment;
 import company.pawelzielinski.safeplace.Classes.Place;
 import company.pawelzielinski.safeplace.Classes.Rating;
 import company.pawelzielinski.safeplace.R;
 
 
-public class F_ShowItem extends Fragment {
+public class ShowItem extends Fragment {
 
     private TextView textViewTraffic, textViewPick, textViewKidnapping, textViewHomeless,
     textViewPublic, textViewParties, textViewShops, textViewCar, textViewKids, textViewCom,
@@ -73,7 +62,7 @@ public class F_ShowItem extends Fragment {
     private ListView listViewComments;
     private Context context;
 
-    public F_ShowItem() {
+    public ShowItem() {
         // Required empty public constructor
     }
 
@@ -94,7 +83,7 @@ public class F_ShowItem extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              final Bundle savedInstanceState) {
 
-        View v = inflater.inflate(R.layout.fragment_f__show_item, container, false);
+        View v = inflater.inflate(R.layout.fragment_show_item, container, false);
 
         textViewTraffic = (TextView) v.findViewById(R.id.textViewTraffici);
         textViewPublic = (TextView) v.findViewById(R.id.textViewPublicTransporti);
@@ -127,20 +116,20 @@ public class F_ShowItem extends Fragment {
                      Bundle b = new Bundle();
                      b.putString("radio", radio);
                      if(whichFragment.equals("top")){
-                         F_topPlaces f_topPlaces = new  F_topPlaces();
+                         topPlaces f_topPlaces = new topPlaces();
                          f_topPlaces.setArguments(b);
                          f_topPlaces.wasOpened = true;
                          getActivity().getSupportFragmentManager().beginTransaction()
                                  .add(R.id.drawer_layout,f_topPlaces).addToBackStack(null).commit();
-                         getFragmentManager().beginTransaction().remove(F_ShowItem.this).commit();
+                         getFragmentManager().beginTransaction().remove(ShowItem.this).commit();
                         return true;
                     }else {
-                             F_ShowPlaces f_showPlaces = new F_ShowPlaces();
+                             ShowPlaces f_showPlaces = new ShowPlaces();
                              f_showPlaces.setArguments(b);
                              f_showPlaces.wasOpened = true;
                              getActivity().getSupportFragmentManager().beginTransaction()
                                      .add(R.id.drawer_layout,f_showPlaces).addToBackStack(null).commit();
-                             getFragmentManager().beginTransaction().remove(F_ShowItem.this).commit();
+                             getFragmentManager().beginTransaction().remove(ShowItem.this).commit();
                              return true;
 
                      }
@@ -262,10 +251,10 @@ public class F_ShowItem extends Fragment {
                         if(counter == 0){
                             Bundle b = new Bundle();
                             b.putString("key", key);
-                            F_RatePlace f_ratePlace = new F_RatePlace();
-                            f_ratePlace.setArguments(b);
+                            RatePlace ratePlace = new RatePlace();
+                            ratePlace.setArguments(b);
                             getActivity().getSupportFragmentManager().beginTransaction()
-                                    .add(R.id.drawer_layout,f_ratePlace).addToBackStack(null).commit();
+                                    .add(R.id.drawer_layout, ratePlace).addToBackStack(null).commit();
 
                         }else {
 

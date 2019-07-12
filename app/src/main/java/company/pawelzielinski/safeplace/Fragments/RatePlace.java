@@ -1,50 +1,25 @@
 package company.pawelzielinski.safeplace.Fragments;
 
-import android.app.Activity;
 import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.SeekBar;
-import android.widget.TableRow;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.firestore.DocumentChange;
-import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.FirebaseFirestoreException;
-import com.google.firebase.firestore.QuerySnapshot;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Iterator;
-import java.util.List;
-import java.util.ListIterator;
-
-import javax.annotation.Nullable;
-
-import company.pawelzielinski.safeplace.Adapters.CommentsListAdapter;
-import company.pawelzielinski.safeplace.Classes.Comment;
 import company.pawelzielinski.safeplace.Classes.Rating;
 import company.pawelzielinski.safeplace.R;
 
 
-public class F_RatePlace extends Fragment {
+public class RatePlace extends Fragment {
 
     private SeekBar seekBar;
     private TextView textViewRating;
@@ -53,7 +28,7 @@ public class F_RatePlace extends Fragment {
     private String key;
     private Context context;
 
-    public F_RatePlace() {
+    public RatePlace() {
         // Required empty public constructor
     }
 
@@ -75,7 +50,7 @@ public class F_RatePlace extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        View v = inflater.inflate(R.layout.fragment_f__rate_place, container, false);
+        View v = inflater.inflate(R.layout.fragment_rate_place, container, false);
 
         key = getArguments().getString("key");
 

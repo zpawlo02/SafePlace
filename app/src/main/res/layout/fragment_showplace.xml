@@ -3,12 +3,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Fragments.F_topPlaces"
     android:background="@color/whiteText"
+    tools:context=".Fragments.ShowPlaces"
     android:clickable="true">
 
     <RadioGroup
-        android:id="@+id/groupTypeTopPlaceS"
+        android:id="@+id/groupTypePlaceS"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
@@ -17,24 +17,31 @@
         android:layout_gravity="center_horizontal">
 
         <RadioButton
-            android:id="@+id/radioTopSafeS"
-            android:layout_width="137dp"
+            android:id="@+id/radioAllS"
+            android:layout_width="70dp"
             android:layout_height="wrap_content"
-            android:text="Top Safe"
+            android:text="@string/all"
             android:textSize="20sp"
             android:checked="true"/>
 
         <RadioButton
-            android:id="@+id/radioTopNotSafeS"
-            android:layout_width="160dp"
+            android:id="@+id/radioSafeS"
+            android:layout_width="90dp"
             android:layout_height="wrap_content"
-            android:text="Top Not Safe"
+            android:text="@string/safePlace"
+            android:textSize="20sp" />
+
+        <RadioButton
+            android:id="@+id/radioNotSafeS"
+            android:layout_width="118dp"
+            android:layout_height="wrap_content"
+            android:text="@string/notSafe"
             android:textSize="20sp" />
 
     </RadioGroup>
 
     <EditText
-        android:id="@+id/editTextTopCity"
+        android:id="@+id/editTextCity"
         android:layout_width="160dp"
         android:layout_height="50dp"
         android:layout_marginTop="80dp"
@@ -50,7 +57,7 @@
         android:layout_marginTop="140dp"/>
 
     <ListView
-        android:id="@+id/listViewTopPlaces"
+        android:id="@+id/listViewPlaces"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="140dp">

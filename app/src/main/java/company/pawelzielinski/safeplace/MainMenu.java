@@ -1,10 +1,8 @@
 package company.pawelzielinski.safeplace;
 
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.util.Log;
 import android.view.View;
@@ -18,15 +16,17 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.facebook.login.LoginManager;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-import company.pawelzielinski.safeplace.Fragments.F_ADDPlace;
-import company.pawelzielinski.safeplace.Fragments.F_MyPlaces;
-import company.pawelzielinski.safeplace.Fragments.F_ShowPlaces;
-import company.pawelzielinski.safeplace.Fragments.F_topPlaces;
+import company.pawelzielinski.safeplace.Fragments.ADDPlace;
+import company.pawelzielinski.safeplace.Fragments.EditUsername;
+import company.pawelzielinski.safeplace.Fragments.MyPlaces;
+import company.pawelzielinski.safeplace.Fragments.ShowPlaces;
+import company.pawelzielinski.safeplace.Fragments.topPlaces;
 
 public class MainMenu extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -66,13 +66,45 @@ public class MainMenu extends AppCompatActivity
         buttonTopPlaces = (Button) findViewById(R.id.buttonTopPlaces);
         buttonMyPlaces = (Button) findViewById(R.id.buttonMyPlaces);
 
+
+        //FIREBASE AUTH
+        final FirebaseAuth auth = FirebaseAuth.getInstance();
+        final FirebaseUser firebaseUser = auth.getCurrentUser();
+        emailView.setText(firebaseUser.getEmail());
+        if(firebaseUser.getDisplayName() != null){
+            userUsername.setText(firebaseUser.getDisplayName());
+        }
+
+
         //LISTENERS
+
+        userUsername.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int counter = 0;
+                String usernameS = firebaseUser.getDisplayName();
+
+                for(int i = 0; i < usernameS.length(); i++){
+                    if(usernameS.charAt(i) == ' '){
+                        counter++;
+                    }
+                }
+
+                if(counter != 0 ){
+                    FragmentManager fm = getSupportFragmentManager();
+                    Fragment add = new EditUsername();
+                    fm.beginTransaction().replace(R.id.drawer_layout,add).addToBackStack(null).commit();
+                    Toast.makeText(getApplicationContext(), "TOOOS", Toast.LENGTH_SHORT).show();
+
+                }
+            }
+        });
 
         buttonAddPlace.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 FragmentManager fm = getSupportFragmentManager();
-                Fragment add = new F_ADDPlace();
+                Fragment add = new ADDPlace();
                 fm.beginTransaction().replace(R.id.drawer_layout, add).addToBackStack(null).commit();
             }
         });
@@ -81,7 +113,7 @@ public class MainMenu extends AppCompatActivity
             @Override
             public void onClick(View v) {
                 FragmentManager fm = getSupportFragmentManager();
-                Fragment add = new F_ShowPlaces();
+                Fragment add = new ShowPlaces();
                 fm.beginTransaction().replace(R.id.drawer_layout, add).addToBackStack(null).commit();
             }
         });
@@ -90,7 +122,7 @@ public class MainMenu extends AppCompatActivity
             @Override
             public void onClick(View v) {
                 FragmentManager fm = getSupportFragmentManager();
-                Fragment add = new F_topPlaces();
+                Fragment add = new topPlaces();
                 fm.beginTransaction().replace(R.id.drawer_layout, add).addToBackStack(null).commit();
             }
         });
@@ -99,16 +131,12 @@ public class MainMenu extends AppCompatActivity
             @Override
             public void onClick(View v) {
                 FragmentManager fm = getSupportFragmentManager();
-                Fragment add = new F_MyPlaces();
+                Fragment add = new MyPlaces();
                 fm.beginTransaction().replace(R.id.drawer_layout, add).addToBackStack(null).commit();
             }
         });
 
-        //FIREBASE AUTH
-        final FirebaseAuth auth = FirebaseAuth.getInstance();
-        FirebaseUser firebaseUser = auth.getCurrentUser();
-        emailView.setText(firebaseUser.getEmail());
-        userUsername.setText(firebaseUser.getDisplayName());
+
 
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);

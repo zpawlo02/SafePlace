@@ -1,8 +1,6 @@
 package company.pawelzielinski.safeplace.Fragments;
 
-import android.app.Activity;
 import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -17,7 +15,6 @@ import com.google.firebase.firestore.DocumentChange;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
-import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
@@ -28,7 +25,7 @@ import company.pawelzielinski.safeplace.Adapters.PlacesListAdapter;
 import company.pawelzielinski.safeplace.Classes.Place;
 import company.pawelzielinski.safeplace.R;
 
-public class F_MyPlaces extends Fragment {
+public class MyPlaces extends Fragment {
 
     private View view;
     private ListView listView;
@@ -37,7 +34,7 @@ public class F_MyPlaces extends Fragment {
     private PlacesListAdapter adapter;
     private Context context;
 
-    public F_MyPlaces() {
+    public MyPlaces() {
         // Required empty public constructor
     }
 
@@ -57,7 +54,7 @@ public class F_MyPlaces extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.fragment_f__my_places, container, false);
+        view = inflater.inflate(R.layout.fragment_my_places, container, false);
 
         listView = (ListView) view.findViewById(R.id.listViewMyPlaces);
 
@@ -68,13 +65,13 @@ public class F_MyPlaces extends Fragment {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Bundle b = new Bundle();
                 b.putString("key", placesKeys.get(position));
-                F_EditPlace f_editPlace = new F_EditPlace();
-                f_editPlace.setArguments(b);
+                EditPlace editPlace = new EditPlace();
+                editPlace.setArguments(b);
                 getActivity().getSupportFragmentManager()
                         .beginTransaction()
-                        .add(R.id.drawer_layout, f_editPlace)
+                        .add(R.id.drawer_layout, editPlace)
                         .addToBackStack(null).commit();
-                getFragmentManager().beginTransaction().remove(F_MyPlaces.this).commit();
+                getFragmentManager().beginTransaction().remove(MyPlaces.this).commit();
             }
         });
 

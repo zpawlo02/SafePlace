@@ -1,14 +1,9 @@
 package company.pawelzielinski.safeplace.Fragments;
 
 import android.content.Context;
-import android.content.Intent;
-import android.location.Address;
-import android.location.Geocoder;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,29 +12,18 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
-import java.io.IOException;
-import java.util.List;
-import java.util.Locale;
-
 import company.pawelzielinski.safeplace.Classes.Place;
-import company.pawelzielinski.safeplace.MapsActivity;
 import company.pawelzielinski.safeplace.R;
 
 
-public class F_EditPlace extends Fragment {
+public class EditPlace extends Fragment {
 
     private View view;
     private RadioButton radioButtonSafe, radioButtonNotSafe;
@@ -73,7 +57,7 @@ public class F_EditPlace extends Fragment {
             textPublicTransport, textParties, textShops, textCarthefts, textKids;
 
     private Place place;
-    public F_EditPlace() {
+    public EditPlace() {
         // Required empty public constructor
     }
 
@@ -86,7 +70,7 @@ public class F_EditPlace extends Fragment {
     @Override
     public View onCreateView(final LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.fragment_f__edit_place, container, false);
+        view = inflater.inflate(R.layout.fragment_edit_place, container, false);
 
         //BUTTONS
         buttonAddToDB = (Button) view.findViewById(R.id.buttonAddPlaceToDBE);
@@ -190,13 +174,13 @@ public class F_EditPlace extends Fragment {
                 if(keyCode == android.view.KeyEvent.KEYCODE_BACK){
                     Bundle b = new Bundle();
                     b.putString("key", key);
-                    F_MyPlaces f_myPlacees = new F_MyPlaces();
+                    MyPlaces f_myPlacees = new MyPlaces();
                     f_myPlacees.setArguments(b);
                     getActivity().getSupportFragmentManager()
                             .beginTransaction()
                             .add(R.id.drawer_layout, f_myPlacees)
                             .addToBackStack(null).commit();
-                    getFragmentManager().beginTransaction().remove(F_EditPlace.this).commit();
+                    getFragmentManager().beginTransaction().remove(EditPlace.this).commit();
                     return true;
                 }
                 return false;
@@ -209,12 +193,12 @@ public class F_EditPlace extends Fragment {
             public void onClick(View v) {
                 comment = editTextComment.getText().toString();
                 editPlace(place,key);
-                F_MyPlaces f_myPlacees = new F_MyPlaces();
+                MyPlaces f_myPlacees = new MyPlaces();
                 getActivity().getSupportFragmentManager()
                         .beginTransaction()
                         .add(R.id.drawer_layout, f_myPlacees)
                         .addToBackStack(null).commit();
-                getFragmentManager().beginTransaction().remove(F_EditPlace.this).commit();
+                getFragmentManager().beginTransaction().remove(EditPlace.this).commit();
             }
         });
 
