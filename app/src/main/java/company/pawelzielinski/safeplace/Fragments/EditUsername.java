@@ -1,5 +1,6 @@
 package company.pawelzielinski.safeplace.Fragments;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
@@ -41,6 +42,8 @@ public class EditUsername extends Fragment {
     private EditText username;
     private Button save;
     private View view;
+    private Context context;
+
 
     public EditUsername() {
         // Required empty public constructor
@@ -53,6 +56,7 @@ public class EditUsername extends Fragment {
 
     }
 
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -64,6 +68,7 @@ public class EditUsername extends Fragment {
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 final String userName = username.getText().toString();
 
 
@@ -73,18 +78,20 @@ public class EditUsername extends Fragment {
                 db.collection("usernames").whereEqualTo("username",userName).addSnapshotListener(new EventListener<QuerySnapshot>() {
                     @Override
                     public void onEvent(@Nullable QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException e) {
-                        Integer counterToCheck = 0;
+                        int counterToCheck = 0;
+
                         for (DocumentChange documentChange : queryDocumentSnapshots.getDocumentChanges()) {
-                            if(documentChange.getDocument().get("username").toString().equals(userName)){
+                            if (documentChange.getDocument().get("username").toString().equals(userName)) {
                                 counterToCheck++;
                             }
-
+                        }
                             if (counterToCheck == 0){
+
                                 ref.set(new RegisterActivity.Username(userName));
                                 FirebaseAuth mAuth = FirebaseAuth.getInstance();
                                 final FirebaseUser user = mAuth.getCurrentUser();
                                 UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
-                                        .setDisplayName(username.getText().toString())
+                                        .setDisplayName(userName)
                                         .build();
 
                                 user.updateProfile(profileUpdates)
@@ -92,17 +99,16 @@ public class EditUsername extends Fragment {
                                             @Override
                                             public void onComplete(@NonNull Task<Void> task) {
                                                 if (task.isSuccessful()) {
-                                                    Toast.makeText(getApplicationContext(),user.getDisplayName() + " connected!", Toast.LENGTH_LONG).show();
-                                                    startActivity(new Intent(getActivity(), MainMenu.class));
                                                     Log.d("updated", "User profile updated.");
                                                 }
                                             }
                                         });
-                            }else {
+                                getFragmentManager().popBackStackImmediate();
+                            }else if(counterToCheck > 0){
                                 Toast.makeText(getApplicationContext(),"This username exists", Toast.LENGTH_LONG).show();
                             }
                         }
-                    }
+
                 });
 
 
@@ -114,14 +120,12 @@ public class EditUsername extends Fragment {
         return view;
     }
 
-    // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri) {
 
-    }
 
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
+        this.context = context;
     }
 
     @Override

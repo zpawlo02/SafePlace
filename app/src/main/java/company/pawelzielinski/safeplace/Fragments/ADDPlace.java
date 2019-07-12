@@ -201,6 +201,8 @@ public class ADDPlace extends Fragment {
                         homeless, kidnapping, publicTransport, parties, shops, carthefts,
                         kids, lat, longt, circleRadius,comment);
                 getActivity().onBackPressed();
+                startActivity(new Intent(context, MainMenu.class));
+
 
             }
         });

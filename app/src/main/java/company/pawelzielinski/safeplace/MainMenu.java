@@ -36,6 +36,7 @@ public class MainMenu extends AppCompatActivity
 
 
 
+
     private Button buttonAddPlace, buttonSearchSafeNotSafePlace, buttonTopPlaces, buttonMyPlaces;
 
     @Override
@@ -50,7 +51,7 @@ public class MainMenu extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
 
         //DRAWER LAYOUT
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        final DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         //TOOLBAR
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -78,9 +79,17 @@ public class MainMenu extends AppCompatActivity
 
         //LISTENERS
 
+        drawer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                userUsername.setText(firebaseUser.getDisplayName());
+            }
+        });
+
         userUsername.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                drawer.closeDrawer(GravityCompat.START);
                 int counter = 0;
                 String usernameS = firebaseUser.getDisplayName();
 
@@ -93,10 +102,9 @@ public class MainMenu extends AppCompatActivity
                 if(counter != 0 ){
                     FragmentManager fm = getSupportFragmentManager();
                     Fragment add = new EditUsername();
-                    fm.beginTransaction().replace(R.id.drawer_layout,add).addToBackStack(null).commit();
-                    Toast.makeText(getApplicationContext(), "TOOOS", Toast.LENGTH_SHORT).show();
-
+                    fm.beginTransaction().add(R.id.drawer_layout,add).addToBackStack(null).commit();
                 }
+
             }
         });
 
