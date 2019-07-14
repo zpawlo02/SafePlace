@@ -33,6 +33,7 @@ public class MainMenu extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
    private  TextView emailView, userUsername;
+   private  static long back_pressed;
    boolean doubleBackToExitPressedOnce = false;
 
 
@@ -87,7 +88,7 @@ public class MainMenu extends AppCompatActivity
             }
         });
 
-        userUsername.setOnClickListener(new View.OnClickListener() {
+        /*userUsername.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 drawer.closeDrawer(GravityCompat.START);
@@ -107,7 +108,7 @@ public class MainMenu extends AppCompatActivity
                 }
 
             }
-        });
+        });*/
 
         buttonAddPlace.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -159,9 +160,15 @@ public class MainMenu extends AppCompatActivity
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
-            drawer.closeDrawer(GravityCompat.RELATIVE_LAYOUT_DIRECTION);
+            drawer.closeDrawer(GravityCompat.START);
         } else {
-            super.onBackPressed();
+            if(back_pressed + 2000 > System.currentTimeMillis()){
+                super.onBackPressed();
+            }else {
+                Toast.makeText(getApplicationContext(), "Press once again to exit", Toast.LENGTH_SHORT).show();
+            }
+            back_pressed = System.currentTimeMillis();
+
         }
     }
 

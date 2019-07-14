@@ -3,6 +3,7 @@ package company.pawelzielinski.safeplace.Fragments;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -72,6 +73,19 @@ public class MyPlaces extends Fragment {
                         .add(R.id.drawer_layout, editPlace)
                         .addToBackStack(null).commit();
                 getFragmentManager().beginTransaction().remove(MyPlaces.this).commit();
+            }
+        });
+
+        view.setFocusableInTouchMode(true);
+        view.requestFocus();
+        view.setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                if(keyCode == android.view.KeyEvent.KEYCODE_BACK){
+                    getFragmentManager().beginTransaction().remove(MyPlaces.this).commit();
+                    return true;
+                }
+                return false;
             }
         });
 

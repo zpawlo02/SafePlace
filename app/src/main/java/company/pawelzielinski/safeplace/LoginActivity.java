@@ -44,6 +44,7 @@ import com.google.firebase.auth.GoogleAuthProvider;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.Objects;
 
 import company.pawelzielinski.safeplace.Fragments.ADDPlace;
 import company.pawelzielinski.safeplace.Fragments.ResetPassword;
@@ -159,6 +160,8 @@ public class LoginActivity extends AppCompatActivity {
                     startActivity(new Intent(LoginActivity.this, MainMenu.class));
                 }else {
                     Toast.makeText(getApplicationContext(),"Could not register to firebase!", Toast.LENGTH_LONG).show();
+                    Log.i("TASK", task.getException().getMessage());
+                      //  startActivity(new Intent(LoginActivity.this, MainMenu.class));
                 }
             }
         });

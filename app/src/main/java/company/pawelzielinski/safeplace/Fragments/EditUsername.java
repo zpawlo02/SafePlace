@@ -80,16 +80,19 @@ public class EditUsername extends Fragment {
                     public void onEvent(@Nullable QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException e) {
                         int counterToCheck = 0;
 
-                        for (DocumentChange documentChange : queryDocumentSnapshots.getDocumentChanges()) {
-                            if (documentChange.getDocument().get("username").toString().equals(userName)) {
-                                counterToCheck++;
+                        if((queryDocumentSnapshots != null ? queryDocumentSnapshots.getDocumentChanges() : null) != null){
+                            for (DocumentChange documentChange : queryDocumentSnapshots.getDocumentChanges()) {
+                                if (documentChange.getDocument().get("username").toString().equals(userName)) {
+                                    counterToCheck++;
+                                }
                             }
                         }
+
                             if (counterToCheck == 0){
 
                                 ref.set(new RegisterActivity.Username(userName));
                                 FirebaseAuth mAuth = FirebaseAuth.getInstance();
-                                final FirebaseUser user = mAuth.getCurrentUser();
+                                FirebaseUser user = mAuth.getCurrentUser();
                                 UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
                                         .setDisplayName(userName)
                                         .build();
@@ -99,10 +102,11 @@ public class EditUsername extends Fragment {
                                             @Override
                                             public void onComplete(@NonNull Task<Void> task) {
                                                 if (task.isSuccessful()) {
+                                                    getFragmentManager().popBackStackImmediate();
                                                 }
                                             }
                                         });
-                                getFragmentManager().popBackStackImmediate();
+
                             }else if(counterToCheck > 0){
                                 Toast.makeText(getApplicationContext(),"This username exists", Toast.LENGTH_LONG).show();
                             }
