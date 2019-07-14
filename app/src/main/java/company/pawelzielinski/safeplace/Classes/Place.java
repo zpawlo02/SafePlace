@@ -81,10 +81,8 @@ public class Place {
 
         try {
             adresses = geocoder.getFromLocation(lat,longt,1);
-            Log.i("ADRESSERROR", String.valueOf(adresses.get(0)));
         }
         catch (IOException e){
-            Log.i("ADRESSERROR", e.toString());
         }
 
         this.isSafe = isSafe;

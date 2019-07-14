@@ -9,7 +9,7 @@
     <string name="prompt_password">Password</string>
     <string name="prompt_username">Username</string>
     <string name="action_sign_in">Sign in</string>
-    <string name="register">Register</string>
+    <string name="register">Sign up</string>
     <string name="action_sign_in_short">Sign in</string>
     <string name="error_invalid_email">This email address is invalid</string>
     <string name="error_invalid_password">This password is too short</string>
@@ -65,4 +65,11 @@
     <string name="save">SAVE</string>
     <string name="username">Username</string>
     <string name="email">Email</string>
+    <string name="change_username">CHANGE USERNAME</string>
+    <string name="forgot_your_password">Forgot your password?</string>
+    <string name="reset_your_password">Reset your password</string>
+    <string name="reset">RESET</string>
+    <string name="donate">Donate</string>
+    <string name="info">Info</string>
+    <string name="rules">Rules</string>
 </resources>

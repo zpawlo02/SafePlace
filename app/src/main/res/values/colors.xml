@@ -5,7 +5,8 @@
     <color name="colorAccent">#D81B60</color>
     <color name="facebookButton">#3b5998</color>
     <color name="mainMenuButtonColor">#ffffff</color>
-    <color name="mainMenuButtonTextColor">#c9c8c8</color>
+    <color name="mainMenuButtonTextColor">#C2BFBF</color>
     <color name="whiteText">#ffffff</color>
     <color name="appThemeColor">#D67070</color>
+    <color name="buttons">#9E9C9C</color>
 </resources>

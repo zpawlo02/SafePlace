@@ -6,6 +6,8 @@ import android.content.pm.PackageManager;
 import android.content.pm.Signature;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 
 import android.os.Bundle;
@@ -43,6 +45,9 @@ import com.google.firebase.auth.GoogleAuthProvider;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
+import company.pawelzielinski.safeplace.Fragments.ADDPlace;
+import company.pawelzielinski.safeplace.Fragments.ResetPassword;
+
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -57,6 +62,7 @@ public class LoginActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private FirebaseUser user;
     private LoginButton loginButtonFb;
+    private Button resetPass;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -85,6 +91,17 @@ public class LoginActivity extends AppCompatActivity {
         mProgressView = findViewById(R.id.login_progress);
         mEmailView = (AutoCompleteTextView) findViewById(R.id.email);
         mPasswordView = (EditText) findViewById(R.id.password);
+
+        resetPass = (Button) findViewById(R.id.resetpassword_button);
+
+        resetPass.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentManager fm = getSupportFragmentManager();
+                Fragment add = new ResetPassword();
+                fm.beginTransaction().replace(R.id.loginLay, add).addToBackStack(null).commit();
+            }
+        });
 
         Button SignInButton = (Button) findViewById(R.id.email_sign_in_button);
         SignInButton.setOnClickListener(new OnClickListener() {

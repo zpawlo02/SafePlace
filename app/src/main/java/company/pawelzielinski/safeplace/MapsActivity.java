@@ -28,7 +28,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     private Button buttonIncreaseCircle, buttonDecreaseCircle, buttonSaveArea;
 
-    private LatLng mCircleCenter = new LatLng(-34, 151);
+    private LatLng mCircleCenter = new LatLng(0, 0);
     private int circleRadius;
     private Boolean isSafe;
     private String comment;
@@ -143,9 +143,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             }
         });*/
         // Add a marker in Sydney and move the camera
-        LatLng sydney = new LatLng(-34, 151);
+        LatLng sydney = new LatLng(0, 0);
 
-        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
+        mMap.addMarker(new MarkerOptions().position(sydney));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
     }
 

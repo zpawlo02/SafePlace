@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.RadioButton;
 
 import com.google.firebase.firestore.DocumentChange;
@@ -171,6 +172,8 @@ public class ShowPlaces extends Fragment {
         this.context = context;
     }
 
+
+
     //1 - ALL 2 - SAFE 3 - NOT SAFE
 
 private void updatePlaces(final Bundle bundle){
@@ -299,7 +302,6 @@ private void updatePlaces(final Bundle bundle){
 
     } else if (city.equals("") && whichPlaces == 3) {
 
-
         db.collection("places").whereEqualTo("isSafe", false).addSnapshotListener(new EventListener<QuerySnapshot>() {
             @Override
             public void onEvent(@Nullable QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException e) {
@@ -320,7 +322,6 @@ private void updatePlaces(final Bundle bundle){
 
 
     }
-
 
 }
 

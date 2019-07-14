@@ -55,7 +55,7 @@ public class ADDPlace extends Fragment {
 
     //CIRCLE
     private LatLng mCircleCenter;
-    private Double lat = 1.0, longt = 1.0;
+    private Double lat = 0.0, longt = 0.0;
     private int circleRadius = 250;
 
     private int traffic = 1, pickpockets = 1, kidnapping = 1, homeless = 1, publicTransport = 1,
@@ -195,13 +195,17 @@ public class ADDPlace extends Fragment {
         buttonAddToDB.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.i("LAT LONG", String.valueOf(lat + " --" + longt + " ----" + circleRadius));
-                comment = editTextComment.getText().toString();
-                writeNewPlace(isSafe, traffic, pickpockets,
-                        homeless, kidnapping, publicTransport, parties, shops, carthefts,
-                        kids, lat, longt, circleRadius,comment);
-                getActivity().onBackPressed();
-                startActivity(new Intent(context, MainMenu.class));
+                if(lat == 0 && longt == 0){
+                    Toast.makeText(context, "Mark area!", Toast.LENGTH_SHORT).show();
+                }else {
+                    comment = editTextComment.getText().toString();
+                    writeNewPlace(isSafe, traffic, pickpockets,
+                            homeless, kidnapping, publicTransport, parties, shops, carthefts,
+                            kids, lat, longt, circleRadius,comment);
+                    getActivity().onBackPressed();
+                    startActivity(new Intent(context, MainMenu.class));
+                }
+
 
 
             }
