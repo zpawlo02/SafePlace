@@ -195,7 +195,7 @@ public class MainMenu extends AppCompatActivity
 
         if (id == R.id.nav_donate) {
 
-            Uri uri = Uri.parse("https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=SGJGA4E445HLA&source=url");
+            Uri uri = Uri.parse("https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=GR7NAZY78NYDW&source=url");
             Intent intent = new Intent(Intent.ACTION_VIEW, uri);
             startActivity(intent);
 

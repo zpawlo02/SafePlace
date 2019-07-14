@@ -209,27 +209,6 @@ public class LoginActivity extends AppCompatActivity {
                     }
                 });
     }
-   /* private void calculateHashKey(String yourPackageName) {
-        PackageInfo info;
-
-        try {
-            info = getPackageManager().getPackageInfo(yourPackageName, PackageManager.GET_SIGNATURES);
-            for (Signature signature : info.signatures) {
-                MessageDigest md;
-                md = MessageDigest.getInstance("SHA1");
-                md.update(signature.toByteArray());
-                String something = new String(Base64.encode(md.digest(), 0));
-                //String something = new String(Base64.encodeBytes(md.digest()));
-                Log.e("hash key", something);
-            }
-        } catch (PackageManager.NameNotFoundException e1) {
-            Log.e("name not found", e1.toString());
-        } catch (NoSuchAlgorithmException e) {
-            Log.e("no such an algorithm", e.toString());
-        } catch (Exception e) {
-            Log.e("exception", e.toString());
-        }
-    }*/
 
     private void emailLogin() {
             mAuth.signInWithEmailAndPassword(mEmailView.getText().toString(), mPasswordView.getText().toString())
@@ -238,17 +217,14 @@ public class LoginActivity extends AppCompatActivity {
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (task.isSuccessful()) {
                                 // Sign in success, update UI with the signed-in user's information
-                                Log.d("succes", "signInWithEmail:success");
                                 FirebaseUser user = mAuth.getCurrentUser();
                                 Toast.makeText(getApplicationContext(), user.getDisplayName() + " connected!", Toast.LENGTH_LONG).show();
                                 startActivity(new Intent(LoginActivity.this, MainMenu.class));
-                                Log.d("updated", "User profile updated.");
+
 
                             } else {
-                                // If sign in fails, display a message to the user.
-                                Log.w("failed", "signInWithEmail:failure", task.getException());
-                            /*Toast.makeText(LoginActivity.this, "Authentication failed.",
-                                    Toast.LENGTH_SHORT).show();*/
+                            Toast.makeText(LoginActivity.this, "Authentication failed.",
+                                    Toast.LENGTH_SHORT).show();
 
                             }
 

@@ -99,7 +99,6 @@ public class EditUsername extends Fragment {
                                             @Override
                                             public void onComplete(@NonNull Task<Void> task) {
                                                 if (task.isSuccessful()) {
-                                                    Log.d("updated", "User profile updated.");
                                                 }
                                             }
                                         });

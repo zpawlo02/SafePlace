@@ -70,6 +70,6 @@
     <string name="reset_your_password">Reset your password</string>
     <string name="reset">RESET</string>
     <string name="donate">Donate</string>
-    <string name="info">Info</string>
+    <string name="info">Info &amp; how it works</string>
     <string name="rules">Rules</string>
 </resources>

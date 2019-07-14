@@ -13,38 +13,42 @@
         android:name="com.google.android.gms.maps.SupportMapFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
         tools:context=".MapsActivity" >
+
 
         <Button
             android:id="@+id/buttonIncreaseCircle"
-            android:layout_width="70dp"
-            android:layout_height="70dp"
+            android:layout_width="65dp"
+            android:layout_height="65dp"
             android:layout_gravity="bottom"
             android:layout_marginStart="5dp"
             android:layout_marginBottom="170dp"
             android:textSize="15sp"
             android:text="@string/increase_area"
-            />
+            android:background="@color/buttons"/>
 
         <Button
             android:id="@+id/buttonDecreaseCircle"
-            android:layout_width="70dp"
-            android:layout_height="70dp"
+            android:layout_width="65dp"
+            android:layout_height="65dp"
             android:layout_gravity="bottom"
             android:layout_marginStart="5dp"
             android:gravity="center"
             android:layout_marginBottom="100dp"
             android:textSize="15sp"
-            android:text="@string/decrease_area" />
+            android:text="@string/decrease_area"
+            android:background="@color/buttons"/>
 
         <Button
-            android:layout_width="70dp"
-            android:layout_height="70dp"
+            android:layout_width="65dp"
+            android:layout_height="65dp"
             android:layout_gravity="bottom"
             android:layout_marginStart="5dp"
             android:layout_marginBottom="30dp"
             android:text="@string/save_area"
-            android:id="@+id/buttonSaveArea"/>
+            android:id="@+id/buttonSaveArea"
+            android:background="@color/buttons"/>
     </fragment>
 
 

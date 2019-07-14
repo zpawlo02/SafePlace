@@ -71,8 +71,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     circleRadius += 10;
                 }
 
-                circle.setRadius(circleRadius);
-                circleOptions = setOpions(isSafe);
+                if(circle != null){
+                    circle.setRadius(circleRadius);
+                    circleOptions = setOpions(isSafe);
+                }
+
 
             }
         });
@@ -83,9 +86,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     if(circleRadius > 20) {
                         circleRadius -= 10;
                     }
-                    circle.setRadius(circleRadius);
-                    circleOptions = setOpions(isSafe);
-
+                    if(circle != null) {
+                        circle.setRadius(circleRadius);
+                        circleOptions = setOpions(isSafe);
+                    }
                 }
             });
 

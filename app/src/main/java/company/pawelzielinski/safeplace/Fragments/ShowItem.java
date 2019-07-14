@@ -245,7 +245,6 @@ public class ShowItem extends Fragment {
                             if(documentChange.getDocument().toObject(Rating.class).getUserId().equals(user.getUid())){
                                 counter++;
                             }
-                            Log.i("ADDEEED",documentChange.getDocument().toObject(Rating.class).getUserId());
                         }
 
                         if(counter == 0){

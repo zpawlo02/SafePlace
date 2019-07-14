@@ -144,17 +144,14 @@ public class RegisterActivity extends AppCompatActivity {
                                             if (task.isSuccessful()) {
                                                 Toast.makeText(getApplicationContext(), user.getDisplayName() + " connected!", Toast.LENGTH_LONG).show();
                                                 startActivity(new Intent(RegisterActivity.this, MainMenu.class));
-                                                Log.d("updated", "User profile updated.");
                                             }
                                         }
                                     });
                             startActivity(new Intent(RegisterActivity.this, MainMenu.class));
-                            Log.d("complete", "createUserWithEmail:success");
                             finish();
 
                         } else {
                             // If sign in fails, display a message to the user.
-                            Log.w("failed", "createUserWithEmail:failure", task.getException());
                             Toast.makeText(getApplicationContext(), "Authentication failed.",
                                     Toast.LENGTH_SHORT).show();
 
