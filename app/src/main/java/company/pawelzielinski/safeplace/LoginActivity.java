@@ -80,7 +80,7 @@ public class LoginActivity extends AppCompatActivity {
             loginButtonFb = (LoginButton)findViewById(R.id.Fblogin_button);
 
             //callbackManager = CallbackManager.Factory.create();
-            loginButtonFb.setReadPermissions("email", "public_profile", "user_friends");;
+            loginButtonFb.setReadPermissions("email", "public_profile");;
 
         }else {
             startActivity(new Intent(LoginActivity.this, MainMenu.class));

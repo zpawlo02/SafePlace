@@ -31,6 +31,7 @@ import com.google.firebase.firestore.QuerySnapshot;
 import javax.annotation.Nullable;
 
 import company.pawelzielinski.safeplace.Classes.Place;
+import company.pawelzielinski.safeplace.Classes.Username;
 import company.pawelzielinski.safeplace.MainMenu;
 import company.pawelzielinski.safeplace.R;
 import company.pawelzielinski.safeplace.RegisterActivity;
@@ -90,7 +91,7 @@ public class EditUsername extends Fragment {
 
                             if (counterToCheck == 0){
 
-                                ref.set(new RegisterActivity.Username(userName));
+                                ref.set(new Username(userName));
                                 FirebaseAuth mAuth = FirebaseAuth.getInstance();
                                 FirebaseUser user = mAuth.getCurrentUser();
                                 UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()

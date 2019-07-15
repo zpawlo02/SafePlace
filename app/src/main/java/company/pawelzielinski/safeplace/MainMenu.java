@@ -119,7 +119,7 @@ public class MainMenu extends AppCompatActivity
             public void onClick(View v) {
                 FragmentManager fm = getSupportFragmentManager();
                 Fragment add = new ADDPlace();
-                fm.beginTransaction().replace(R.id.drawer_layout, add).addToBackStack(null).commit();
+                fm.beginTransaction().add(R.id.drawer_layout, add).addToBackStack(null).commit();
             }
         });
 
@@ -128,7 +128,7 @@ public class MainMenu extends AppCompatActivity
             public void onClick(View v) {
                 FragmentManager fm = getSupportFragmentManager();
                 Fragment add = new ShowPlaces();
-                fm.beginTransaction().replace(R.id.drawer_layout, add).addToBackStack(null).commit();
+                fm.beginTransaction().add(R.id.drawer_layout, add).addToBackStack(null).commit();
             }
         });
 
@@ -137,7 +137,7 @@ public class MainMenu extends AppCompatActivity
             public void onClick(View v) {
                 FragmentManager fm = getSupportFragmentManager();
                 Fragment add = new topPlaces();
-                fm.beginTransaction().replace(R.id.drawer_layout, add).addToBackStack(null).commit();
+                fm.beginTransaction().add(R.id.drawer_layout, add).addToBackStack(null).commit();
             }
         });
 
@@ -146,7 +146,7 @@ public class MainMenu extends AppCompatActivity
             public void onClick(View v) {
                 FragmentManager fm = getSupportFragmentManager();
                 Fragment add = new MyPlaces();
-                fm.beginTransaction().replace(R.id.drawer_layout, add).addToBackStack(null).commit();
+                fm.beginTransaction().add(R.id.drawer_layout, add).addToBackStack(null).commit();
             }
         });
 
@@ -168,6 +168,7 @@ public class MainMenu extends AppCompatActivity
         } else {
             if(back_pressed + 2000 > System.currentTimeMillis()){
                 super.onBackPressed();
+                finish();
             }else {
                 Toast.makeText(getApplicationContext(), "Press once again to exit", Toast.LENGTH_SHORT).show();
             }
@@ -217,7 +218,7 @@ public class MainMenu extends AppCompatActivity
         }else if (id == R.id.nav_info){
             FragmentManager fm = getSupportFragmentManager();
             Fragment add = new Info_how_works();
-            fm.beginTransaction().replace(R.id.drawer_layout, add).addToBackStack(null).commit();
+            fm.beginTransaction().add(R.id.drawer_layout, add).addToBackStack(null).commit();
         }else if(id == R.id.nav_report){
             Intent intent=new Intent(Intent.ACTION_SEND);
             String[] recipients={"saffeplace@gmail.com"};

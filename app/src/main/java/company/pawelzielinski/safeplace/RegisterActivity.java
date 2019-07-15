@@ -23,16 +23,21 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserProfileChangeRequest;
 import com.google.firebase.firestore.DocumentChange;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import javax.annotation.Nullable;
 
+import company.pawelzielinski.safeplace.Classes.Username;
+
 public class RegisterActivity extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
+    private FirebaseUser user;
     private EditText email, password, username;;
     private Button buttonRegister;
 
@@ -81,7 +86,7 @@ public class RegisterActivity extends AppCompatActivity {
 
         for(int i = 0; i < usernameS.length(); i++){
             if(usernameS.charAt(i) == ' '){
-                 counter++;
+                counter++;
             }
         }
 
@@ -91,17 +96,11 @@ public class RegisterActivity extends AppCompatActivity {
 
             FirebaseFirestore db = FirebaseFirestore.getInstance();
             final DocumentReference ref = db.collection("usernames").document();
-
-            db.collection("usernames").whereEqualTo("username", usernameS).addSnapshotListener(new EventListener<QuerySnapshot>() {
+            db.enableNetwork();
+            db.collection("usernames").addSnapshotListener(new EventListener<QuerySnapshot>() {
                 @Override
                 public void onEvent(@Nullable QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException e) {
                     Integer counterToCheck = 0;
-                    for (DocumentChange documentChange : queryDocumentSnapshots.getDocumentChanges()) {
-
-                        if (documentChange.getDocument().get("username").toString().equals(usernameS)) {
-                            counterToCheck++;
-                        }
-                    }
 
                     if(counterToCheck == 0){
                         authorrisation(ref);
@@ -125,7 +124,7 @@ public class RegisterActivity extends AppCompatActivity {
 
                             // Sign in success, update UI with the signed-in user's information
 
-                            final FirebaseUser user = mAuth.getCurrentUser();
+                            user = mAuth.getCurrentUser();
                             UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
                                     .setDisplayName(username.getText().toString())
                                     .build();
@@ -144,14 +143,17 @@ public class RegisterActivity extends AppCompatActivity {
                                             if (task.isSuccessful()) {
                                                 Toast.makeText(getApplicationContext(), user.getDisplayName() + " connected!", Toast.LENGTH_LONG).show();
                                                 startActivity(new Intent(RegisterActivity.this, MainMenu.class));
+                                                Log.d("updated", "User profile updated.");
                                             }
                                         }
                                     });
                             startActivity(new Intent(RegisterActivity.this, MainMenu.class));
+                            Log.d("complete", "createUserWithEmail:success");
                             finish();
 
                         } else {
                             // If sign in fails, display a message to the user.
+                            Log.w("failed", "createUserWithEmail:failure", task.getException());
                             Toast.makeText(getApplicationContext(), "Authentication failed.",
                                     Toast.LENGTH_SHORT).show();
 
@@ -161,19 +163,4 @@ public class RegisterActivity extends AppCompatActivity {
                 });
     }
 
-    public static class Username{
-        public String username;
-
-       public Username(){
-
-        }
-
-       public Username(String username){
-           this.username = username;
-       }
-
-        public String getUsername() {
-            return username;
-        }
-    }
 }
