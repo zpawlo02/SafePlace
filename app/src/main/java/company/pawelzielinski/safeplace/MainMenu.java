@@ -5,6 +5,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
@@ -25,6 +26,7 @@ import com.google.firebase.auth.FirebaseUser;
 
 import company.pawelzielinski.safeplace.Fragments.ADDPlace;
 import company.pawelzielinski.safeplace.Fragments.EditUsername;
+import company.pawelzielinski.safeplace.Fragments.Info_how_works;
 import company.pawelzielinski.safeplace.Fragments.MyPlaces;
 import company.pawelzielinski.safeplace.Fragments.ShowPlaces;
 import company.pawelzielinski.safeplace.Fragments.topPlaces;
@@ -33,6 +35,8 @@ public class MainMenu extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
    private  TextView emailView, userUsername;
+   private FirebaseAuth auth;
+   private FirebaseUser firebaseUser;
    private  static long back_pressed;
    boolean doubleBackToExitPressedOnce = false;
 
@@ -71,8 +75,8 @@ public class MainMenu extends AppCompatActivity
 
 
         //FIREBASE AUTH
-        final FirebaseAuth auth = FirebaseAuth.getInstance();
-        final FirebaseUser firebaseUser = auth.getCurrentUser();
+        auth = FirebaseAuth.getInstance();
+        firebaseUser = auth.getCurrentUser();
         emailView.setText(firebaseUser.getEmail());
         if(firebaseUser.getDisplayName() != null){
             userUsername.setText(firebaseUser.getDisplayName());
@@ -211,9 +215,18 @@ public class MainMenu extends AppCompatActivity
             LoginManager.getInstance().logOut();
             startActivity(new Intent(MainMenu.this, LoginActivity.class));
         }else if (id == R.id.nav_info){
-
-        }else if(id == R.id.nav_rules){
-
+            FragmentManager fm = getSupportFragmentManager();
+            Fragment add = new Info_how_works();
+            fm.beginTransaction().replace(R.id.drawer_layout, add).addToBackStack(null).commit();
+        }else if(id == R.id.nav_report){
+            Intent intent=new Intent(Intent.ACTION_SEND);
+            String[] recipients={"saffeplace@gmail.com"};
+            intent.putExtra(Intent.EXTRA_EMAIL, recipients);
+            intent.putExtra(Intent.EXTRA_SUBJECT,"Report");
+            intent.putExtra(Intent.EXTRA_TEXT,"");
+            intent.setType("text/html");
+            intent.setPackage("com.google.android.gm");
+            startActivity(Intent.createChooser(intent, "Send mail"));
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

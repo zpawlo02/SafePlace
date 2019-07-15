@@ -72,7 +72,6 @@ public class MyPlaces extends Fragment {
                         .beginTransaction()
                         .add(R.id.drawer_layout, editPlace)
                         .addToBackStack(null).commit();
-                getFragmentManager().beginTransaction().remove(MyPlaces.this).commit();
             }
         });
 

@@ -15,6 +15,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -115,21 +116,22 @@ public class ShowItem extends Fragment {
                 if(keyCode == android.view.KeyEvent.KEYCODE_BACK){
                      Bundle b = new Bundle();
                      b.putString("radio", radio);
+                    Toast.makeText(context, whichFragment, Toast.LENGTH_SHORT);
                      if(whichFragment.equals("top")){
                          topPlaces f_topPlaces = new topPlaces();
                          f_topPlaces.setArguments(b);
                          f_topPlaces.wasOpened = true;
                          getActivity().getSupportFragmentManager().beginTransaction()
                                  .add(R.id.drawer_layout,f_topPlaces).addToBackStack(null).commit();
-                         getFragmentManager().beginTransaction().remove(ShowItem.this).commit();
+                         getFragmentManager().beginTransaction().remove(ShowItem.this).addToBackStack(null).commit();
                         return true;
-                    }else {
+                    }else if (whichFragment.equals("places")){
                              ShowPlaces f_showPlaces = new ShowPlaces();
                              f_showPlaces.setArguments(b);
                              f_showPlaces.wasOpened = true;
                              getActivity().getSupportFragmentManager().beginTransaction()
                                      .add(R.id.drawer_layout,f_showPlaces).addToBackStack(null).commit();
-                             getFragmentManager().beginTransaction().remove(ShowItem.this).commit();
+                             getFragmentManager().beginTransaction().remove(ShowItem.this).addToBackStack(null).commit();
                              return true;
 
                      }
@@ -192,12 +194,24 @@ public class ShowItem extends Fragment {
                   @Override
                   public void onMapReady(GoogleMap googleMap) {
                       GoogleMap map = googleMap;
-                      if (circleOptions.getRadius() <= 500) {
-                          map.animateCamera(CameraUpdateFactory.zoomTo(16.4f));
-                      } else if (circleOptions.getRadius() <= 700) {
-                          map.animateCamera(CameraUpdateFactory.zoomTo(15.4f));
-                      } else if (circleOptions.getRadius() <= 900) {
+                      if (circleOptions.getRadius() >= 600 && circleOptions.getRadius() < 700) {
                           map.animateCamera(CameraUpdateFactory.zoomTo(14.4f));
+                      } else if (circleOptions.getRadius() >= 700 && circleOptions.getRadius() < 800) {
+                          map.animateCamera(CameraUpdateFactory.zoomTo(13.4f));
+                      } else if (circleOptions.getRadius() >= 800 && circleOptions.getRadius() < 900) {
+                          map.animateCamera(CameraUpdateFactory.zoomTo(12.4f));
+                      }  else if (circleOptions.getRadius() == 800) {
+                          map.animateCamera(CameraUpdateFactory.zoomTo(11.6f));
+                      } else if (circleOptions.getRadius() >= 500 && circleOptions.getRadius() < 600) {
+                          map.animateCamera(CameraUpdateFactory.zoomTo(15.4f));
+                      } else if (circleOptions.getRadius() >= 400 && circleOptions.getRadius() < 500) {
+                          map.animateCamera(CameraUpdateFactory.zoomTo(15.0f));
+                      } else if (circleOptions.getRadius() >= 300 && circleOptions.getRadius() < 400) {
+                          map.animateCamera(CameraUpdateFactory.zoomTo(16.4f));
+                      } else if (circleOptions.getRadius() >= 200 && circleOptions.getRadius() < 300) {
+                          map.animateCamera(CameraUpdateFactory.zoomTo(15.8f));
+                      } else if (circleOptions.getRadius() >= 100 && circleOptions.getRadius() < 200) {
+                          map.animateCamera(CameraUpdateFactory.zoomTo(16.0f));
                       }
                       Circle circle1 = map.addCircle(circleOptions);
                       map.moveCamera(CameraUpdateFactory.newLatLng(new LatLng(p.getLat(), p.getLongT())));

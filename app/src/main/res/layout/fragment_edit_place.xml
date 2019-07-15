@@ -401,32 +401,48 @@
             android:text="+"
             android:textSize="30sp"/>
 
+
         <TextView
             android:layout_width="340dp"
-            android:layout_height="40dp"
-            android:textSize="25sp"
-            android:layout_marginTop="745dp"
+            android:layout_height="30dp"
             android:layout_gravity="center_horizontal"
+            android:layout_marginTop="740dp"
+            android:layout_marginRight="50dp"
+            android:gravity="center"
             android:text="@string/edit_comment"
-            android:gravity="center"/>
+            android:textSize="25sp" />
 
         <EditText
-            android:layout_width="340dp"
-            android:layout_height="90dp"
-            android:layout_marginTop="775dp"
+            android:layout_width="260dp"
+            android:layout_height="80dp"
+            android:layout_marginTop="780dp"
+            android:layout_marginRight="50dp"
             android:layout_gravity="center_horizontal"
             android:gravity="center"
             android:id="@+id/editCommentE"/>
 
-        <Button
-            style="?android:textAppearanceSmall"
-            android:layout_width="340dp"
-            android:layout_height="80dp"
-            android:layout_marginTop="865dp"
-            android:layout_gravity="center_horizontal"
-            android:id="@+id/buttonAddPlaceToDBE"
-            android:text="@string/save"
-            android:textSize="30sp"/>
+        <android.support.v7.widget.CardView
+            android:layout_width="90dp"
+            android:layout_height="62dp"
+            app:cardCornerRadius="30dp"
+            android:layout_gravity="center"
+            android:layout_marginLeft="140dp"
+            android:background="@color/buttons"
+            app:cardBackgroundColor="@color/buttons"
+            android:layout_marginTop="390dp">
+
+            <Button
+
+                style="?android:textAppearanceSmall"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_gravity="center"
+                android:id="@+id/buttonAddPlaceToDBE"
+                android:background="@color/buttons"
+                android:text="@string/save"
+                android:textSize="24sp"/>
+
+        </android.support.v7.widget.CardView>
 
 
     </FrameLayout>

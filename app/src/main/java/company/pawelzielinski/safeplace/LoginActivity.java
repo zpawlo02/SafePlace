@@ -160,7 +160,6 @@ public class LoginActivity extends AppCompatActivity {
                     startActivity(new Intent(LoginActivity.this, MainMenu.class));
                 }else {
                     Toast.makeText(getApplicationContext(),"Could not register to firebase!", Toast.LENGTH_LONG).show();
-                    Log.i("TASK", task.getException().getMessage());
                       //  startActivity(new Intent(LoginActivity.this, MainMenu.class));
                 }
             }

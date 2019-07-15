@@ -132,7 +132,7 @@ public class topPlaces extends Fragment {
                 showItem.setArguments(b);
                 getActivity().getSupportFragmentManager()
                         .beginTransaction()
-                        .add(R.id.drawer_layout, showItem)
+                        .add(R.id.drawer_layout, showItem).addToBackStack(null)
                         .addToBackStack(null).commit();
             }
         });
@@ -182,6 +182,8 @@ public class topPlaces extends Fragment {
         //startAt(startAtNumber).endAt(stopAtNumber).
     if (city != "" && whichPlaces == 1) {
 
+        db.enableNetwork();
+
             db.collection("places").whereEqualTo("city", city).whereEqualTo("isSafe", true).orderBy("rating", Query.Direction.DESCENDING).limit(10).addSnapshotListener(new EventListener<QuerySnapshot>() {
                 @Override
                 public void onEvent(@Nullable QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException e) {
@@ -199,8 +201,11 @@ public class topPlaces extends Fragment {
                     adapter.notifyDataSetChanged();
                 }
             });
+        db.disableNetwork();
 
         } else if (city != "" && whichPlaces == 2) {
+
+        db.enableNetwork();
 
             db.collection("places").whereEqualTo("city", city).whereEqualTo("isSafe", false).orderBy("rating", Query.Direction.DESCENDING).limit(10).addSnapshotListener(new EventListener<QuerySnapshot>() {
                 @Override
@@ -219,9 +224,11 @@ public class topPlaces extends Fragment {
                     adapter.notifyDataSetChanged();
                 }
             });
-
+        db.disableNetwork();
 
         }  else if (city.equals("") && whichPlaces == 1) {
+
+        db.enableNetwork();
 
             db.collection("places").orderBy("rating", Query.Direction.DESCENDING).whereEqualTo("isSafe", true).limit(10).addSnapshotListener(new EventListener<QuerySnapshot>() {
                 @Override
@@ -240,9 +247,11 @@ public class topPlaces extends Fragment {
                     adapter.notifyDataSetChanged();
                 }
             });
-
+        db.disableNetwork();
 
         } else if (city.equals("") && whichPlaces == 2) {
+
+        db.enableNetwork();
 
 
             db.collection("places").orderBy("rating", Query.Direction.DESCENDING).whereEqualTo("isSafe", false).limit(10).addSnapshotListener(new EventListener<QuerySnapshot>() {
@@ -262,7 +271,7 @@ public class topPlaces extends Fragment {
                     adapter.notifyDataSetChanged();
                 }
             });
-
+        db.disableNetwork();
 
         }
     }

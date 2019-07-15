@@ -465,6 +465,7 @@ public class ADDPlace extends Fragment {
                                int parties, int shops, int carthefts, int kids,
                                double lat, double longt, int circleRadius, String comment){
         FirebaseFirestore db = FirebaseFirestore.getInstance();
+        db.enableNetwork();
         DocumentReference ref = db.collection("places").document();
 
         FirebaseAuth auth = FirebaseAuth.getInstance();

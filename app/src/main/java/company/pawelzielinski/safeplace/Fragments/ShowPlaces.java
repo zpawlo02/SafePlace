@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -155,7 +156,7 @@ public class ShowPlaces extends Fragment {
                 showItem.setArguments(b);
                 getActivity().getSupportFragmentManager()
                         .beginTransaction()
-                        .add(R.id.drawer_layout, showItem)
+                        .add(R.id.drawer_layout, showItem).addToBackStack(null)
                         .commit();
              }
         });
@@ -198,6 +199,8 @@ private void updatePlaces(final Bundle bundle){
     //startAt(startAtNumber).endAt(stopAtNumber).
     if (city != "" && whichPlaces == 1) {
 
+        db.enableNetwork();
+
         db.collection("places").whereEqualTo("city",city).addSnapshotListener(new EventListener<QuerySnapshot>() {
             @Override
             public void onEvent(@Nullable QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException e) {
@@ -215,9 +218,12 @@ private void updatePlaces(final Bundle bundle){
                 adapter.notifyDataSetChanged();
             }
         });
+        db.disableNetwork();
 
 
     } else if (city != "" && whichPlaces == 2) {
+
+        db.enableNetwork();
 
         db.collection("places").whereEqualTo("city",city).whereEqualTo("isSafe",true).addSnapshotListener(new EventListener<QuerySnapshot>() {
             @Override
@@ -237,7 +243,11 @@ private void updatePlaces(final Bundle bundle){
             }
         });
 
+        db.disableNetwork();
+
     } else if (city != "" && whichPlaces == 3) {
+
+        db.enableNetwork();
 
         db.collection("places").whereEqualTo("city",city).whereEqualTo("isSafe",false).addSnapshotListener(new EventListener<QuerySnapshot>() {
             @Override
@@ -256,9 +266,11 @@ private void updatePlaces(final Bundle bundle){
                 adapter.notifyDataSetChanged();
             }
         });
-
+        db.disableNetwork();
 
     } else if (city.equals("") && whichPlaces == 1) {
+
+        db.enableNetwork();
 
         db.collection("places").addSnapshotListener(new EventListener<QuerySnapshot>() {
             @Override
@@ -267,7 +279,7 @@ private void updatePlaces(final Bundle bundle){
 
                 }
 
-                for(DocumentChange documentChange :queryDocumentSnapshots.getDocumentChanges()){
+                for(DocumentChange documentChange : queryDocumentSnapshots.getDocumentChanges()){
                     places.add(documentChange.getDocument().toObject(Place.class));
                     placesKeys.add(documentChange.getDocument().getId());
                 }
@@ -277,9 +289,12 @@ private void updatePlaces(final Bundle bundle){
                 adapter.notifyDataSetChanged();
             }
         });
+        db.disableNetwork();
 
 
     } else if (city.equals("") && whichPlaces == 2) {
+
+        db.enableNetwork();
 
         db.collection("places").whereEqualTo("isSafe", true).addSnapshotListener(new EventListener<QuerySnapshot>() {
             @Override
@@ -299,8 +314,12 @@ private void updatePlaces(final Bundle bundle){
             }
         });
 
+        db.disableNetwork();
+
 
     } else if (city.equals("") && whichPlaces == 3) {
+
+        db.enableNetwork();
 
         db.collection("places").whereEqualTo("isSafe", false).addSnapshotListener(new EventListener<QuerySnapshot>() {
             @Override
@@ -319,6 +338,7 @@ private void updatePlaces(final Bundle bundle){
                 adapter.notifyDataSetChanged();
             }
         });
+        db.disableNetwork();
 
 
     }
