@@ -3,9 +3,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/whiteText"
     tools:context=".Fragments.ShowPlaces"
-    android:clickable="true">
+    android:clickable="true"
+    android:focusableInTouchMode="true"
+    android:focusable="true">
 
     <RadioGroup
         android:id="@+id/groupTypePlaceS"
@@ -40,27 +43,48 @@
 
     </RadioGroup>
 
-    <EditText
+    <company.pawelzielinski.safeplace.Classes.EditTextV2
         android:id="@+id/editTextCity"
         android:layout_width="160dp"
         android:layout_height="50dp"
-        android:layout_marginTop="80dp"
+        android:layout_marginTop="70dp"
         android:layout_gravity="center_horizontal"
         android:hint="@string/city"
         android:textSize="20sp"
         android:inputType="text" />
 
+    <android.support.v7.widget.CardView
+        android:layout_width="140dp"
+        android:layout_height="55dp"
+        app:cardCornerRadius="30dp"
+        android:layout_gravity="center_horizontal"
+        android:background="@color/buttons"
+        app:cardBackgroundColor="@color/buttons"
+        android:layout_marginTop="130dp">
+
+    <Button
+        android:layout_width="95dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/buttonSearch"
+        android:layout_gravity="center"
+        android:background="@color/buttons"
+        android:text="SEARCH"
+        android:textSize="20sp"
+        style="?android:textAppearanceSmall"/>
+
+    </android.support.v7.widget.CardView>
+
     <View
         android:layout_width="match_parent"
         android:layout_height="2dp"
         android:background="@color/appThemeColor"
-        android:layout_marginTop="140dp"/>
+        android:layout_marginTop="200dp"/>
 
     <ListView
         android:id="@+id/listViewPlaces"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="140dp">
+        android:layout_marginTop="200dp">
 
     </ListView>
 

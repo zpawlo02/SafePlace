@@ -4,60 +4,68 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".Fragments.EditPlace"
     android:background="@color/whiteText"
+    tools:context=".Fragments.ADDPlace"
     android:clickable="true">
 
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="20dp"
             android:gravity="center_horizontal"
-            android:text="@string/edit_place"
-            android:textSize="48sp" />
+            android:text="@string/add_place"
+            android:textSize="50sp" />
 
 
         <RadioGroup
-            android:id="@+id/groupTypePlaceE"
+            android:id="@+id/groupTypePlace"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="80dp"
+            android:layout_marginTop="100dp"
             android:orientation="horizontal"
             android:gravity="center_horizontal">
 
             <RadioButton
-                android:id="@+id/radioSafeE"
-                android:layout_width="137dp"
+                android:id="@+id/radioSafe"
+                android:layout_width="167dp"
                 android:layout_height="wrap_content"
                 android:text="@string/safePlace"
-                android:textSize="20sp"
+                android:textSize="24sp"
                 android:checked="true"/>
 
             <RadioButton
-                android:id="@+id/radioNotSafeE"
-                android:layout_width="128dp"
+                android:id="@+id/radioNotSafe"
+                android:layout_width="148dp"
                 android:layout_height="wrap_content"
                 android:text="@string/notSafe"
-                android:textSize="20sp" />
+                android:textSize="24sp" />
 
         </RadioGroup>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="130dp"
+            android:text="@string/mark_area"
+            android:layout_gravity="center_horizontal"
+            android:textSize="24sp" />
 
         <Button
             android:layout_width="100dp"
             android:layout_height="60dp"
-            android:layout_marginTop="130dp"
-            android:id="@+id/buttonOpenMapsE"
+            android:layout_marginTop="165dp"
+            android:id="@+id/buttonOpenMaps"
             android:background="@drawable/ic_addplace_map"
             android:layout_gravity="center_horizontal" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="210dp"
+            android:layout_marginTop="240dp"
             android:text="@string/possibility_of_amenities_or_dangers"
             android:layout_gravity="center_horizontal"
             android:textSize="23sp" />
@@ -66,38 +74,38 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="270dp"
+            android:layout_marginTop="300dp"
             android:layout_marginStart="20dp"
             android:text="@string/traffic_accidents"
-            android:textSize="20sp"/>
+            android:textSize="23sp"/>
 
         <Button
-            android:id="@+id/buttonDecreaseTrafficE"
+            android:id="@+id/buttonDecreaseTraffic"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:layout_marginTop="255dp"
-            android:layout_marginStart="190dp"
+            android:layout_marginTop="285dp"
+            android:layout_marginStart="245dp"
             android:background="@color/whiteText"
             android:text="-"
             android:textSize="30sp"/>
 
         <TextView
-            android:id="@+id/textViewTrafficE"
+            android:id="@+id/textViewTraffic"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:layout_marginTop="255dp"
-            android:layout_marginStart="250dp"
+            android:layout_marginTop="285dp"
+            android:layout_marginStart="300dp"
             android:text="1"
             android:gravity="center"
             android:textSize="30sp"/>
 
 
         <Button
-            android:id="@+id/buttonIncreaseTrafficE"
+            android:id="@+id/buttonIncreaseTraffic"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:layout_marginTop="255dp"
-            android:layout_marginStart="310dp"
+            android:layout_marginTop="285dp"
+            android:layout_marginStart="355dp"
             android:background="@color/whiteText"
             android:text="+"
             android:textSize="30sp"/>
@@ -105,38 +113,38 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="330dp"
+            android:layout_marginTop="360dp"
             android:layout_marginStart="20dp"
             android:text="@string/pickpockets"
-            android:textSize="20sp"/>
+            android:textSize="23sp"/>
 
         <Button
-            android:id="@+id/buttonDecreasePickpocketsE"
+            android:id="@+id/buttonDecreasePickpockets"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:layout_marginTop="315dp"
-            android:layout_marginStart="190dp"
+            android:layout_marginTop="345dp"
+            android:layout_marginStart="245dp"
             android:background="@color/whiteText"
             android:text="-"
             android:textSize="30sp"/>
 
         <TextView
-            android:id="@+id/textViewPickpocketscE"
+            android:id="@+id/textViewPickpocketsc"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:layout_marginTop="315dp"
-            android:layout_marginStart="250dp"
+            android:layout_marginTop="345dp"
+            android:layout_marginStart="300dp"
             android:text="1"
             android:gravity="center"
             android:textSize="30sp"/>
 
 
         <Button
-            android:id="@+id/buttonIncreasePickpocketsE"
+            android:id="@+id/buttonIncreasePickpockets"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:layout_marginTop="315dp"
-            android:layout_marginStart="310dp"
+            android:layout_marginTop="345dp"
+            android:layout_marginStart="355dp"
             android:background="@color/whiteText"
             android:text="+"
             android:textSize="30sp"/>
@@ -144,38 +152,38 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="390dp"
+            android:layout_marginTop="420dp"
             android:layout_marginStart="20dp"
             android:text="@string/kidnapping"
-            android:textSize="20sp"/>
+            android:textSize="23sp"/>
 
         <Button
-            android:id="@+id/buttonDecreaseKidnappingE"
+            android:id="@+id/buttonDecreaseKidnapping"
             android:layout_width="49dp"
             android:layout_height="50dp"
-            android:layout_marginStart="190dp"
-            android:layout_marginTop="375dp"
+            android:layout_marginStart="245dp"
+            android:layout_marginTop="405dp"
             android:background="@color/whiteText"
             android:text="-"
             android:textSize="30sp" />
 
         <TextView
-            android:id="@+id/textViewKidnappingE"
+            android:id="@+id/textViewKidnapping"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:layout_marginTop="375dp"
-            android:layout_marginStart="250dp"
+            android:layout_marginTop="405dp"
+            android:layout_marginStart="300dp"
             android:text="1"
             android:gravity="center"
             android:textSize="30sp"/>
 
 
         <Button
-            android:id="@+id/buttonIncreaseKidnappingE"
+            android:id="@+id/buttonIncreaseKidnapping"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:layout_marginTop="375dp"
-            android:layout_marginStart="310dp"
+            android:layout_marginTop="405dp"
+            android:layout_marginStart="355dp"
             android:background="@color/whiteText"
             android:text="+"
             android:textSize="30sp"/>
@@ -184,38 +192,38 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="480dp"
             android:layout_marginStart="20dp"
-            android:layout_marginTop="450dp"
             android:text="@string/homeless"
-            android:textSize="20sp" />
+            android:textSize="23sp"/>
 
         <Button
-            android:id="@+id/buttonDecreaseHomelessE"
+            android:id="@+id/buttonDecreaseHomeless"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:layout_marginTop="435dp"
-            android:layout_marginStart="190dp"
+            android:layout_marginTop="465dp"
+            android:layout_marginStart="245dp"
             android:background="@color/whiteText"
             android:text="-"
             android:textSize="30sp"/>
 
         <TextView
-            android:id="@+id/textViewHomelessE"
+            android:id="@+id/textViewHomeless"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:layout_marginTop="435dp"
-            android:layout_marginStart="250dp"
+            android:layout_marginTop="465dp"
+            android:layout_marginStart="300dp"
             android:text="1"
             android:gravity="center"
             android:textSize="30sp"/>
 
 
         <Button
-            android:id="@+id/buttonIncreaseHomelessE"
+            android:id="@+id/buttonIncreaseHomeless"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:layout_marginTop="435dp"
-            android:layout_marginStart="310dp"
+            android:layout_marginTop="465dp"
+            android:layout_marginStart="355dp"
             android:background="@color/whiteText"
             android:text="+"
             android:textSize="30sp"/>
@@ -223,37 +231,37 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="510dp"
+            android:layout_marginTop="540dp"
             android:layout_marginStart="20dp"
             android:text="@string/public_transport"
-            android:textSize="20sp"/>
+            android:textSize="23sp"/>
 
         <Button
-            android:id="@+id/buttonDecreasePublicTransportE"
+            android:id="@+id/buttonDecreasePublicTransport"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:layout_marginTop="495dp"
-            android:layout_marginStart="190dp"
+            android:layout_marginTop="525dp"
+            android:layout_marginStart="245dp"
             android:background="@color/whiteText"
             android:text="-"
             android:textSize="30sp"/>
 
         <TextView
-            android:id="@+id/textViewPublicTransportE"
+            android:id="@+id/textViewPublicTransport"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:layout_marginTop="495dp"
-            android:layout_marginStart="250dp"
+            android:layout_marginTop="525dp"
+            android:layout_marginStart="300dp"
             android:text="1"
             android:gravity="center"
             android:textSize="30sp"/>
 
         <Button
-            android:id="@+id/buttonIncreasePublicTransportE"
+            android:id="@+id/buttonIncreasePublicTransport"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:layout_marginTop="495dp"
-            android:layout_marginStart="310dp"
+            android:layout_marginTop="525dp"
+            android:layout_marginStart="355dp"
             android:background="@color/whiteText"
             android:text="+"
             android:textSize="30sp"/>
@@ -261,37 +269,37 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="570dp"
             android:layout_marginStart="20dp"
+            android:layout_marginTop="600dp"
             android:text="@string/parties_events"
-            android:textSize="20sp"/>
+            android:textSize="23sp" />
 
         <Button
-            android:id="@+id/buttonDecreasePartiesE"
+            android:id="@+id/buttonDecreaseParties"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:layout_marginTop="555dp"
-            android:layout_marginStart="190dp"
+            android:layout_marginTop="585dp"
+            android:layout_marginStart="245dp"
             android:background="@color/whiteText"
             android:text="-"
             android:textSize="30sp"/>
 
         <TextView
-            android:id="@+id/textViewPartiesE"
+            android:id="@+id/textViewParties"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:layout_marginTop="555dp"
-            android:layout_marginStart="250dp"
+            android:layout_marginTop="585dp"
+            android:layout_marginStart="300dp"
             android:text="1"
             android:gravity="center"
             android:textSize="30sp"/>
 
         <Button
-            android:id="@+id/buttonIncreasePartiesE"
+            android:id="@+id/buttonIncreaseParties"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:layout_marginTop="555dp"
-            android:layout_marginStart="310dp"
+            android:layout_marginTop="585dp"
+            android:layout_marginStart="355dp"
             android:background="@color/whiteText"
             android:text="+"
             android:textSize="30sp"/>
@@ -299,37 +307,37 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="630dp"
+            android:layout_marginTop="660dp"
             android:layout_marginStart="20dp"
             android:text="@string/shops"
-            android:textSize="20sp"/>
+            android:textSize="23sp"/>
 
         <Button
-            android:id="@+id/buttonDecreaseShopsE"
+            android:id="@+id/buttonDecreaseShops"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:layout_marginTop="615dp"
-            android:layout_marginStart="190dp"
+            android:layout_marginTop="645dp"
+            android:layout_marginStart="245dp"
             android:background="@color/whiteText"
             android:text="-"
             android:textSize="30sp"/>
 
         <TextView
-            android:id="@+id/textViewShopsE"
+            android:id="@+id/textViewShops"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:layout_marginTop="615dp"
-            android:layout_marginStart="250dp"
+            android:layout_marginTop="645dp"
+            android:layout_marginStart="300dp"
             android:text="1"
             android:gravity="center"
             android:textSize="30sp"/>
 
         <Button
-            android:id="@+id/buttonIncreaseShopsE"
+            android:id="@+id/buttonIncreaseShops"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:layout_marginTop="615dp"
-            android:layout_marginStart="310dp"
+            android:layout_marginTop="645dp"
+            android:layout_marginStart="355dp"
             android:background="@color/whiteText"
             android:text="+"
             android:textSize="30sp"/>
@@ -337,37 +345,37 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="690dp"
+            android:layout_marginTop="720dp"
             android:layout_marginStart="20dp"
             android:text="@string/car_thefts"
-            android:textSize="20sp"/>
+            android:textSize="23sp"/>
 
         <Button
-            android:id="@+id/buttonDecreaseCarTheftsE"
+            android:id="@+id/buttonDecreaseCarThefts"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:layout_marginTop="675dp"
-            android:layout_marginStart="190dp"
+            android:layout_marginTop="705dp"
+            android:layout_marginStart="245dp"
             android:background="@color/whiteText"
             android:text="-"
             android:textSize="30sp"/>
 
         <TextView
-            android:id="@+id/textViewCarTheftsE"
+            android:id="@+id/textViewCarThefts"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:layout_marginTop="675dp"
-            android:layout_marginStart="250dp"
+            android:layout_marginTop="705dp"
+            android:layout_marginStart="300dp"
             android:text="1"
             android:gravity="center"
             android:textSize="30sp"/>
 
         <Button
-            android:id="@+id/buttonIncreaseCarTheftsE"
+            android:id="@+id/buttonIncreaseCarThefts"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:layout_marginTop="675dp"
-            android:layout_marginStart="310dp"
+            android:layout_marginTop="705dp"
+            android:layout_marginStart="355dp"
             android:background="@color/whiteText"
             android:text="+"
             android:textSize="30sp"/>
@@ -375,109 +383,87 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="750dp"
+            android:layout_marginTop="780dp"
             android:layout_marginStart="20dp"
             android:text="@string/kids_activities"
-            android:textSize="20sp"/>
+            android:textSize="23sp"/>
 
         <Button
-            android:id="@+id/buttonDecreaseKidsE"
+            android:id="@+id/buttonDecreaseKids"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:layout_marginTop="735dp"
-            android:layout_marginStart="190dp"
+            android:layout_marginTop="765dp"
+            android:layout_marginStart="245dp"
             android:background="@color/whiteText"
             android:text="-"
             android:textSize="30sp"/>
 
         <TextView
-            android:id="@+id/textViewKidsE"
+            android:id="@+id/textViewKids"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:layout_marginTop="735dp"
-            android:layout_marginStart="250dp"
+            android:layout_marginTop="765dp"
+            android:layout_marginStart="300dp"
             android:text="1"
             android:gravity="center"
             android:textSize="30sp"/>
 
         <Button
-            android:id="@+id/buttonIncreaseKidsE"
+            android:id="@+id/buttonIncreaseKids"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:layout_marginTop="735dp"
-            android:layout_marginStart="310dp"
+            android:layout_marginTop="765dp"
+            android:layout_marginStart="355dp"
             android:background="@color/whiteText"
             android:text="+"
             android:textSize="30sp"/>
-
 
         <TextView
             android:layout_width="340dp"
             android:layout_height="30dp"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="830dp"
+            android:textSize="25sp"
+            android:layout_marginTop="825dp"
             android:layout_marginRight="50dp"
-            android:gravity="center"
-            android:text="@string/edit_comment"
-            android:textSize="25sp" />
-
-        <android.support.v7.widget.CardView
-            android:layout_width="90dp"
-            android:layout_height="62dp"
-            app:cardCornerRadius="30dp"
-            android:layout_gravity="center"
-            android:layout_marginLeft="140dp"
-            android:background="@color/buttons"
-            app:cardBackgroundColor="@color/buttons"
-            android:layout_marginTop="360dp">
-
-            <Button
-
-                style="?android:textAppearanceSmall"
-                android:layout_width="60dp"
-                android:layout_height="56dp"
-                android:layout_gravity="center"
-                android:id="@+id/buttonDeletePlace"
-                android:background="@color/buttons"
-                android:text="DELETE"
-                android:textSize="16sp"/>
-
-        </android.support.v7.widget.CardView>
+            android:layout_gravity="center_horizontal"
+            android:text="ADD COMMENT"
+            android:gravity="center"/>
 
         <EditText
-            android:layout_width="260dp"
+            android:layout_width="280dp"
             android:layout_height="80dp"
-            android:layout_marginTop="900dp"
+            android:layout_marginTop="855dp"
             android:layout_marginRight="50dp"
             android:layout_gravity="center_horizontal"
             android:gravity="center"
-            android:id="@+id/editCommentE"/>
+            android:id="@+id/editComment"/>
 
         <android.support.v7.widget.CardView
             android:layout_width="90dp"
             android:layout_height="62dp"
             app:cardCornerRadius="30dp"
             android:layout_gravity="center"
-            android:layout_marginLeft="140dp"
+            android:layout_marginLeft="160dp"
             android:background="@color/buttons"
             app:cardBackgroundColor="@color/buttons"
-            android:layout_marginTop="450dp">
+            android:layout_marginTop="430dp">
 
             <Button
 
                 style="?android:textAppearanceSmall"
                 android:layout_width="60dp"
-                android:layout_height="56dp"
+                android:layout_height="60dp"
                 android:layout_gravity="center"
-                android:id="@+id/buttonAddPlaceToDBE"
+                android:id="@+id/buttonAddPlaceToDB"
                 android:background="@color/buttons"
-                android:text="@string/save"
-                android:textSize="24sp"/>
+                android:text="@string/add"
+                android:textSize="30sp"/>
 
         </android.support.v7.widget.CardView>
+
 
 
     </FrameLayout>
+
 
 
 </ScrollView>

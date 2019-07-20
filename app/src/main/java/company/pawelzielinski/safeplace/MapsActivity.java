@@ -6,8 +6,10 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -19,6 +21,8 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import company.pawelzielinski.safeplace.Fragments.ADDPlace;
+import company.pawelzielinski.safeplace.Fragments.EditPlace;
+import company.pawelzielinski.safeplace.Fragments.EditUsername;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
@@ -28,7 +32,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     private Button buttonIncreaseCircle, buttonDecreaseCircle, buttonSaveArea;
 
-    private LatLng mCircleCenter = new LatLng(0, 0);
+    private String whichF , key;
+    private LatLng mCircleCenter; //= new LatLng(0, 0);
     private int circleRadius;
     private Boolean isSafe;
     private String comment;
@@ -45,7 +50,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         Intent intent = getIntent();
 
-        isSafe = intent.getBooleanExtra("isSafe", true);
+        isSafe =  intent.getBooleanExtra("isSafe", true);
         traffic =  intent.getIntExtra("traffic", 1);
         pickpockets =  intent.getIntExtra("pickpockets", 1);
         kidnapping =  intent.getIntExtra("kidnapping", 1);
@@ -56,8 +61,16 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         carthefts =  intent.getIntExtra("carthefts", 1);
         kids =  intent.getIntExtra("kids", 1);
         circleRadius = intent.getIntExtra("circleRadius",1);
-
+        whichF = intent.getStringExtra("whichF");
         comment = intent.getStringExtra("comment");
+
+        if(whichF.equals("edit")){
+            key = intent.getStringExtra("key");
+        }
+
+            mCircleCenter = new LatLng(intent.getDoubleExtra("lat", 1.0),
+                    intent.getDoubleExtra("long", 1.0));
+            circleRadius = intent.getIntExtra("circle", 250);
 
         circleOptions = setOpions(isSafe);
 
@@ -99,7 +112,12 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 @Override
                 public void onClick(View v) {
 
-                    startAdding();
+                    if(whichF.equals("add")){
+                        startAdding();
+                    }else {
+                        startEditing();
+                    }
+
                 }
             });
 
@@ -113,7 +131,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap.setOnMapLongClickListener(new GoogleMap.OnMapLongClickListener() {
             @Override
             public void onMapLongClick(LatLng latLng) {
+
                 mCircleCenter = latLng;
+
+
                 MarkerOptions markerOptions = new MarkerOptions();
 
                 // Setting the position for the marker
@@ -147,15 +168,20 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             }
         });*/
         // Add a marker in Sydney and move the camera
-        LatLng sydney = new LatLng(0, 0);
+       // LatLng sydney = new LatLng(0, 0);
+        mMap.addMarker(new MarkerOptions().position(mCircleCenter));
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(mCircleCenter));
 
-        mMap.addMarker(new MarkerOptions().position(sydney));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+
     }
 
     @Override
     public void onBackPressed() {
-        startAdding();
+        if(whichF.equals("add")){
+            startAdding();
+        }else {
+            startEditing();
+        }
     }
 
     public CircleOptions setOpions(boolean isSafe){
@@ -199,5 +225,33 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         ((ADDPlace) add).wasOpened = true;
         add.setArguments(bundle);
         fm.beginTransaction().add(R.id.fMaps, add).commit();
+
+    }
+
+    private void startEditing(){
+        Bundle bundle = new Bundle();
+        bundle.putString("comment", comment);
+        bundle.putInt("traffic", traffic);
+        bundle.putInt("pickpockets", pickpockets);
+        bundle.putInt("kidnapping", kidnapping);
+        bundle.putInt("homeless", homeless);
+        bundle.putInt("publicTransport", publicTransport);
+        bundle.putInt("parties", parties);
+        bundle.putInt("shops", shops);
+        bundle.putInt("carthefts", carthefts);
+        bundle.putInt("kids", kids);
+        bundle.putDouble("latitude", mCircleCenter.latitude);
+        bundle.putDouble("longitude", mCircleCenter.longitude);
+        bundle.putInt("circleRadius", circleRadius);
+        bundle.putBoolean("isSafe", isSafe);
+        bundle.putString("key", key);
+        Log.i("LAT", mCircleCenter.latitude + "  " +mCircleCenter.longitude);
+        FragmentManager fm = getSupportFragmentManager();
+        Fragment add = new EditPlace();
+        ((EditPlace) add).wasOpened = true;
+        ((EditPlace) add).saved = true;
+        add.setArguments(bundle);
+        fm.beginTransaction().add(R.id.fMaps, add).commit();
+
     }
 }

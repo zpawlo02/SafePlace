@@ -1,8 +1,10 @@
 package company.pawelzielinski.safeplace.Fragments;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -24,6 +26,8 @@ import javax.annotation.Nullable;
 
 import company.pawelzielinski.safeplace.Adapters.PlacesListAdapter;
 import company.pawelzielinski.safeplace.Classes.Place;
+import company.pawelzielinski.safeplace.MainMenu;
+import company.pawelzielinski.safeplace.MapsActivity;
 import company.pawelzielinski.safeplace.R;
 
 public class MyPlaces extends Fragment {
@@ -34,6 +38,7 @@ public class MyPlaces extends Fragment {
     private ArrayList<String> placesKeys = new ArrayList<>();
     private PlacesListAdapter adapter;
     private Context context;
+    public Boolean wasOpened = false;
 
     public MyPlaces() {
         // Required empty public constructor
@@ -59,6 +64,8 @@ public class MyPlaces extends Fragment {
 
         listView = (ListView) view.findViewById(R.id.listViewMyPlaces);
 
+      //  wasOpened = getArguments().getBoolean("wasOp");
+
         updatePlaces(savedInstanceState);
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -68,10 +75,22 @@ public class MyPlaces extends Fragment {
                 b.putString("key", placesKeys.get(position));
                 EditPlace editPlace = new EditPlace();
                 editPlace.setArguments(b);
-                getActivity().getSupportFragmentManager()
-                        .beginTransaction()
-                        .add(R.id.drawer_layout, editPlace)
-                        .addToBackStack(null).commit();
+
+                if(wasOpened == false){
+                    Log.i("WASPOPPP", wasOpened.toString());
+                    getActivity().getSupportFragmentManager()
+                            .beginTransaction()
+                            .replace(R.id.drawer_layout, editPlace)
+                            .addToBackStack(null).commit();
+                }else {
+                    editPlace.saved = true;
+                    Log.i("WASPOPPP", wasOpened.toString());
+                    getActivity().getSupportFragmentManager()
+                            .beginTransaction()
+                            .replace(R.id.fMaps, editPlace)
+                            .addToBackStack(null).commit();
+                }
+
             }
         });
 
@@ -81,8 +100,14 @@ public class MyPlaces extends Fragment {
             @Override
             public boolean onKey(View v, int keyCode, KeyEvent event) {
                 if(keyCode == android.view.KeyEvent.KEYCODE_BACK){
-                    getFragmentManager().beginTransaction().remove(MyPlaces.this).commit();
-                    return true;
+                        getFragmentManager().beginTransaction().remove(MyPlaces.this).commit();
+                        if(wasOpened == true){
+                            getActivity().finish();
+                            Intent intent = new Intent(context, MainMenu.class);
+                            getActivity().startActivity(intent);
+                        }
+
+                   return true;
                 }
                 return false;
             }

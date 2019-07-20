@@ -60,7 +60,7 @@
                     android:layout_marginTop="160dp"
                     android:id="@+id/buttonOpenMaps"
                     android:background="@drawable/ic_addplace_map"
-                    android:layout_gravity="center_horizontal"/>
+                    android:layout_gravity="center_horizontal" />
 
                 <TextView
                     android:layout_width="wrap_content"

@@ -1,20 +1,24 @@
 package company.pawelzielinski.safeplace.Fragments;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.AttributeSet;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.RadioButton;
+import android.widget.Toast;
 
 import com.google.firebase.firestore.DocumentChange;
 import com.google.firebase.firestore.EventListener;
@@ -27,7 +31,9 @@ import java.util.ArrayList;
 import javax.annotation.Nullable;
 
 import company.pawelzielinski.safeplace.Adapters.PlacesListAdapter;
+import company.pawelzielinski.safeplace.Classes.EditTextV2;
 import company.pawelzielinski.safeplace.Classes.Place;
+import company.pawelzielinski.safeplace.MainMenu;
 import company.pawelzielinski.safeplace.R;
 
 
@@ -35,7 +41,7 @@ public class ShowPlaces extends Fragment {
 
     private View view;
     private ListView listView;
-    private EditText editTextCity;
+    private EditTextV2 editTextCity;
     private RadioButton radioButtonAll, radioButtonSafe, radioButtonNotSafe;
     private String city = "";
     private int startAtNumber = 1, stopAtNumber = 5, whichPlaces = 1;
@@ -43,6 +49,8 @@ public class ShowPlaces extends Fragment {
     private ArrayList<String> placesKeys = new ArrayList<>();
     private Context context;
     private PlacesListAdapter adapter;
+    private FirebaseFirestore db;
+    private Button buttonSearch;
     public boolean wasOpened = false;
 
 
@@ -69,12 +77,15 @@ public class ShowPlaces extends Fragment {
 
         listView = (ListView) view.findViewById(R.id.listViewPlaces);
 
-        editTextCity = (EditText) view.findViewById(R.id.editTextCity);
+        editTextCity =  view.findViewById(R.id.editTextCity);
+
         editTextCity.setText("");
 
         radioButtonAll = (RadioButton) view.findViewById(R.id.radioAllS);
         radioButtonSafe = (RadioButton) view.findViewById(R.id.radioSafeS);
         radioButtonNotSafe = (RadioButton) view.findViewById(R.id.radioNotSafeS);
+
+        buttonSearch = (Button) view.findViewById(R.id.buttonSearch);
 
         // Needs to call MapsInitializer before doing any CameraUpdateFactory calls
 
@@ -85,13 +96,16 @@ public class ShowPlaces extends Fragment {
         }else if(whichPlaces == 3){
             radioButtonNotSafe.setChecked(true);
         }
-
+        db = FirebaseFirestore.getInstance();
+        db.enableNetwork();
         updatePlaces(savedInstanceState);
 
         radioButtonAll.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 whichPlaces = 1;
+                db = FirebaseFirestore.getInstance();
+                db.enableNetwork();
                 updatePlaces(savedInstanceState);
             }
         });
@@ -100,6 +114,8 @@ public class ShowPlaces extends Fragment {
             @Override
             public void onClick(View v) {
                 whichPlaces = 2;
+                db = FirebaseFirestore.getInstance();
+                db.enableNetwork();
                 updatePlaces(savedInstanceState);
             }
         });
@@ -108,29 +124,24 @@ public class ShowPlaces extends Fragment {
             @Override
             public void onClick(View v) {
                 whichPlaces = 3;
+                db = FirebaseFirestore.getInstance();
+                db.enableNetwork();
                 updatePlaces(savedInstanceState);
             }
         });
 
-        editTextCity.addTextChangedListener(new TextWatcher() {
+        buttonSearch.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
+            public void onClick(View v) {
+                db = FirebaseFirestore.getInstance();
+                db.enableNetwork();
                 updatePlaces(savedInstanceState);
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-
+                editTextCity.clearFocus();
             }
         });
+
 
         //LISTENERS
-
 
         view.setFocusableInTouchMode(true);
         view.requestFocus();
@@ -138,6 +149,10 @@ public class ShowPlaces extends Fragment {
             @Override
             public boolean onKey(View v, int keyCode, KeyEvent event) {
                 if(keyCode == android.view.KeyEvent.KEYCODE_BACK){
+                    editTextCity.clearFocus();
+                    editTextCity.setText("");
+                    Log.i("TTTT", "DDDDDDDDD");
+                    db.disableNetwork();
                     getFragmentManager().beginTransaction().remove(ShowPlaces.this).commit();
                     return true;
                 }
@@ -188,7 +203,7 @@ private void updatePlaces(final Bundle bundle){
     places.clear();
     placesKeys.clear();
 
-    FirebaseFirestore db = FirebaseFirestore.getInstance();
+
   //  DocumentReference ref = db.collection("places").document();
 
 
@@ -199,7 +214,7 @@ private void updatePlaces(final Bundle bundle){
     //startAt(startAtNumber).endAt(stopAtNumber).
     if (city != "" && whichPlaces == 1) {
 
-        db.enableNetwork();
+        //db.enableNetwork();
 
         db.collection("places").whereEqualTo("city",city).addSnapshotListener(new EventListener<QuerySnapshot>() {
             @Override
@@ -218,12 +233,13 @@ private void updatePlaces(final Bundle bundle){
                 adapter.notifyDataSetChanged();
             }
         });
-        db.disableNetwork();
+
+      //  db.disableNetwork();
 
 
     } else if (city != "" && whichPlaces == 2) {
 
-        db.enableNetwork();
+      //  db.enableNetwork();
 
         db.collection("places").whereEqualTo("city",city).whereEqualTo("isSafe",true).addSnapshotListener(new EventListener<QuerySnapshot>() {
             @Override
@@ -243,11 +259,11 @@ private void updatePlaces(final Bundle bundle){
             }
         });
 
-        db.disableNetwork();
+      //  db.disableNetwork();
 
     } else if (city != "" && whichPlaces == 3) {
 
-        db.enableNetwork();
+      //  db.enableNetwork();
 
         db.collection("places").whereEqualTo("city",city).whereEqualTo("isSafe",false).addSnapshotListener(new EventListener<QuerySnapshot>() {
             @Override
@@ -266,11 +282,11 @@ private void updatePlaces(final Bundle bundle){
                 adapter.notifyDataSetChanged();
             }
         });
-        db.disableNetwork();
+      //  db.disableNetwork();
 
     } else if (city.equals("") && whichPlaces == 1) {
 
-        db.enableNetwork();
+        //db.enableNetwork();
 
         db.collection("places").addSnapshotListener(new EventListener<QuerySnapshot>() {
             @Override
@@ -289,12 +305,12 @@ private void updatePlaces(final Bundle bundle){
                 adapter.notifyDataSetChanged();
             }
         });
-        db.disableNetwork();
+       // db.disableNetwork();
 
 
     } else if (city.equals("") && whichPlaces == 2) {
 
-        db.enableNetwork();
+       // db.enableNetwork();
 
         db.collection("places").whereEqualTo("isSafe", true).addSnapshotListener(new EventListener<QuerySnapshot>() {
             @Override
@@ -314,12 +330,12 @@ private void updatePlaces(final Bundle bundle){
             }
         });
 
-        db.disableNetwork();
+     //   db.disableNetwork();
 
 
     } else if (city.equals("") && whichPlaces == 3) {
 
-        db.enableNetwork();
+      //  db.enableNetwork();
 
         db.collection("places").whereEqualTo("isSafe", false).addSnapshotListener(new EventListener<QuerySnapshot>() {
             @Override
@@ -338,7 +354,7 @@ private void updatePlaces(final Bundle bundle){
                 adapter.notifyDataSetChanged();
             }
         });
-        db.disableNetwork();
+     //   db.disableNetwork();
 
 
     }

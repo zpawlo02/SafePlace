@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.RadioButton;
@@ -42,7 +43,8 @@ public class topPlaces extends Fragment {
     private ArrayList<String> placesKeys = new ArrayList<>();
     private PlacesListAdapter adapter;
     private Context context;
-
+    private FirebaseFirestore db;
+    private Button buttonSearch;
     public boolean wasOpened = false;
 
     public topPlaces() {
@@ -76,6 +78,8 @@ public class topPlaces extends Fragment {
         radioButtonSafe = (RadioButton) view.findViewById(R.id.radioTopSafeS);
         radioButtonNotSafe = (RadioButton) view.findViewById(R.id.radioTopNotSafeS);
 
+        buttonSearch = (Button) view.findViewById(R.id.buttonSearchTop);
+
         // Needs to call MapsInitializer before doing any CameraUpdateFactory calls
 
         if (whichPlaces == 1){
@@ -83,13 +87,16 @@ public class topPlaces extends Fragment {
         }else {
             radioButtonNotSafe.setChecked(true);
         }
-
+        db = FirebaseFirestore.getInstance();
+        db.enableNetwork();
         updatePlaces(savedInstanceState);
 
         radioButtonSafe.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 whichPlaces = 1;
+                db = FirebaseFirestore.getInstance();
+                db.enableNetwork();
                 updatePlaces(savedInstanceState);
             }
         });
@@ -98,24 +105,19 @@ public class topPlaces extends Fragment {
             @Override
             public void onClick(View v) {
                 whichPlaces = 2;
+                db = FirebaseFirestore.getInstance();
+                db.enableNetwork();
                 updatePlaces(savedInstanceState);
             }
         });
 
-        editTextTopCity.addTextChangedListener(new TextWatcher() {
+        buttonSearch.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
+            public void onClick(View v) {
+                db = FirebaseFirestore.getInstance();
+                db.enableNetwork();
                 updatePlaces(savedInstanceState);
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-
+                editTextTopCity.clearFocus();
             }
         });
 
@@ -143,6 +145,7 @@ public class topPlaces extends Fragment {
             @Override
             public boolean onKey(View v, int keyCode, KeyEvent event) {
                 if(keyCode == android.view.KeyEvent.KEYCODE_BACK){
+                    db.disableNetwork();
                     getFragmentManager().beginTransaction().remove(topPlaces.this).commit();
                     return true;
                 }
@@ -174,7 +177,6 @@ public class topPlaces extends Fragment {
         places.clear();
         placesKeys.clear();
 
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
 
    /* database = FirebaseDatabase.getInstance();
     DatabaseReference ref = database.getReference("place");*/

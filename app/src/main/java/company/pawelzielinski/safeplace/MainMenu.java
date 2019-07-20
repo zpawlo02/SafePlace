@@ -34,7 +34,7 @@ import company.pawelzielinski.safeplace.Fragments.topPlaces;
 public class MainMenu extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-   private  TextView emailView, userUsername;
+   private TextView emailView, userUsername;
    private FirebaseAuth auth;
    private FirebaseUser firebaseUser;
    private  static long back_pressed;
@@ -119,7 +119,7 @@ public class MainMenu extends AppCompatActivity
             public void onClick(View v) {
                 FragmentManager fm = getSupportFragmentManager();
                 Fragment add = new ADDPlace();
-                fm.beginTransaction().add(R.id.drawer_layout, add).addToBackStack(null).commit();
+                fm.beginTransaction().add(R.id.drawer_layout, add).commit();
             }
         });
 
@@ -128,7 +128,7 @@ public class MainMenu extends AppCompatActivity
             public void onClick(View v) {
                 FragmentManager fm = getSupportFragmentManager();
                 Fragment add = new ShowPlaces();
-                fm.beginTransaction().add(R.id.drawer_layout, add).addToBackStack(null).commit();
+                fm.beginTransaction().add(R.id.drawer_layout, add).commit();
             }
         });
 
@@ -137,7 +137,7 @@ public class MainMenu extends AppCompatActivity
             public void onClick(View v) {
                 FragmentManager fm = getSupportFragmentManager();
                 Fragment add = new topPlaces();
-                fm.beginTransaction().add(R.id.drawer_layout, add).addToBackStack(null).commit();
+                fm.beginTransaction().add(R.id.drawer_layout, add).commit();
             }
         });
 
@@ -146,7 +146,8 @@ public class MainMenu extends AppCompatActivity
             public void onClick(View v) {
                 FragmentManager fm = getSupportFragmentManager();
                 Fragment add = new MyPlaces();
-                fm.beginTransaction().add(R.id.drawer_layout, add).addToBackStack(null).commit();
+                ((MyPlaces) add).wasOpened = false;
+                fm.beginTransaction().add(R.id.drawer_layout, add).commit();
             }
         });
 
@@ -166,13 +167,15 @@ public class MainMenu extends AppCompatActivity
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
-            if(back_pressed + 2000 > System.currentTimeMillis()){
-                super.onBackPressed();
-                finish();
-            }else {
-                Toast.makeText(getApplicationContext(), "Press once again to exit", Toast.LENGTH_SHORT).show();
-            }
-            back_pressed = System.currentTimeMillis();
+                if(back_pressed + 2000 > System.currentTimeMillis()){
+                    super.onBackPressed();
+                    finishAffinity();
+                }else {
+                    Toast.makeText(getApplicationContext(), "Press once again to exit", Toast.LENGTH_SHORT).show();
+                }
+                back_pressed = System.currentTimeMillis();
+
+
 
         }
     }

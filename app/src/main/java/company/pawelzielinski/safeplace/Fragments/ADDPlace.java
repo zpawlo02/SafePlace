@@ -165,8 +165,10 @@ public class ADDPlace extends Fragment {
                 intent.putExtra("comment", comment);
                 intent.putExtra("isSafe", isSafe);
                 intent.putExtra("circleRadius",circleRadius);
+                intent.putExtra("whichF", "add");
+
                 getActivity().startActivity(intent);
-                getActivity().onBackPressed();
+                getFragmentManager().beginTransaction().remove(ADDPlace.this).commit();
 
             }
         });
@@ -177,13 +179,15 @@ public class ADDPlace extends Fragment {
             @Override
             public boolean onKey(View v, int keyCode, KeyEvent event) {
                 if(keyCode == android.view.KeyEvent.KEYCODE_BACK){
+
                     if(wasOpened == true){
+                      //  getActivity().finish();
                         Intent intent = new Intent(context, MainMenu.class);
                         getActivity().startActivity(intent);
-                        getActivity().onBackPressed();
                     }else {
-                        getFragmentManager().popBackStackImmediate();
-                    }
+                        Log.i("HAHAH", "DSDSDS");
+                        getFragmentManager().beginTransaction().remove(ADDPlace.this).commit();
+                   }
 
 
                     return true;

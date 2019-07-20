@@ -30,7 +30,7 @@ public class Place {
     public double longT;
     public double rating;
 
-    public LatLng latLng;
+    //public LatLng latLng;
     public String comment;
 
     public String country, city;
@@ -101,9 +101,10 @@ public class Place {
         this.rating = rating;
         this.country = adresses.get(0).getCountryName();
         this.city = adresses.get(0).getLocality();
+        this.adress = adresses.get(0).getAddressLine(0);
         this.comment = comment;
         this.userId = userId;
-        this.adress = adresses.get(0).getAddressLine(0);
+
     }
 
     public Place(){
