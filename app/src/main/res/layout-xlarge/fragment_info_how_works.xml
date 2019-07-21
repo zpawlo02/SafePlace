@@ -8,15 +8,15 @@
     android:clickable="true">
 
     <ScrollView
-        android:layout_width="340dp"
+        android:layout_width="600dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal">
 
-            <TextView
-                android:textSize="15sp"
-                android:layout_width="340dp"
-                android:layout_height="match_parent"
-                android:text="@string/info_howworkss" />
+        <TextView
+            android:textSize="28sp"
+            android:layout_width="600dp"
+            android:layout_height="match_parent"
+            android:text="@string/info_howworkss" />
 
     </ScrollView>
 

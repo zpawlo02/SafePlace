@@ -55,9 +55,9 @@
             android:textSize="34sp" />
 
         <Button
-            android:layout_width="200dp"
-            android:layout_height="100dp"
-            android:layout_marginTop="185dp"
+            android:layout_width="230dp"
+            android:layout_height="120dp"
+            android:layout_marginTop="215dp"
             android:id="@+id/buttonOpenMaps"
             android:background="@drawable/ic_addplace_map"
             android:layout_gravity="center_horizontal" />
@@ -65,17 +65,17 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="300dp"
+            android:layout_marginTop="360dp"
             android:text="@string/possibility_of_amenities_or_dangers"
             android:layout_gravity="center_horizontal"
-            android:textSize="23sp" />
+            android:textSize="32sp" />
 
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="370dp"
-            android:layout_marginStart="20dp"
+            android:layout_marginTop="455dp"
+            android:layout_marginStart="80dp"
             android:text="@string/traffic_accidents"
             android:textSize="23sp"/>
 
@@ -83,8 +83,8 @@
             android:id="@+id/buttonDecreaseTraffic"
             android:layout_width="70dp"
             android:layout_height="70dp"
-            android:layout_marginTop="355dp"
-            android:layout_marginStart="315dp"
+            android:layout_marginTop="435dp"
+            android:layout_marginStart="365dp"
             android:background="@color/whiteText"
             android:text="-"
             android:textSize="30sp"/>
@@ -93,8 +93,8 @@
             android:id="@+id/textViewTraffic"
             android:layout_width="70dp"
             android:layout_height="70dp"
-            android:layout_marginTop="355dp"
-            android:layout_marginStart="400dp"
+            android:layout_marginTop="435dp"
+            android:layout_marginStart="450dp"
             android:text="1"
             android:gravity="center"
             android:textSize="30sp"/>
@@ -104,8 +104,8 @@
             android:id="@+id/buttonIncreaseTraffic"
             android:layout_width="70dp"
             android:layout_height="70dp"
-            android:layout_marginTop="355dp"
-            android:layout_marginStart="475dp"
+            android:layout_marginTop="435dp"
+            android:layout_marginStart="535dp"
             android:background="@color/whiteText"
             android:text="+"
             android:textSize="30sp"/>
@@ -113,8 +113,8 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="430dp"
-            android:layout_marginStart="20dp"
+            android:layout_marginTop="545dp"
+            android:layout_marginStart="80dp"
             android:text="@string/pickpockets"
             android:textSize="23sp"/>
 
@@ -122,8 +122,8 @@
             android:id="@+id/buttonDecreasePickpockets"
             android:layout_width="70dp"
             android:layout_height="70dp"
-            android:layout_marginTop="425dp"
-            android:layout_marginStart="245dp"
+            android:layout_marginTop="515dp"
+            android:layout_marginStart="365dp"
             android:background="@color/whiteText"
             android:text="-"
             android:textSize="30sp"/>
@@ -132,8 +132,8 @@
             android:id="@+id/textViewPickpocketsc"
             android:layout_width="70dp"
             android:layout_height="70dp"
-            android:layout_marginTop="345dp"
-            android:layout_marginStart="300dp"
+            android:layout_marginTop="515dp"
+            android:layout_marginStart="450dp"
             android:text="1"
             android:gravity="center"
             android:textSize="30sp"/>
@@ -143,8 +143,8 @@
             android:id="@+id/buttonIncreasePickpockets"
             android:layout_width="70dp"
             android:layout_height="70dp"
-            android:layout_marginTop="345dp"
-            android:layout_marginStart="355dp"
+            android:layout_marginTop="515dp"
+            android:layout_marginStart="535dp"
             android:background="@color/whiteText"
             android:text="+"
             android:textSize="30sp"/>
@@ -152,8 +152,8 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="420dp"
-            android:layout_marginStart="20dp"
+            android:layout_marginTop="615dp"
+            android:layout_marginStart="80dp"
             android:text="@string/kidnapping"
             android:textSize="23sp"/>
 
@@ -161,8 +161,8 @@
             android:id="@+id/buttonDecreaseKidnapping"
             android:layout_width="70dp"
             android:layout_height="70dp"
-            android:layout_marginStart="245dp"
-            android:layout_marginTop="405dp"
+            android:layout_marginStart="365dp"
+            android:layout_marginTop="595dp"
             android:background="@color/whiteText"
             android:text="-"
             android:textSize="30sp" />
@@ -171,8 +171,8 @@
             android:id="@+id/textViewKidnapping"
             android:layout_width="70dp"
             android:layout_height="70dp"
-            android:layout_marginTop="405dp"
-            android:layout_marginStart="300dp"
+            android:layout_marginTop="595dp"
+            android:layout_marginStart="450dp"
             android:text="1"
             android:gravity="center"
             android:textSize="30sp"/>
@@ -182,8 +182,8 @@
             android:id="@+id/buttonIncreaseKidnapping"
             android:layout_width="70dp"
             android:layout_height="70dp"
-            android:layout_marginTop="405dp"
-            android:layout_marginStart="355dp"
+            android:layout_marginTop="595dp"
+            android:layout_marginStart="535dp"
             android:background="@color/whiteText"
             android:text="+"
             android:textSize="30sp"/>
@@ -192,8 +192,8 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="480dp"
-            android:layout_marginStart="20dp"
+            android:layout_marginTop="695dp"
+            android:layout_marginStart="80dp"
             android:text="@string/homeless"
             android:textSize="23sp"/>
 
@@ -201,8 +201,8 @@
             android:id="@+id/buttonDecreaseHomeless"
             android:layout_width="70dp"
             android:layout_height="70dp"
-            android:layout_marginTop="465dp"
-            android:layout_marginStart="245dp"
+            android:layout_marginTop="675dp"
+            android:layout_marginStart="365dp"
             android:background="@color/whiteText"
             android:text="-"
             android:textSize="30sp"/>
@@ -211,8 +211,8 @@
             android:id="@+id/textViewHomeless"
             android:layout_width="70dp"
             android:layout_height="70dp"
-            android:layout_marginTop="465dp"
-            android:layout_marginStart="300dp"
+            android:layout_marginTop="675dp"
+            android:layout_marginStart="450dp"
             android:text="1"
             android:gravity="center"
             android:textSize="30sp"/>
@@ -222,8 +222,8 @@
             android:id="@+id/buttonIncreaseHomeless"
             android:layout_width="70dp"
             android:layout_height="70dp"
-            android:layout_marginTop="465dp"
-            android:layout_marginStart="355dp"
+            android:layout_marginTop="675dp"
+            android:layout_marginStart="535dp"
             android:background="@color/whiteText"
             android:text="+"
             android:textSize="30sp"/>
@@ -231,8 +231,8 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="540dp"
-            android:layout_marginStart="20dp"
+            android:layout_marginTop="775dp"
+            android:layout_marginStart="80dp"
             android:text="@string/public_transport"
             android:textSize="23sp"/>
 
@@ -240,8 +240,8 @@
             android:id="@+id/buttonDecreasePublicTransport"
             android:layout_width="70dp"
             android:layout_height="70dp"
-            android:layout_marginTop="525dp"
-            android:layout_marginStart="245dp"
+            android:layout_marginTop="755dp"
+            android:layout_marginStart="365dp"
             android:background="@color/whiteText"
             android:text="-"
             android:textSize="30sp"/>
@@ -250,8 +250,8 @@
             android:id="@+id/textViewPublicTransport"
             android:layout_width="70dp"
             android:layout_height="70dp"
-            android:layout_marginTop="525dp"
-            android:layout_marginStart="300dp"
+            android:layout_marginTop="755dp"
+            android:layout_marginStart="450dp"
             android:text="1"
             android:gravity="center"
             android:textSize="30sp"/>
@@ -260,8 +260,8 @@
             android:id="@+id/buttonIncreasePublicTransport"
             android:layout_width="70dp"
             android:layout_height="70dp"
-            android:layout_marginTop="525dp"
-            android:layout_marginStart="355dp"
+            android:layout_marginTop="755dp"
+            android:layout_marginStart="535dp"
             android:background="@color/whiteText"
             android:text="+"
             android:textSize="30sp"/>
@@ -269,8 +269,8 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="600dp"
+            android:layout_marginStart="80dp"
+            android:layout_marginTop="855dp"
             android:text="@string/parties_events"
             android:textSize="23sp" />
 
@@ -278,18 +278,18 @@
             android:id="@+id/buttonDecreaseParties"
             android:layout_width="70dp"
             android:layout_height="70dp"
-            android:layout_marginTop="585dp"
-            android:layout_marginStart="245dp"
+            android:layout_marginStart="365dp"
+            android:layout_marginTop="835dp"
             android:background="@color/whiteText"
             android:text="-"
-            android:textSize="30sp"/>
+            android:textSize="30sp" />
 
         <TextView
             android:id="@+id/textViewParties"
             android:layout_width="70dp"
             android:layout_height="70dp"
-            android:layout_marginTop="585dp"
-            android:layout_marginStart="300dp"
+            android:layout_marginTop="835dp"
+            android:layout_marginStart="450dp"
             android:text="1"
             android:gravity="center"
             android:textSize="30sp"/>
@@ -298,8 +298,8 @@
             android:id="@+id/buttonIncreaseParties"
             android:layout_width="70dp"
             android:layout_height="70dp"
-            android:layout_marginTop="585dp"
-            android:layout_marginStart="355dp"
+            android:layout_marginTop="835dp"
+            android:layout_marginStart="535dp"
             android:background="@color/whiteText"
             android:text="+"
             android:textSize="30sp"/>
@@ -307,8 +307,8 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="660dp"
-            android:layout_marginStart="20dp"
+            android:layout_marginTop="935dp"
+            android:layout_marginStart="80dp"
             android:text="@string/shops"
             android:textSize="23sp"/>
 
@@ -316,8 +316,8 @@
             android:id="@+id/buttonDecreaseShops"
             android:layout_width="70dp"
             android:layout_height="70dp"
-            android:layout_marginTop="645dp"
-            android:layout_marginStart="245dp"
+            android:layout_marginTop="915dp"
+            android:layout_marginStart="365dp"
             android:background="@color/whiteText"
             android:text="-"
             android:textSize="30sp"/>
@@ -326,18 +326,18 @@
             android:id="@+id/textViewShops"
             android:layout_width="70dp"
             android:layout_height="70dp"
-            android:layout_marginTop="645dp"
-            android:layout_marginStart="300dp"
-            android:text="1"
+            android:layout_marginStart="450dp"
+            android:layout_marginTop="915dp"
             android:gravity="center"
-            android:textSize="30sp"/>
+            android:text="1"
+            android:textSize="30sp" />
 
         <Button
             android:id="@+id/buttonIncreaseShops"
             android:layout_width="70dp"
             android:layout_height="70dp"
-            android:layout_marginTop="645dp"
-            android:layout_marginStart="355dp"
+            android:layout_marginTop="915dp"
+            android:layout_marginStart="535dp"
             android:background="@color/whiteText"
             android:text="+"
             android:textSize="30sp"/>
@@ -345,8 +345,8 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="720dp"
-            android:layout_marginStart="20dp"
+            android:layout_marginTop="1015dp"
+            android:layout_marginStart="80dp"
             android:text="@string/car_thefts"
             android:textSize="23sp"/>
 
@@ -354,8 +354,8 @@
             android:id="@+id/buttonDecreaseCarThefts"
             android:layout_width="70dp"
             android:layout_height="70dp"
-            android:layout_marginTop="705dp"
-            android:layout_marginStart="245dp"
+            android:layout_marginTop="995dp"
+            android:layout_marginStart="365dp"
             android:background="@color/whiteText"
             android:text="-"
             android:textSize="30sp"/>
@@ -364,8 +364,8 @@
             android:id="@+id/textViewCarThefts"
             android:layout_width="70dp"
             android:layout_height="70dp"
-            android:layout_marginTop="705dp"
-            android:layout_marginStart="300dp"
+            android:layout_marginTop="995dp"
+            android:layout_marginStart="450dp"
             android:text="1"
             android:gravity="center"
             android:textSize="30sp"/>
@@ -374,8 +374,8 @@
             android:id="@+id/buttonIncreaseCarThefts"
             android:layout_width="70dp"
             android:layout_height="70dp"
-            android:layout_marginTop="705dp"
-            android:layout_marginStart="355dp"
+            android:layout_marginTop="995dp"
+            android:layout_marginStart="535dp"
             android:background="@color/whiteText"
             android:text="+"
             android:textSize="30sp"/>
@@ -383,8 +383,8 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="780dp"
-            android:layout_marginStart="20dp"
+            android:layout_marginTop="1095dp"
+            android:layout_marginStart="80dp"
             android:text="@string/kids_activities"
             android:textSize="23sp"/>
 
@@ -392,8 +392,8 @@
             android:id="@+id/buttonDecreaseKids"
             android:layout_width="70dp"
             android:layout_height="70dp"
-            android:layout_marginTop="765dp"
-            android:layout_marginStart="245dp"
+            android:layout_marginTop="1075dp"
+            android:layout_marginStart="365dp"
             android:background="@color/whiteText"
             android:text="-"
             android:textSize="30sp"/>
@@ -402,8 +402,8 @@
             android:id="@+id/textViewKids"
             android:layout_width="70dp"
             android:layout_height="70dp"
-            android:layout_marginTop="765dp"
-            android:layout_marginStart="300dp"
+            android:layout_marginTop="1075dp"
+            android:layout_marginStart="450dp"
             android:text="1"
             android:gravity="center"
             android:textSize="30sp"/>
@@ -412,8 +412,8 @@
             android:id="@+id/buttonIncreaseKids"
             android:layout_width="70dp"
             android:layout_height="70dp"
-            android:layout_marginTop="765dp"
-            android:layout_marginStart="355dp"
+            android:layout_marginTop="1075dp"
+            android:layout_marginStart="535dp"
             android:background="@color/whiteText"
             android:text="+"
             android:textSize="30sp"/>
@@ -421,37 +421,37 @@
         <TextView
             android:layout_width="340dp"
             android:layout_height="30dp"
-            android:textSize="25sp"
-            android:layout_marginTop="825dp"
+            android:textSize="29sp"
+            android:layout_marginTop="1195dp"
             android:layout_marginRight="50dp"
             android:layout_gravity="center_horizontal"
             android:text="ADD COMMENT"
             android:gravity="center"/>
 
         <EditText
-            android:layout_width="280dp"
-            android:layout_height="80dp"
-            android:layout_marginTop="855dp"
+            android:layout_width="380dp"
+            android:layout_height="120dp"
+            android:layout_marginTop="1245dp"
             android:layout_marginRight="50dp"
             android:layout_gravity="center_horizontal"
             android:gravity="center"
             android:id="@+id/editComment"/>
 
         <android.support.v7.widget.CardView
-            android:layout_width="90dp"
-            android:layout_height="62dp"
+            android:layout_width="140dp"
+            android:layout_height="82dp"
             app:cardCornerRadius="30dp"
             android:layout_gravity="center"
-            android:layout_marginLeft="160dp"
+            android:layout_marginLeft="230dp"
             android:background="@color/buttons"
             app:cardBackgroundColor="@color/buttons"
-            android:layout_marginTop="430dp">
+            android:layout_marginTop="625dp">
 
             <Button
 
                 style="?android:textAppearanceSmall"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
+                android:layout_width="90dp"
+                android:layout_height="80dp"
                 android:layout_gravity="center"
                 android:id="@+id/buttonAddPlaceToDB"
                 android:background="@color/buttons"
