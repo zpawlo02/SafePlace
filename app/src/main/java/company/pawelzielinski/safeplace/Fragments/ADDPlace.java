@@ -185,7 +185,6 @@ public class ADDPlace extends Fragment {
                         Intent intent = new Intent(context, MainMenu.class);
                         getActivity().startActivity(intent);
                     }else {
-                        Log.i("HAHAH", "DSDSDS");
                         getFragmentManager().beginTransaction().remove(ADDPlace.this).commit();
                    }
 

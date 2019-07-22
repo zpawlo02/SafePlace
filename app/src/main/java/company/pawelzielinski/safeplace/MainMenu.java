@@ -25,6 +25,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 import company.pawelzielinski.safeplace.Fragments.ADDPlace;
+import company.pawelzielinski.safeplace.Fragments.ChangeLanguage;
 import company.pawelzielinski.safeplace.Fragments.EditUsername;
 import company.pawelzielinski.safeplace.Fragments.Info_how_works;
 import company.pawelzielinski.safeplace.Fragments.MyPlaces;
@@ -91,28 +92,6 @@ public class MainMenu extends AppCompatActivity
                 userUsername.setText(firebaseUser.getDisplayName());
             }
         });
-
-        /*userUsername.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                drawer.closeDrawer(GravityCompat.START);
-                int counter = 0;
-                String usernameS = firebaseUser.getDisplayName();
-
-                for(int i = 0; i < usernameS.length(); i++){
-                    if(usernameS.charAt(i) == ' '){
-                        counter++;
-                    }
-                }
-
-                if(counter != 0 ){
-                    FragmentManager fm = getSupportFragmentManager();
-                    Fragment add = new EditUsername();
-                    fm.beginTransaction().add(R.id.drawer_layout,add).addToBackStack(null).commit();
-                }
-
-            }
-        });*/
 
         buttonAddPlace.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -231,6 +210,11 @@ public class MainMenu extends AppCompatActivity
             intent.setType("text/html");
             intent.setPackage("com.google.android.gm");
             startActivity(Intent.createChooser(intent, "Send mail"));
+        }else if(id == R.id.nav_language){
+            FragmentManager fm = getSupportFragmentManager();
+            Fragment add = new ChangeLanguage();
+            fm.beginTransaction().add(R.id.drawer_layout, add).addToBackStack(null).commit();
+
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

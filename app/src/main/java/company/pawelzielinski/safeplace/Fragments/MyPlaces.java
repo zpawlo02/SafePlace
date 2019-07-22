@@ -77,14 +77,12 @@ public class MyPlaces extends Fragment {
                 editPlace.setArguments(b);
 
                 if(wasOpened == false){
-                    Log.i("WASPOPPP", wasOpened.toString());
                     getActivity().getSupportFragmentManager()
                             .beginTransaction()
                             .replace(R.id.drawer_layout, editPlace)
                             .addToBackStack(null).commit();
                 }else {
                     editPlace.saved = true;
-                    Log.i("WASPOPPP", wasOpened.toString());
                     getActivity().getSupportFragmentManager()
                             .beginTransaction()
                             .replace(R.id.fMaps, editPlace)

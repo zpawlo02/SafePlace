@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">SafePlace</string>
+    <string name="action_settings" translatable="false">Settings</string>
+    <string name="action_sign_in" translatable="false">Sign in</string>
+    <string name="action_sign_in_short" translatable="false">Sign in</string>
+    <string name="add" translatable="false">ADD</string>
+    <string name="add_comment" translatable="false">ADD COMMENT</string>
+    <string name="add_place" translatable="false">ADD PLACE</string>
+    <string name="add_safe_not_safe_place" translatable="false">ADD SAFE/NOT SAFE PLACE</string>
+    <string name="add_your_comment" translatable="false">ADD YOUR COMMENT</string>
+    <string name="all" translatable="false">All</string>
+    <string name="car_thefts" translatable="false">Car thefts</string>
+    <string name="change_username" translatable="false">CHANGE USERNAME</string>
+    <string name="city" translatable="false">City</string>
+    <string name="comments" translatable="false">Comments:</string>
+    <string name="country" translatable="false">Country</string>
+    <string name="description" translatable="false">Description:</string>
+    <string name="decrease_area">D</string>
+    <string name="donate" translatable="false">Donate</string>
+    <string name="edit_comment" translatable="false">EDIT COMMENT:</string>
+    <string name="edit_place" translatable="false">EDIT PLACE</string>
+    <string name="email" translatable="false">Email</string>
+    <string name="error_field_required" translatable="false">This field is required</string>
+    <string name="error_invalid_email" translatable="false">This email address is invalid</string>
+    <string name="error_incorrect_password" translatable="false">This password is incorrect</string>
+    <string name="error_invalid_password" translatable="false">This password is too short</string>
+    <string name="forgot_your_password">Forgot your password?</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="homeless" translatable="false">Homeless</string>
+    <string name="increase_area">I</string>
+    <string name="info" translatable="false">Info &amp; how it works</string>
+    <string name="info_howworkss" translatable="false">"1. ADD SAFE/NOT SAFE PLACE - there you can add your place A) Chose if this place is safe or not by clicking on „Safe” or „Not safe” button B) Click on map button to mark place: 1.B. „I” button is to increase place area 2.B. „D” button is to decrease place area 3.B. „S” button is to save marked area C) Chose possibility of amenities and dangers. If possibility is very low pick 1 if very big pick 5. 1.C. „Traffic accidents” how often in this place are traffic accidents 2.C. „Pickpockets” how often you can meet pickpockets 3.C. „Kidnapping” how often abductions happen 4.C. „Homeless” how often you can meet the homeless 5.C. „Public transport” how well public transport is developed, whether there are bus stops etc. 6.C. „Parties, Events” how often there are parties in this place 7.C. „Shops” is there a lot of shops in this place 8.C „Car thefts” how often there are car thefts 9.C „Kids activities” is there a lot of playgrounds etc. D) Add comment about this place E) Click „ADD” button to add place 2. SEARCH FOR SAFE/NOT SAFE PLACE - select if you want show All, Safe or Not safe places also you can chose in which city places will be showed If you want open place click on white are with type of place address and rating If place is opened you can rate it by clicking on rating number and you can add inifinite number of comments 3. TOP SAFE/NOT SAFE PLACES - works like SEARCH FOR SAFE/NOT SAFE PLACE but shows only top 10 places. Ranking is based on place ratings 4. MY PLACES Shows your places which you can edit by clicking on them Thank you! I hope you enjoy using this application If you like this application you can donate me on PayPal by clicking Donate button  "</string>
+    <string name="kidnapping" translatable="false">Kidnapping</string>
+    <string name="kids_activities" translatable="false">Kids activities</string>
+    <string name="language" translatable="false">Language</string>
+    <string name="logout" translatable="false">Logout</string>
+    <string name="mark_area" translatable="false">Mark area</string>
+    <string name="nav_header_desc" translatable="false">Navigation header</string>
+    <string name="navigation_drawer_close" translatable="false">Close navigation drawer</string>
+    <string name="navigation_drawer_open" translatable="false">Open navigation drawer</string>
+    <string name="notSafe" translatable="false">Not safe</string>
+    <string name="parties_events" translatable="false">Parties, Events</string>
+    <string name="pickpockets" translatable="false">Pickpockets</string>
+    <string name="permission_rationale" translatable="false">Contacts permissions are needed for providing email completions.</string>
+    <string name="possibility_of_amenities_or_dangers" translatable="false">Possibility of amenities or dangers</string>
+    <string name="prompt_email" translatable="false">Email</string>
+    <string name="prompt_password" translatable="false">Password</string>
+    <string name="prompt_username" translatable="false">Username</string>
+    <string name="public_transport" translatable="false">Public transport</string>
+    <string name="rate_this_place" translatable="false">RATE THIS PLACE</string>
+    <string name="register" translatable="false">Sign up</string>
+    <string name="reset" translatable="false">RESET</string>
+    <string name="reset_your_password" translatable="false">Reset your password</string>
+    <string name="rules" translatable="false">Rules</string>
+    <string name="safePlace" translatable="false">Safe</string>
+    <string name="save" translatable="false">SAVE</string>
+    <string name="save_area">S</string>
+    <string name="search" translatable="false">SEARCH</string>
+    <string name="search_for_safe_not_safe_places_around" translatable="false">SEARCH FOR SAFE/NOT SAFE PLACES</string>
+    <string name="send_report" translatable="false">Send report</string>
+    <string name="shops" translatable="false">Shops</string>
+    <string name="submit" translatable="false">Submit</string>
+    <string name="title_activity_login" translatable="false">Sign in</string>
+    <string name="title_activity_main_menu" translatable="false">MainMenu</string>
+    <string name="title_activity_maps" translatable="false">Map</string>
+    <string name="top_safe_not_safe_places" translatable="false">TOP SAFE/NOT SAFE PLACES</string>
+    <string name="traffic_accidents" translatable="false">Traffic accidents</string>
+    <string name="username" translatable="false">Username</string>
+    <string name="you_added_rating" translatable="false">You have already added rating!</string>
+</resources>

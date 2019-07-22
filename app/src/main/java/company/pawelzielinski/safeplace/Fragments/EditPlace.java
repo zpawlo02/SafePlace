@@ -123,7 +123,7 @@ public class EditPlace extends Fragment {
         //*****************************************************************************
 
 
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        final FirebaseFirestore db = FirebaseFirestore.getInstance();
 
         if( wasOpened == true){
             isSafe = getArguments().getBoolean("isSafe", true);
@@ -153,9 +153,6 @@ public class EditPlace extends Fragment {
             textCarthefts.setText(String.valueOf(carthefts));
             textKids.setText(String.valueOf(kids));
             editTextComment.setText(comment);
-            Log.i("LAT", lat.toString() + "  " +longt.toString());
-
-
 
         }else {
             key = getArguments().getString("key");
@@ -185,6 +182,8 @@ public class EditPlace extends Fragment {
                     textCarthefts.setText(String.valueOf(place.getCarthefts()));
                     carthefts = place.getCarthefts();
                     editTextComment.setText("  " + place.getComment());
+                    lat = place.getLat();
+                    longt= place.getLongT();
 
                     if(place.getisSafe() == true){
                         isSafe = true;
@@ -232,13 +231,11 @@ public class EditPlace extends Fragment {
                                 .beginTransaction()
                                 .add(R.id.fMaps, f_myPlacees)
                                 .commit();
-                        Log.i("FMAPS", "MAAAPS");
                     }else {
                         getActivity().getSupportFragmentManager()
                                 .beginTransaction()
                                 .add(R.id.drawer_layout, f_myPlacees)
                                 .commit();
-                        Log.i("DRAWER", "DRAWWEEER");
                     }
 
                     getFragmentManager().beginTransaction().remove(EditPlace.this).commit();
@@ -301,6 +298,34 @@ public class EditPlace extends Fragment {
                     getFragmentManager().beginTransaction().remove(EditPlace.this).commit();
                 }
 
+            }
+        });
+
+        buttonDelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                db.collection("places").document(key).delete().addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        MyPlaces f_myPlacees = new MyPlaces();
+
+                        if(wasOpened == true && saved){
+                            f_myPlacees.wasOpened = true;
+                            getActivity().getSupportFragmentManager()
+                                    .beginTransaction()
+                                    .replace(R.id.fMaps, f_myPlacees)
+                                    .addToBackStack(null).commit();
+                            getFragmentManager().beginTransaction().remove(EditPlace.this).commit();
+                        }else {
+                            getActivity().getSupportFragmentManager()
+                                    .beginTransaction()
+                                    .replace(R.id.drawer_layout, f_myPlacees)
+                                    .addToBackStack(null).commit();
+                            getFragmentManager().beginTransaction().remove(EditPlace.this).commit();
+                        }
+                    }
+                });
             }
         });
 

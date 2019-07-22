@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">SafePlace</string>
+    <string name="action_settings" translatable="false">Ustawienia</string>
+    <string name="action_sign_in" translatable="false">Zaloguj</string>
+    <string name="action_sign_in_short" translatable="false">Sign in</string>
+    <string name="add" translatable="false">DODAJ</string>
+    <string name="add_comment" translatable="false">"DODAJ KOMENTARZ "</string>
+    <string name="add_place" translatable="false">DODAJ MIEJSCE</string>
+    <string name="add_safe_not_safe_place" translatable="false">"DODAJ SAFE / NOT SAFE PLACE "</string>
+    <string name="add_your_comment" translatable="false">Dodaj swój komentarz</string>
+    <string name="all" translatable="false">Wszystkie</string>
+    <string name="car_thefts" translatable="false">"Kradzieże samochodów "</string>
+    <string name="change_username" translatable="false">ZMIEŃ NAZWĘ UŻYTKOWNIKA</string>
+    <string name="city" translatable="false">Miasto</string>
+    <string name="comments" translatable="false">Komentarze:</string>
+    <string name="country" translatable="false">Państwo</string>
+    <string name="decrease_area">ZM</string>
+    <string name="description" translatable="false">Opis:</string>
+    <string name="donate" translatable="false">Podaruj</string>
+    <string name="edit_comment" translatable="false">EDYTUJ KOMENTARZ</string>
+    <string name="edit_place" translatable="false">EDTYTUJ MIEJSCE</string>
+    <string name="email" translatable="false">Email</string>
+    <string name="error_field_required" translatable="false">To pole jest wymagane</string>
+    <string name="error_incorrect_password" translatable="false">To hasło jest niepoprawne</string>
+    <string name="error_invalid_email" translatable="false">Ten adres email jest niepoprawny</string>
+    <string name="error_invalid_password" translatable="false">To hasło jest za krótkie</string>
+    <string name="homeless" translatable="false">Bezdomni</string>
+    <string name="increase_area">ZW</string>
+    <string name="info_howworkss" translatable="false">" 1. DODAJ BEZPIECZNE / NIEBEZPIECZE MIEJSCE - możesz dodać swoje miejsce A) Wybierz, czy to miejsce jest bezpieczne, czy nie, klikając przycisk „Bezpieczny” lub „Nie bezpieczny” B) Kliknij przycisk mapy, aby zaznaczyć miejsce: 1.B. Przycisk „ZW” służy do zwiększenia powierzchni 2.B. Przycisk „ZM” służy do zmniejszania obszaru miejsca 3.B. Przycisk „Z” służy do zapisywania zaznaczonego obszaru C) Wybierz szanse udogodnień i niebezpieczeństw. Jeśli szansa jest bardzo niska, wybierz 1, jeśli bardzo duża wybierz 5. 1.C. „Wypadki drogowe”, jak często w tym miejscu dochodzi do wypadków drogowych 2.C. „Kieszonkowcy”, jak często można spotkać kieszonkowców 3.C. „Porwanie”, jak często dochodzi do porwań 4.C. „Bezdomni”, jak często można spotkać bezdomnych 5.C. „Transport publiczny” jak dobrze rozwinięty jest transport publiczny, czy są przystanki autobusowe itp. 6.C. „Imprezy”, jak często są imprezy w tym miejscu 7.C. „Sklepy” czy jest wiele sklepów w tym miejscu 8.C „Kradzieże samochodów”, jak często zdarzają się kradzieże samochodów 9.C „Miejsca dla dzieci” czy jest tu wiele placów zabaw itp. D) Dodaj komentarz na temat tego miejsca E) Kliknij przycisk „DODAJ”, aby dodać miejsce 2. SZUKAJ BEZPIECZNEGO / NIEBEZPIECZNEGO MIEJSCA - wybierz, jeśli chcesz pokazać również Wszystkie, Bezpieczne lub Nie bezpieczne miejsca. Jeśli chcesz otworzyć miejsce, kliknij na białe tło z adresem i oceną Jeśli miejsce jest otwarte, możesz je ocenić, klikając numer oceny oraz dodać nieskończoną liczbę komentarzy 3. TOP BEZPIECZNYCH / NIEBEZPIECZNYCH MIEJSC - działa jak SZUKAJ BEZPIECZNEGO / NIEBEZPIECZNEGO MIEJSCA, ale pokazuje tylko 10 najlepszych miejsc. Ranking opiera się na ocenach miejsc 4. MOJE MIEJSCA Pokazuje twoje miejsca, które możesz edytować oraz usuwać, klikając na nie. Dziękuję! Mam nadzieję, że spodoba Ci się korzystanie z tej aplikacji Jeśli podoba Ci się ta aplikacja, możesz przekazać mi pieniądze na PayPal, klikając przycisk Podaruj"</string>
+    <string name="kidnapping" translatable="false">Porwania</string>
+    <string name="kids_activities" translatable="false">Miejsca dla dzieci</string>
+    <string name="logout" translatable="false">Wyloguj</string>
+    <string name="mark_area" translatable="false">Zaznacz miejsce</string>
+    <string name="nav_header_desc" translatable="false">"Nagłówek nawigacji "</string>
+    <string name="navigation_drawer_close" translatable="false">"Zamknij nagłówek nawigacji "</string>
+    <string name="navigation_drawer_open" translatable="false">Otwórz Nagłówek nawigacjin</string>
+    <string name="notSafe" translatable="false">Niebezpieczne</string>
+    <string name="parties_events" translatable="false">Imprezy</string>
+    <string name="pickpockets" translatable="false">Kieszonkowcy</string>
+    <string name="prompt_email" translatable="false">Email</string>
+    <string name="prompt_password" translatable="false">Hasło</string>
+    <string name="prompt_username" translatable="false">Użytkownik</string>
+    <string name="public_transport" translatable="false">Transport publiczny</string>
+    <string name="rate_this_place" translatable="false">OCEŃ TO MIEJSCE</string>
+    <string name="register" translatable="false">Zarejestruj</string>
+    <string name="reset" translatable="false">RESETUJ</string>
+    <string name="reset_your_password" translatable="false">RESETUJ HASŁO</string>
+    <string name="rules" translatable="false">Zasady</string>
+    <string name="safePlace" translatable="false">Bezpieczne</string>
+    <string name="save" translatable="false">ZAPISZ</string>
+    <string name="save_area">ZA</string>
+    <string name="search" translatable="false">SZUKAJ</string>
+    <string name="search_for_safe_not_safe_places_around" translatable="false">SZUKAJ BEZPIECZNEGO / NIEBEZPIECZNEGO MIEJSCA</string>
+    <string name="send_report" translatable="false">Wyślij zgłoszenie</string>
+    <string name="shops" translatable="false">Sklepy</string>
+    <string name="submit" translatable="false">Zatwierdź</string>
+    <string name="title_activity_login" translatable="false">Zaloguj</string>
+    <string name="title_activity_main_menu" translatable="false">MainMenu</string>
+    <string name="title_activity_maps" translatable="false">Mapa</string>
+    <string name="top_safe_not_safe_places" translatable="false">TOP BEZPIECZNYCH / NIEBEZPIECZNYCH MIEJSC</string>
+    <string name="traffic_accidents" translatable="false">Wypadki samochodowe</string>
+    <string name="username" translatable="false">Użytkownik</string>
+    <string name="you_added_rating" translatable="false">To miejsce już zostało przez Ciebie ocenione!</string>
+    <string name="language" translatable="false">Język</string>
+</resources>

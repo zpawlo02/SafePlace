@@ -5,8 +5,7 @@
     <supports-screens
         android:largeScreens="true"
         android:normalScreens="true"
-        android:xlargeScreens="true"
-        />
+        android:xlargeScreens="true" />
 
     <!--
          The ACCESS_COARSE/FINE_LOCATION permissions are not required to use

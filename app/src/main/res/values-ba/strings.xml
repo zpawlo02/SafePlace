@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">SafePlace</string>
+    <string name="action_settings" translatable="false">настройки</string>
+    <string name="action_sign_in" translatable="false">"войти в систему "</string>
+    <string name="action_sign_in_short" translatable="false">"войти в систему "</string>
+    <string name="add" translatable="false">ДОБАВЛЯТЬ</string>
+    <string name="add_comment" translatable="false">"ДОБАВИТЬ КОММЕНТАРИЙ "</string>
+    <string name="add_place" translatable="false">"ДОБАВИТЬ МЕСТО "</string>
+    <string name="add_safe_not_safe_place" translatable="false">"ДОБАВИТЬ БЕЗОПАСНОЕ / НЕ БЕЗОПАСНОЕ МЕСТО "</string>
+    <string name="add_your_comment" translatable="false">Добавьте свой комментарий</string>
+    <string name="all" translatable="false">Все</string>
+    <string name="car_thefts" translatable="false">"Угон автомобилей "</string>
+    <string name="change_username" translatable="false">"ИЗМЕНЕНИЕ ИМЕНИ ПОЛЬЗОВАТЕЛЯ "</string>
+    <string name="city" translatable="false">город</string>
+    <string name="comments" translatable="false">Комментарии:</string>
+    <string name="country" translatable="false">Страна</string>
+    <string name="description" translatable="false">"Описание: "</string>
+    <string name="donate" translatable="false">жертвовать</string>
+    <string name="edit_comment" translatable="false">"РЕДАКТИРОВАТЬ КОММЕНТАРИЙ: "</string>
+    <string name="edit_place" translatable="false">РЕДАКТИРОВАТЬ МЕСТО</string>
+    <string name="email" translatable="false">Email</string>
+    <string name="error_field_required" translatable="false">"Это поле обязательно к заполнению "</string>
+    <string name="error_incorrect_password" translatable="false">"Неверный пароль "</string>
+    <string name="error_invalid_email" translatable="false">"Этот адрес электронной почты недействителен "</string>
+    <string name="error_invalid_password" translatable="false">"Этот пароль слишком короткий "</string>
+    <string name="forgot_your_password">Забыли пароль?</string>
+    <string name="homeless" translatable="false">бездомный</string>
+    <string name="info" translatable="false">"Информация и как это работает "</string>
+    <string name="info_howworkss" translatable="false">1. ДОБАВЬТЕ БЕЗОПАСНОЕ / НЕ БЕЗОПАСНОЕ МЕСТО - там вы можете добавить свое место A) Выберите, безопасное ли это место или нет, нажав кнопку «Безопасный» или «Не безопасный» Б) Нажмите на кнопку карты, чтобы отметить место: 1.b. Кнопка «I» предназначена для увеличения площади 2.б. Кнопка «D» предназначена для уменьшения площади места 3.b. Кнопка «S» предназначена для сохранения отмеченной области В) выбрал возможность об удобстве и опасности. Если вероятность очень мала, выберите 1, если очень большой. 5. 1.C. «Дорожно-транспортные происшествия», как часто в этом месте дорожно-транспортные происшествия 2.в «Карманники», как часто вы можете встретить карманников 3.C. «Похищение», как часто происходят похищения 4.C. «Бездомные», как часто вы можете встретить бездомных 5.c. «Общественный транспорт», насколько хорошо развит общественный транспорт, есть ли автобусные остановки и т. Д. 6.с «Вечеринки, мероприятия», как часто в этом месте устраиваются вечеринки 7.C. «Магазины» в этом месте много магазинов 8.C «Автомобильные кражи», как часто бывают автомобильные кражи 9.C «Детские мероприятия», есть много игровых площадок и т. Д. D) Добавить комментарий об этом месте E) Нажмите кнопку «ДОБАВИТЬ», чтобы добавить место 2. ПОИСК БЕЗОПАСНОГО / НЕ БЕЗОПАСНОГО МЕСТА - выберите, хотите ли вы показать все, безопасные или небезопасные места, также вы можете выбрать, в каких местах города будут отображаться Если вы хотите открыть место, нажмите на белый с типом места, адрес и рейтинг Если место открыто, вы можете оценить его, нажав на номер рейтинга, и вы можете добавить бесконечное количество комментариев 3. ТОП БЕЗОПАСНЫХ / НЕ БЕЗОПАСНЫХ МЕСТ - работает как ПОИСК БЕЗОПАСНЫХ / НЕ БЕЗОПАСНЫХ МЕСТ, но показывает только 10 лучших мест. Рейтинг основан на рейтингах мест 4. МОИ МЕСТА Показывает ваши места, которые вы можете редактировать, нажимая на них. Спасибо! Я надеюсь, вам понравится это приложение Если вам нравится это приложение, вы можете пожертвовать меня на PayPal, нажав кнопку Пожертвовать</string>
+    <string name="kidnapping" translatable="false">"похищение людей "</string>
+    <string name="kids_activities" translatable="false">"Детские мероприятия "</string>
+    <string name="logout" translatable="false">Выйти</string>
+    <string name="mark_area" translatable="false">"Отметить область "</string>
+    <string name="nav_header_desc" translatable="false">"Заголовок навигации "</string>
+    <string name="navigation_drawer_close" translatable="false">"Закрыть навигационный ящик "</string>
+    <string name="navigation_drawer_open" translatable="false">Открыть навигационный ящик</string>
+    <string name="notSafe" translatable="false">Не безопасно</string>
+    <string name="parties_events" translatable="false">"Вечеринки, События "</string>
+    <string name="pickpockets" translatable="false">"Вечеринки, События "</string>
+    <string name="possibility_of_amenities_or_dangers" translatable="false">"Возможность удобства или опасности "</string>
+    <string name="prompt_password" translatable="false">пароль</string>
+    <string name="prompt_username" translatable="false">"имя пользователя "</string>
+    <string name="public_transport" translatable="false">"Общественный транспорт "</string>
+    <string name="rate_this_place" translatable="false">"Оцените это место "</string>
+    <string name="register" translatable="false">"зарегистрироваться "</string>
+    <string name="reset" translatable="false">СБРОС</string>
+    <string name="reset_your_password" translatable="false">"Сбросить пароль "</string>
+    <string name="rules" translatable="false">правила</string>
+    <string name="safePlace" translatable="false">Безопасный</string>
+    <string name="save" translatable="false">СПАСТИ</string>
+    <string name="search" translatable="false">ПОИСК</string>
+    <string name="search_for_safe_not_safe_places_around" translatable="false">"ПОИСК БЕЗОПАСНЫХ / НЕ БЕЗОПАСНЫХ МЕСТ "</string>
+    <string name="send_report" translatable="false">"Отправить жалобу "</string>
+    <string name="shops" translatable="false">Магазины</string>
+    <string name="submit" translatable="false">Отправить</string>
+    <string name="title_activity_login" translatable="false">"войти в систему "</string>
+    <string name="title_activity_main_menu" translatable="false">MainMenu</string>
+    <string name="title_activity_maps" translatable="false">карта</string>
+    <string name="top_safe_not_safe_places" translatable="false">"ТОП БЕЗОПАСНЫЕ / НЕ БЕЗОПАСНЫЕ МЕСТА "</string>
+    <string name="traffic_accidents" translatable="false">"Дорожные аварии "</string>
+    <string name="username" translatable="false">"имя пользователя "</string>
+    <string name="you_added_rating" translatable="false">"Вы уже добавили рейтинг! "</string>
+    <string name="decrease_area">С</string>
+    <string name="increase_area">У</string>
+    <string name="save_area">С</string>
+    <string name="prompt_email" translatable="false">Email</string>
+    <string name="language" translatable="false">язык</string>
+</resources>

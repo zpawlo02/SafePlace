@@ -151,7 +151,6 @@ public class ShowPlaces extends Fragment {
                 if(keyCode == android.view.KeyEvent.KEYCODE_BACK){
                     editTextCity.clearFocus();
                     editTextCity.setText("");
-                    Log.i("TTTT", "DDDDDDDDD");
                     db.disableNetwork();
                     getFragmentManager().beginTransaction().remove(ShowPlaces.this).commit();
                     return true;
