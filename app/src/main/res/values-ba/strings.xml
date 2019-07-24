@@ -66,4 +66,6 @@
     <string name="save_area">С</string>
     <string name="prompt_email" translatable="false">Email</string>
     <string name="language" translatable="false">язык</string>
+    <string name="myplaces">"МОИ МЕСТА "</string>
+    <string name="delete">УДАЛЯТЬ</string>
 </resources>

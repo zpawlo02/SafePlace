@@ -74,4 +74,8 @@
     <string name="language">Language</string>
     <string name="permission_rationale" translatable="false">Contacts permissions are needed for providing email completions.</string>
     <string name="pickpockets" translatable="false">Pickpockets</string>
+    <string name="myplaces">MyPlaces</string>
+    <string name="top_safe">Top Safe</string>
+    <string name="top_not_safe">Top Not Safe</string>
+    <string name="delete">DELETE</string>
 </resources>

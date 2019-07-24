@@ -57,7 +57,7 @@
             android:layout_width="match_parent"
             android:layout_height="160dp"
             android:background="@color/mainMenuButtonColor"
-            android:text="MyPlaces"
+            android:text="@string/myplaces"
             android:textSize="21sp"
             android:textColor="@color/mainMenuButtonTextColor"
             android:id="@+id/buttonMyPlaces"/>

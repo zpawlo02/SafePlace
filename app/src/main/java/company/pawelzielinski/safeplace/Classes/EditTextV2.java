@@ -24,8 +24,7 @@ public class EditTextV2 extends android.support.v7.widget.AppCompatEditText
     public boolean onKeyPreIme(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK &&
                 event.getAction() == KeyEvent.ACTION_UP) {
-            // do your stuff
-            return false;
+            this.clearFocus();
         }
         return super.dispatchKeyEvent(event);
     }

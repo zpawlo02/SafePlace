@@ -6,11 +6,16 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/whiteText"
     tools:context=".Fragments.ADDPlace"
-    android:clickable="true">
+    android:clickable="true"
+    android:focusableInTouchMode="true"
+    android:focusable="true">
 
         <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:focusableInTouchMode="true"
+            android:focusable="true">
 
                 <TextView
                     android:layout_width="match_parent"
@@ -428,7 +433,7 @@
                     android:text="ADD COMMENT"
                     android:gravity="center"/>
                 
-                <EditText
+                <company.pawelzielinski.safeplace.Classes.EditTextV2
                     android:layout_width="260dp"
                     android:layout_height="80dp"
                     android:layout_marginTop="855dp"

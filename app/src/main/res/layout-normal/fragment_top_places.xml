@@ -19,18 +19,18 @@
 
         <RadioButton
             android:id="@+id/radioTopSafeS"
-            android:layout_width="137dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Top Safe"
-            android:textSize="20sp"
+            android:text="@string/top_safe"
+            android:textSize="19sp"
             android:checked="true"/>
 
         <RadioButton
             android:id="@+id/radioTopNotSafeS"
-            android:layout_width="160dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Top Not Safe"
-            android:textSize="20sp" />
+            android:text="@string/top_not_safe"
+            android:textSize="19sp" />
 
     </RadioGroup>
 
@@ -55,7 +55,7 @@
 
         <Button
             android:layout_width="95dp"
-            android:layout_height="wrap_content"
+            android:layout_height="55dp"
             android:id="@+id/buttonSearchTop"
             android:layout_gravity="center"
             android:background="@color/buttons"

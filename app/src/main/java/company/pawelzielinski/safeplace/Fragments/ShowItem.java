@@ -42,6 +42,7 @@ import javax.annotation.Nullable;
 
 import company.pawelzielinski.safeplace.Adapters.CommentsListAdapter;
 import company.pawelzielinski.safeplace.Classes.Comment;
+import company.pawelzielinski.safeplace.Classes.EditTextV2;
 import company.pawelzielinski.safeplace.Classes.Place;
 import company.pawelzielinski.safeplace.Classes.Rating;
 import company.pawelzielinski.safeplace.R;
@@ -53,7 +54,7 @@ public class ShowItem extends Fragment {
     textViewPublic, textViewParties, textViewShops, textViewCar, textViewKids, textViewCom,
     textViewSafeNot, textViewCountryCity, textViewRating;
     private Button buttonAddComment;
-    private EditText editTextComment;
+    private EditTextV2 editTextComment;
     private String key, whichFragment, radio;
     private Place p;
     private CircleOptions circleOptions;
@@ -101,7 +102,7 @@ public class ShowItem extends Fragment {
         textViewRating = (TextView) v.findViewById(R.id.textViewRatingNumberi);
         mapView = (MapView) v.findViewById(R.id.imageViewMapShowi);
         buttonAddComment = (Button) v.findViewById(R.id.buttonAddComment);
-        editTextComment = (EditText) v.findViewById(R.id.editTextAddComment);
+        editTextComment =  v.findViewById(R.id.editTextAddComment);
         listViewComments = (ListView) v.findViewById(R.id.listViewComments);
 
         key = getArguments().getString("key");
@@ -114,6 +115,7 @@ public class ShowItem extends Fragment {
             @Override
             public boolean onKey(View v, int keyCode, KeyEvent event) {
                 if(keyCode == android.view.KeyEvent.KEYCODE_BACK){
+                     editTextComment.clearFocus();
                      Bundle b = new Bundle();
                      b.putString("radio", radio);
                     Toast.makeText(context, whichFragment, Toast.LENGTH_SHORT);
@@ -166,7 +168,7 @@ public class ShowItem extends Fragment {
                   textViewSafeNot.setText("Not safe");
               }
               textViewRating.setText(String.valueOf(p.getRating()));
-              textViewCountryCity.setText(p.getCountry() + " " + p.getCity());
+              textViewCountryCity.setText(p.getAdress()); //.getCountry() + " " + p.getCity()
 
               LatLng latLng = new LatLng(p.getLat(), p.getLongT());
               if (!p.getisSafe()) {
@@ -212,6 +214,10 @@ public class ShowItem extends Fragment {
                           map.animateCamera(CameraUpdateFactory.zoomTo(15.8f));
                       } else if (circleOptions.getRadius() >= 100 && circleOptions.getRadius() < 200) {
                           map.animateCamera(CameraUpdateFactory.zoomTo(16.0f));
+                      }else if(circleOptions.getRadius() >= 50 && circleOptions.getRadius() < 100){
+                          map.animateCamera(CameraUpdateFactory.zoomTo(16.8f));
+                      }else if(circleOptions.getRadius() >= 0 && circleOptions.getRadius() < 50){
+                          map.animateCamera(CameraUpdateFactory.zoomTo(17.5f));
                       }
                       Circle circle1 = map.addCircle(circleOptions);
                       map.moveCamera(CameraUpdateFactory.newLatLng(new LatLng(p.getLat(), p.getLongT())));

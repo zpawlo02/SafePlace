@@ -137,17 +137,30 @@ public class PlacesListAdapter extends ArrayAdapter<Place> {
             public void onMapReady(GoogleMap googleMap) {
 
                 GoogleMap map = googleMap;
-                if(circleOptions.getRadius() <= 220){
-                    map.animateCamera(CameraUpdateFactory.zoomTo(16.8f));
-                }else if(circleOptions.getRadius() <= 700){
-                    map.animateCamera(CameraUpdateFactory.zoomTo(15.4f));
-                }else if(circleOptions.getRadius() <= 900){
+                if (circleOptions.getRadius() >= 600 && circleOptions.getRadius() < 700) {
                     map.animateCamera(CameraUpdateFactory.zoomTo(14.4f));
-                }else if(circleOptions.getRadius() <= 440){
+                } else if (circleOptions.getRadius() >= 700 && circleOptions.getRadius() < 800) {
+                    map.animateCamera(CameraUpdateFactory.zoomTo(13.4f));
+                } else if (circleOptions.getRadius() >= 800 && circleOptions.getRadius() < 900) {
+                    map.animateCamera(CameraUpdateFactory.zoomTo(12.4f));
+                }  else if (circleOptions.getRadius() == 800) {
+                    map.animateCamera(CameraUpdateFactory.zoomTo(11.6f));
+                } else if (circleOptions.getRadius() >= 500 && circleOptions.getRadius() < 600) {
+                    map.animateCamera(CameraUpdateFactory.zoomTo(15.4f));
+                } else if (circleOptions.getRadius() >= 400 && circleOptions.getRadius() < 500) {
+                    map.animateCamera(CameraUpdateFactory.zoomTo(15.0f));
+                } else if (circleOptions.getRadius() >= 300 && circleOptions.getRadius() < 400) {
+                    map.animateCamera(CameraUpdateFactory.zoomTo(16.4f));
+                } else if (circleOptions.getRadius() >= 200 && circleOptions.getRadius() < 300) {
                     map.animateCamera(CameraUpdateFactory.zoomTo(15.8f));
-                }else if(circleOptions.getRadius() <= 290){
+                } else if (circleOptions.getRadius() >= 100 && circleOptions.getRadius() < 200) {
                     map.animateCamera(CameraUpdateFactory.zoomTo(16.0f));
+                }else if(circleOptions.getRadius() >= 50 && circleOptions.getRadius() < 100){
+                    map.animateCamera(CameraUpdateFactory.zoomTo(16.8f));
+                }else if(circleOptions.getRadius() >= 0 && circleOptions.getRadius() < 50){
+                    map.animateCamera(CameraUpdateFactory.zoomTo(17.5f));
                 }
+
                 Circle circle1 = map.addCircle(new CircleOptions().strokeWidth(4)
                         .radius(circleOptions.getRadius())
                         .center(circleOptions.getCenter())

@@ -34,6 +34,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Locale;
 
+import company.pawelzielinski.safeplace.Classes.EditTextV2;
 import company.pawelzielinski.safeplace.Classes.Place;
 import company.pawelzielinski.safeplace.MainMenu;
 import company.pawelzielinski.safeplace.MapsActivity;
@@ -46,7 +47,7 @@ public class ADDPlace extends Fragment {
     private View view;
     private Button buttonOpenMaps;
     private RadioButton radioButtonSafe, radioButtonNotSafe;
-    private EditText editTextComment;
+    private EditTextV2 editTextComment;
 
     private Boolean isSafe = true;
     private String comment;
@@ -142,7 +143,7 @@ public class ADDPlace extends Fragment {
         radioButtonNotSafe = (RadioButton) view.findViewById(R.id.radioNotSafe);
 
         //EDITTEXT
-        editTextComment = (EditText) view.findViewById(R.id.editComment);
+        editTextComment = view.findViewById(R.id.editComment);
 
         // Inflate the layout for this fragment
 
@@ -179,7 +180,8 @@ public class ADDPlace extends Fragment {
             @Override
             public boolean onKey(View v, int keyCode, KeyEvent event) {
                 if(keyCode == android.view.KeyEvent.KEYCODE_BACK){
-
+                    editTextComment.clearFocus();
+                    editTextComment.setText("");
                     if(wasOpened == true){
                       //  getActivity().finish();
                         Intent intent = new Intent(context, MainMenu.class);

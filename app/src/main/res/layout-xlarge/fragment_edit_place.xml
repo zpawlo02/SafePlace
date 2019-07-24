@@ -6,11 +6,16 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".Fragments.EditPlace"
     android:background="@color/whiteText"
-    android:clickable="true">
+    android:clickable="true"
+    android:focusableInTouchMode="true"
+    android:focusable="true">
 
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:focusableInTouchMode="true"
+        android:focusable="true">
 
         <TextView
             android:layout_width="match_parent"
@@ -428,14 +433,15 @@
             android:text="ADD COMMENT"
             android:gravity="center"/>
 
-        <EditText
+        <company.pawelzielinski.safeplace.Classes.EditTextV2
             android:layout_width="380dp"
             android:layout_height="120dp"
             android:layout_marginTop="1245dp"
             android:layout_marginRight="50dp"
             android:layout_gravity="center_horizontal"
             android:gravity="center"
-            android:id="@+id/editCommentE"/>
+            android:id="@+id/editCommentE"
+            android:inputType="text"/>
 
         <android.support.v7.widget.CardView
             android:layout_width="140dp"

@@ -29,7 +29,6 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="homeless" translatable="false">Homeless</string>
     <string name="increase_area">I</string>
-    <string name="info" translatable="false">Info &amp; how it works</string>
     <string name="info_howworkss" translatable="false">"1. ADD SAFE/NOT SAFE PLACE - there you can add your place A) Chose if this place is safe or not by clicking on „Safe” or „Not safe” button B) Click on map button to mark place: 1.B. „I” button is to increase place area 2.B. „D” button is to decrease place area 3.B. „S” button is to save marked area C) Chose possibility of amenities and dangers. If possibility is very low pick 1 if very big pick 5. 1.C. „Traffic accidents” how often in this place are traffic accidents 2.C. „Pickpockets” how often you can meet pickpockets 3.C. „Kidnapping” how often abductions happen 4.C. „Homeless” how often you can meet the homeless 5.C. „Public transport” how well public transport is developed, whether there are bus stops etc. 6.C. „Parties, Events” how often there are parties in this place 7.C. „Shops” is there a lot of shops in this place 8.C „Car thefts” how often there are car thefts 9.C „Kids activities” is there a lot of playgrounds etc. D) Add comment about this place E) Click „ADD” button to add place 2. SEARCH FOR SAFE/NOT SAFE PLACE - select if you want show All, Safe or Not safe places also you can chose in which city places will be showed If you want open place click on white are with type of place address and rating If place is opened you can rate it by clicking on rating number and you can add inifinite number of comments 3. TOP SAFE/NOT SAFE PLACES - works like SEARCH FOR SAFE/NOT SAFE PLACE but shows only top 10 places. Ranking is based on place ratings 4. MY PLACES Shows your places which you can edit by clicking on them Thank you! I hope you enjoy using this application If you like this application you can donate me on PayPal by clicking Donate button  "</string>
     <string name="kidnapping" translatable="false">Kidnapping</string>
     <string name="kids_activities" translatable="false">Kids activities</string>
@@ -68,4 +67,9 @@
     <string name="traffic_accidents" translatable="false">Traffic accidents</string>
     <string name="username" translatable="false">Username</string>
     <string name="you_added_rating" translatable="false">You have already added rating!</string>
+    <string name="info" translatable="false">Info &amp; how it works</string>
+    <string name="myplaces">MyPlaces</string>
+    <string name="top_not_safe">Top Not Safe</string>
+    <string name="top_safe">Top Safe</string>
+    <string name="delete">DELETE</string>
 </resources>

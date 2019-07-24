@@ -37,10 +37,10 @@ public class EditPlace extends Fragment {
 
     private View view;
     private RadioButton radioButtonSafe, radioButtonNotSafe;
-    private EditText editTextComment;
+    private EditTextV2 editTextComment;
 
     private Boolean isSafe = true;
-    public Boolean wasOpened = false, saved = false;
+    public  Boolean wasOpened = false, saved = false;
     private String comment;
     private String key, country, city, adress;
     private Context context;
@@ -119,7 +119,7 @@ public class EditPlace extends Fragment {
         textCarthefts = (TextView) view.findViewById(R.id.textViewCarTheftsE);
         textKids= (TextView) view.findViewById(R.id.textViewKidsE);
 
-        editTextComment = (EditText) view.findViewById(R.id.editCommentE);
+        editTextComment = view.findViewById(R.id.editCommentE);
         //*****************************************************************************
 
 
@@ -205,9 +205,6 @@ public class EditPlace extends Fragment {
         radioButtonSafe = (RadioButton) view.findViewById(R.id.radioSafeE);
         radioButtonNotSafe = (RadioButton) view.findViewById(R.id.radioNotSafeE);
 
-        //EDITTEXT
-        editTextComment = (EditText) view.findViewById(R.id.editCommentE);
-
         // Inflate the layout for this fragment
 
 
@@ -219,6 +216,8 @@ public class EditPlace extends Fragment {
             @Override
             public boolean onKey(View v, int keyCode, KeyEvent event) {
                 if(keyCode == android.view.KeyEvent.KEYCODE_BACK){
+                    editTextComment.clearFocus();
+                    editTextComment.setText("");
                     Bundle b = new Bundle();
                     b.putString("key", key);
                     MyPlaces f_myPlacees = new MyPlaces();

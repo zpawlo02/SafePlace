@@ -3,11 +3,11 @@
     <string name="app_name">SafePlace</string>
     <string name="action_settings" translatable="false">Ustawienia</string>
     <string name="action_sign_in" translatable="false">Zaloguj</string>
-    <string name="action_sign_in_short" translatable="false">Sign in</string>
+    <string name="action_sign_in_short" translatable="false">Zaloguj</string>
     <string name="add" translatable="false">DODAJ</string>
     <string name="add_comment" translatable="false">"DODAJ KOMENTARZ "</string>
     <string name="add_place" translatable="false">DODAJ MIEJSCE</string>
-    <string name="add_safe_not_safe_place" translatable="false">"DODAJ SAFE / NOT SAFE PLACE "</string>
+    <string name="add_safe_not_safe_place" translatable="false">DODAJ BEZPIECZNE/ NIEBEZPIECZNE MIEJSCE</string>
     <string name="add_your_comment" translatable="false">Dodaj swój komentarz</string>
     <string name="all" translatable="false">Wszystkie</string>
     <string name="car_thefts" translatable="false">"Kradzieże samochodów "</string>
@@ -63,4 +63,11 @@
     <string name="username" translatable="false">Użytkownik</string>
     <string name="you_added_rating" translatable="false">To miejsce już zostało przez Ciebie ocenione!</string>
     <string name="language" translatable="false">Język</string>
+    <string name="forgot_your_password">Nie pamiętasz hasła?</string>
+    <string name="info" translatable="false">Info &amp; jak to działa</string>
+    <string name="myplaces">MOJE MIEJSCA</string>
+    <string name="possibility_of_amenities_or_dangers" translatable="false">Szansa na udogodnienia i zagrożenia</string>
+    <string name="top_not_safe">Top Niebezpiecznych</string>
+    <string name="top_safe">Top Bezpiecznych</string>
+    <string name="delete">USUŃ</string>
 </resources>

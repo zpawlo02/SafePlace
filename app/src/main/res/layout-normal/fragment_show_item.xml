@@ -5,7 +5,10 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".Fragments.ShowItem"
-    android:background="@color/whiteText">
+    android:background="@color/whiteText"
+    android:clickable="true"
+    android:focusableInTouchMode="true"
+    android:focusable="true">
 
 
 
@@ -13,7 +16,10 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:weightSum="100">
+        android:weightSum="100"
+        android:clickable="true"
+        android:focusableInTouchMode="true"
+        android:focusable="true">
 
         <TextView
             android:id="@+id/textViewSafeNotSafeItemi"
@@ -34,9 +40,10 @@
             android:orientation="horizontal">
 
             <TextView
-                android:layout_width="280dp"
+                android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:id="@+id/textViewCountryCityi"
+                android:layout_marginStart="15dp"
                 android:textSize="18sp"
                 android:gravity="center"/>
 
@@ -368,7 +375,7 @@
             android:background="@color/mainMenuButtonTextColor"
             android:layout_marginTop="1dp"/>
 
-        <EditText
+        <company.pawelzielinski.safeplace.Classes.EditTextV2
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:id="@+id/editTextAddComment"
